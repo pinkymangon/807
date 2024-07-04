@@ -339,55 +339,55 @@
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      fetchRounds();
-      const form = document.getElementById('reservation-form');
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        submitForm();
-      });
+  window.onload = function () {
+    fetchRounds();
+    const form = document.getElementById('reservation-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitForm();
     });
+  };
 
-    async function fetchRounds() {
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyTVZOTFXtMNTaO_p8Z26pylxHyhU-P4or93ep6lWn_A9pqlpZVX7sf3mOhGe5YpBWS/exec?action=getRounds');
-        const rounds = await response.json();
-        const roundSelect = document.getElementById('round');
-        rounds.forEach(round => {
-          const option = document.createElement('option');
-          option.value = round;
-          option.textContent = round;
-          roundSelect.appendChild(option);
-        });
-      } catch (error) {
-        console.error('Error fetching rounds:', error);
-      }
+  async function fetchRounds() {
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyTVZOTFXtMNTaO_p8Z26pylxHyhU-P4or93ep6lWn_A9pqlpZVX7sf3mOhGe5YpBWS/exec?action=getRounds');
+      const rounds = await response.json();
+      const roundSelect = document.getElementById('round');
+      rounds.forEach(round => {
+        const option = document.createElement('option');
+        option.value = round;
+        option.textContent = round;
+        roundSelect.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error fetching rounds:', error);
     }
+  }
 
-    async function submitForm() {
-      const form = document.getElementById('reservation-form');
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      data.action = 'processFormData';
+  async function submitForm() {
+    const form = document.getElementById('reservation-form');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    data.action = 'processFormData';
 
-      try {
-        
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyTVZOTFXtMNTaO_p8Z26pylxHyhU-P4or93ep6lWn_A9pqlpZVX7sf3mOhGe5YpBWS/exec', {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const result = await response.json();
-        document.getElementById('resultMessage').textContent = result.message;
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      } finally {
-        console.log('載入完成');
-      }
+    try {
+      document.querySelector('.loading-spinner').classList.add('show');
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyTVZOTFXtMNTaO_p8Z26pylxHyhU-P4or93ep6lWn_A9pqlpZVX7sf3mOhGe5YpBWS/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await response.json();
+      document.getElementById('resultMessage').textContent = result.message;
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      document.querySelector('.loading-spinner').classList.remove('show');
     }
-  </script>
+  }
+</script>
 </body>
 
 </html>
