@@ -2,24 +2,22 @@
 <html lang="zh-Hant">
 
 <head>
-  <meta charset="utf-8" />
+ <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>預約表單</title>
-   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <!-- Bootstrap Icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
   <!-- Google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
-    rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
   <!-- SimpleLightbox plugin CSS-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
   <!-- Core theme CSS (includes Bootstrap)-->
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* 自定義樣式 */
     .form-container {
       max-width: 500px;
       margin: 0 auto;
@@ -217,7 +215,10 @@
             </div>
             <!-- 選擇場次 input-->
             <div class="form-floating mb-3">
-              <select id="round" name="round" class="form-control form-select" data-sb-validations="required"></select>
+              <select id="round" name="round" class="form-control form-select" data-sb-validations="required">
+                <option value="">選擇場次...</option>
+                <!-- 其他選項將由JavaScript動態添加 -->                
+              </select>
               <label for="round">選擇參加的場次</label>
               <div class="invalid-feedback" data-sb-feedback="round:required">
                 *請選擇場次。
@@ -337,122 +338,55 @@
   <!-- Core theme JS-->
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-  <script>
-    const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbzcGmqcPcX5fswzqsrlnzlmmXii5-o3t1JLKM8qOM14jcFb1vyf9Y4-PSvPoqRKdjLJKg/exec';  // 替換為你的 GAS 部署 URL
-    const FULL_URL = PROXY_URL + GAS_URL;
-
-    window.addEventListener("DOMContentLoaded", (event) => {
-      // Navbar shrink function
-      var navbarShrink = function () {
-        const navbarCollapsible =
-          document.body.querySelector("#mainNav");
-        if (!navbarCollapsible) {
-          return;
-        }
-        if (window.scrollY === 0) {
-          navbarCollapsible.classList.remove("navbar-shrink");
-        } else {
-          navbarCollapsible.classList.add("navbar-shrink");
-        }
-      };
-
-      // Shrink the navbar
-      navbarShrink();
-
-      // Shrink the navbar when page is scrolled
-      document.addEventListener("scroll", navbarShrink);
-
-      // Activate Bootstrap scrollspy on the main nav element
-      const mainNav = document.body.querySelector("#mainNav");
-      if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-          target: "#mainNav",
-          rootMargin: "0px 0px -40%",
-        });
-      }
-
-      // Collapse responsive navbar when toggler is visible
-      const navbarToggler =
-        document.body.querySelector(".navbar-toggler");
-      const responsiveNavItems = [].slice.call(
-        document.querySelectorAll("#navbarResponsive .nav-link")
-      );
-      responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener("click", () => {
-          if (
-            window.getComputedStyle(navbarToggler).display !==
-            "none"
-          ) {
-            navbarToggler.click();
-          }
-        });
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      fetchRounds();
+      const form = document.getElementById('reservation-form');
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        submitForm();
       });
-
-      // Activate SimpleLightbox plugin for portfolio items
-      new SimpleLightbox({
-        elements: "#portfolio a.portfolio-box",
-      });
-      
-      // 加載填充下拉選單選項    
-      fetch(GAS_URL + '?action=getRounds', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-requested-with': 'XMLHttpRequest'
-        }
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(rounds => {
-        populateRounds(rounds);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      })
-      .finally(() => {
-        console.log('加載完成');
-      });
-
     });
 
-
-     // 將場次選項填充到下拉選單中
-    function populateRounds(rounds) {
-      const select = document.getElementById('round');
-      select.innerHTML = '';  // 清空現有的選項
-      rounds.forEach(round => {
-        const option = document.createElement('option');
-        option.value = round;
-        option.textContent = round;
-        select.appendChild(option);
-      });
+    async function fetchRounds() {
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyTVZOTFXtMNTaO_p8Z26pylxHyhU-P4or93ep6lWn_A9pqlpZVX7sf3mOhGe5YpBWS/exec?action=getRounds');
+        const rounds = await response.json();
+        const roundSelect = document.getElementById('round');
+        rounds.forEach(round => {
+          const option = document.createElement('option');
+          option.value = round;
+          option.textContent = round;
+          roundSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching rounds:', error);
+      }
     }
 
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      fetch(FULL_URL + '?action=processFormData', {
-        method: 'POST',
-        body: JSON.stringify(Object.fromEntries(formData)),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => response.text())
-      .then(message => {
-        alert(message);
-        event.target.reset();
-      })
-      .catch(error => {
+    async function submitForm() {
+      const form = document.getElementById('reservation-form');
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.action = 'processFormData';
+
+      try {
+        
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyTVZOTFXtMNTaO_p8Z26pylxHyhU-P4or93ep6lWn_A9pqlpZVX7sf3mOhGe5YpBWS/exec', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const result = await response.json();
+        document.getElementById('resultMessage').textContent = result.message;
+      } catch (error) {
         console.error('Error submitting form:', error);
-      });
+      } finally {
+        console.log('載入完成');
+      }
     }
-
   </script>
 </body>
 
