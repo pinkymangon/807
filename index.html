@@ -339,26 +339,30 @@
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
    <script>
- async function fetchRounds() {
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxxRk6t0ez3E3EMCbQsaRLLERIGoTaIVWAa5uao-4T38F5YnDh20C6x-imkCC9NZ8F5PA/exec?action=getRounds');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const rounds = await response.json();
-        const roundSelect = document.getElementById('round');
-        rounds.forEach(round => {
-          const option = document.createElement('option');
-          option.value = round;
-          option.textContent = round;
-          roundSelect.appendChild(option);
-        });
-      } catch (error) {
-        console.error('Error fetching rounds:', error);
-      }
-    }
+ const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxxRk6t0ez3E3EMCbQsaRLLERIGoTaIVWAa5uao-4T38F5YnDh20C6x-imkCC9NZ8F5PA/exec?action=getRounds';
+const FULL_URL = PROXY_URL + GAS_URL;
 
-    document.addEventListener('DOMContentLoaded', fetchRounds);
+async function fetchRounds() {
+  try {
+    const response = await fetch(FULL_URL);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const rounds = await response.json();
+    const roundSelect = document.getElementById('round');
+    rounds.forEach(round => {
+      const option = document.createElement('option');
+      option.value = round;
+      option.textContent = round;
+      roundSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Error fetching rounds:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', fetchRounds);
 </script>
 </body>
 
