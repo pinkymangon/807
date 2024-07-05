@@ -35,8 +35,6 @@
       font-weight: bold;
       margin-bottom: 5px;
       position: relative;
-      padding-left: 30px;
-      /* 空間讓符號標註顯示 */
     }
 
     .subtitle.text {
@@ -563,11 +561,9 @@
         rounds.forEach((round, index) => {
           const option = document.createElement('option');
           option.value = round.round;
-          option.text = `Round ${index + 1}: ${round.round}`;
-          option.setAttribute('data-data1', round.data1);
-          option.setAttribute('data-data2', round.data2);
-          option.setAttribute('data-data3', round.data3);
-          option.setAttribute('data-data4', round.data4);
+          option.text = round.round;
+          option.setAttribute('data-max', round.max);
+
           roundSelect.appendChild(option);
         });
 
