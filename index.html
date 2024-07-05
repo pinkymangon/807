@@ -359,7 +359,6 @@ async function fetchRounds() {
     // 解析 JSON
     const rounds = await response.json();
     const roundSelect = document.getElementById('round');
-console.log(rounds);
     // 清空之前的選項
     roundSelect.innerHTML = '';
 
