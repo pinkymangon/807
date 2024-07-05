@@ -335,6 +335,9 @@
               <div class="invalid-feedback" data-sb-feedback="count:required">
                 *請輸入預約人數。
               </div>
+              <div class="invalid-feedback" data-sb-feedback="count:count">
+                *已超過剩餘名額囉!
+              </div>
             </div>
             <!-- mangon_count input-->
             <div class="form-floating mb-3">
@@ -530,6 +533,10 @@
         elements: "#portfolio a.portfolio-box",
       });
 
+
+
+
+
     });
 
 
@@ -582,6 +589,63 @@
 
       countInput.value = ''; // 清空输入框
       countInput.max = max; // 设置最大值
+    });
+
+
+
+
+    $("#applyForm").validate({
+      rules: {
+        email: {
+          required: true,
+          email: true
+        },
+        round: {
+          required: true
+        },
+        count: {
+          required: true,
+          number: true,
+          max: function () {
+            return parseInt($('#count').attr('max'), 10);
+          }
+        },
+        mangon_count: {
+          required: true,
+          number: true
+        },
+        pinky_count: {
+          required: true,
+          number: true
+        },
+        name: {
+          required: true
+        },
+        sns: {
+          required: true
+        },
+        phone: {
+          required: true,
+          phone: true
+        }
+      },
+      messages: {
+        email: {
+          required: "*請輸入電子郵件",
+          email: "*必須輸入有效的電子郵件地址"
+        },
+        round: "*請選擇場次。",
+        count: "*請輸入預約人數。",
+        mangon_count: "*請輸入份數,若沒有請填0。",
+        pinky_count: "*請輸入份數,若沒有請填0。",
+        name: "*請輸入暱稱",
+        sns: "*社群聯絡方式",
+        phone: "*請輸入手機號碼"
+      },
+      submitHandler: function (form) {
+        alert('表單已提交');
+        form.submit();
+      }
     });
 
 
