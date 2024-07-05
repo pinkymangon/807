@@ -3,7 +3,7 @@
     /* 自定義下拉選單樣式 */
     select.form-select {
       appearance: none;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_white.svg') no-repeat right center / 15px;
+      background: url('/images/main.jpg') no-repeat right center / 15px;
       padding-right: 30px;
     }
 
