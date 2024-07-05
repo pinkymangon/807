@@ -6398,7 +6398,7 @@ fieldset:disabled .btn {
     display: block;
     padding: var(--bs-tooltip-arrow-height);
     margin: var(--bs-tooltip-margin);
-    font-family: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    font-family: "Merriweather Sans","Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
