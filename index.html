@@ -306,93 +306,66 @@
       </div>
       <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
         <div class="col-lg-6">
-          <form id="applyForm" method="post" data-sb-form-api-token="API_TOKEN">
+          <form id="applyForm" method="post" action="#" novalidate>
             <!-- Email address input-->
             <div class="form-floating mb-3">
-              <input class="form-control" id="email" type="email" data-sb-validations="required,email" />
-              <label for="email">電子郵件</label>
-              <div class="invalid-feedback" data-sb-feedback="email:required">
-                *請輸入電子郵件
-              </div>
-              <div class="invalid-feedback" data-sb-feedback="email:email">
-                *必須輸入有效的電子郵件地址
-              </div>
+                <input class="form-control" id="email" name="email" type="email" required />
+                <label for="email">電子郵件</label>
+                <div class="invalid-feedback">*請輸入有效的電子郵件地址</div>
             </div>
             <!-- 選擇場次 input-->
             <div class="form-floating mb-3">
-              <select id="round" name="round" class="form-control form-select" data-sb-validations="required">
-                <!-- 其他選項將由JavaScript動態添加 -->
-              </select>
-              <label for="round">選擇參加的場次</label>
-              <div class="invalid-feedback" data-sb-feedback="round:required">
-                *請選擇場次。
-              </div>
+                <select id="round" name="round" class="form-control form-select" required>
+                    <!-- 其他選項將由JavaScript動態添加 -->
+                </select>
+                <label for="round">選擇參加的場次</label>
+                <div class="invalid-feedback">*請選擇場次。</div>
             </div>
             <!-- 預約人數 input-->
-            <p style="font-size: 12px;color:var(--bs-primary);">
-              *注意選擇場次剩餘人數
-              (若填寫超過人數會預約失敗唷！)
-            </p>
+            <p style="font-size: 12px;color:var(--bs-primary);">*注意選擇場次剩餘人數 (若填寫超過人數會預約失敗唷！)</p>
             <div class="form-floating mb-3">
-              <input class="form-control" id="count" type="number" data-sb-validations="required" />
-              <label for="count">預約的人數</label>
-
-              <div class="invalid-feedback" data-sb-feedback="count:required">
-                *請輸入預約人數。
-              </div>
-              <div class="invalid-feedback" data-sb-feedback="count:max">*預約人數不能超過剩餘名額唷</div>
+                <input class="form-control" id="count" name="count" type="number" required />
+                <label for="count">預約的人數</label>
+                <div class="invalid-feedback">*請輸入預約人數。</div>
+                <div class="invalid-feedback">*預約人數不能超過剩餘名額唷</div>
             </div>
             <!-- mangon_count input-->
             <div class="form-floating mb-3">
-              <input class="form-control" id="mangon_count" type="number" data-sb-validations="required" />
-              <label for="mangon_count">ManGon 生日套餐份數</label>
-              <div class="invalid-feedback" data-sb-feedback="mangon_count:required">
-                *請輸入份數,若沒有請填0。
-              </div>
+                <input class="form-control" id="mangon_count" name="mangon_count" type="number" required />
+                <label for="mangon_count">ManGon 生日套餐份數</label>
+                <div class="invalid-feedback">*請輸入份數,若沒有請填0。</div>
             </div>
-            <!-- mangon_count input-->
+            <!-- pinky_count input-->
             <div class="form-floating mb-3">
-              <input class="form-control" id="pinky_count" type="number" data-sb-validations="required" />
-              <label for="pinky_count">Pinkyman Gon 生日套餐份數</label>
-              <div class="invalid-feedback" data-sb-feedback="pinky_count:required">
-                *請輸入份數,若沒有請填0。
-              </div>
+                <input class="form-control" id="pinky_count" name="pinky_count" type="number" required />
+                <label for="pinky_count">Pinkyman Gon 生日套餐份數</label>
+                <div class="invalid-feedback">*請輸入份數,若沒有請填0。</div>
             </div>
             <!-- Name input-->
             <div class="form-floating mb-3">
-              <input class="form-control" id="name" type="text" data-sb-validations="required" />
-              <label for="name">暱稱</label>
-              <div class="invalid-feedback" data-sb-feedback="name:required">
-                *請輸入暱稱
-              </div>
+                <input class="form-control" id="name" name="name" type="text" required />
+                <label for="name">暱稱</label>
+                <div class="invalid-feedback">*請輸入暱稱</div>
             </div>
             <!-- SNS input-->
             <div class="form-floating mb-3">
-              <input class="form-control" id="sns" type="text" data-sb-validations="required" />
-              <label for="sns">社群 ( IG / LINE社群名稱 )
-              </label>
-              <div class="invalid-feedback" data-sb-feedback="sns:required">
-                *社群聯絡方式
-              </div>
+                <input class="form-control" id="sns" name="sns" type="text" required />
+                <label for="sns">社群 ( IG / LINE社群名稱 )</label>
+                <div class="invalid-feedback">*社群聯絡方式</div>
             </div>
             <!-- Phone number input-->
             <div class="form-floating mb-3">
-              <input class="form-control" id="phone" type="tel" data-sb-validations="required" />
-              <label for="phone">手機號碼</label>
-              <div class="invalid-feedback" data-sb-feedback="phone:required">
-                *請輸入手機號碼
-              </div>
+                <input class="form-control" id="phone" name="phone" type="tel" required />
+                <label for="phone">手機號碼</label>
+                <div class="invalid-feedback">*請輸入手機號碼</div>
             </div>
             <!-- Message input-->
-            <p style="font-size: 12px;color: var(--bs-primary);">
-              *若預約人數超過兩人以上麻煩填寫第二人的聯絡方式 ( IG或社群名稱 )
-            </p>
+            <p style="font-size: 12px;color: var(--bs-primary);">*若預約人數超過兩人以上麻煩填寫第二人的聯絡方式 ( IG或社群名稱 )</p>
             <div class="form-floating mb-3">
-              <textarea class="form-control" id="message" type="text" style="height: 10rem"></textarea>
-              <label for="message">備註</label>
-              <div class="invalid-feedback"></div>
+                <textarea class="form-control" id="message" name="message" style="height: 10rem"></textarea>
+                <label for="message">備註</label>
             </div>
-            <!-- check input
+              <!-- check input
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="checkok" data-sb-validations="required">
               <label class="form-check-label" for="checkok" style="font-size: 12px;color: var(--bs-primary);">
@@ -404,34 +377,22 @@
             </div>
             -->
             <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
             <div class="d-none" id="submitSuccessMessage">
-              <div class="text-center mb-3">
-                <div class="fw-bolder">
-                  Gon Xi 您預約登記成功啦~
+                <div class="text-center mb-3">
+                    <div class="fw-bolder">Gon Xi 您預約登記成功啦~</div>
+                    將會寄送通知信給您~ 在留意一下信件唷~
                 </div>
-                將會寄送通知信給您~ 在留意一下信件唷~
-                <br />
-              </div>
             </div>
             <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
             <div class="d-none" id="submitErrorMessage">
-              <div class="text-center text-danger mb-3">
-                喔喔! 登記失敗啦
-              </div>
+                <div class="text-center text-danger mb-3">喔喔! 登記失敗啦</div>
             </div>
             <!-- Submit Button-->
             <div class="d-grid">
-              <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">
-                確認登記
-              </button>
+                <button class="btn btn-primary btn-xl" id="submitButton" type="submit">確認登記</button>
             </div>
-          </form>
+        </form>
+         
         </div>
       </div>      
     </div>
@@ -501,9 +462,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- SimpleLightbox plugin JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-  <!-- Core theme 
-  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  JS-->
+  
+  <!-- 引入 validate.js 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/validate.js@0.15.1/dist/validate.min.js"></script>
+  
   <script>
     const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwjehGSjY1x7FeaKQC262R1_xh74blp6CRsUnKv6jpyBaX3Yl_SAgtLMskzKKPXcWEABA/exec';
 
@@ -554,6 +516,58 @@
         elements: "#portfolio a.portfolio-box",
       });
 
+
+// 验证规则
+const constraints = {
+        email: {
+            presence: true,
+            email: true
+        },
+        round: {
+            presence: true
+        },
+        count: {
+            presence: true,
+            numericality: {
+                onlyInteger: true,
+                greaterThan: 0,
+                lessThanOrEqualTo: function() {
+                    const roundSelect = document.getElementById("round");
+                    const selectedOption = roundSelect.options[roundSelect.selectedIndex];
+                    return parseInt(selectedOption.getAttribute("data-max"), 10);
+                }
+            }
+        },
+        mangon_count: {
+            presence: true,
+            numericality: {
+                onlyInteger: true,
+                greaterThanOrEqualTo: 0
+            }
+        },
+        pinky_count: {
+            presence: true,
+            numericality: {
+                onlyInteger: true,
+                greaterThanOrEqualTo: 0
+            }
+        },
+        name: {
+            presence: true
+        },
+        sns: {
+            presence: true
+        },
+        phone: {
+            presence: true,
+            length: {
+                is: 10 // Adjust as needed for your phone number format
+            }
+        },
+        message: {
+            presence: false
+        }
+    };
         // 动态设置表单的 action 属性
       const form = document.getElementById("applyForm");
       form.action = PROXY_URL;
@@ -634,39 +648,63 @@
       countInput.reportValidity(); // 显示验证错误消息
     });
 
-    document.getElementById('applyForm').addEventListener('submit', async function (event) {
-      console.log('submit');
-      event.preventDefault(); // 阻止表单的默认提交行为
+    const  form=document.getElementById('applyForm');
+    form.addEventListener("submit", async function(event) {
+        // 阻止默认表单提交行为
+        event.preventDefault();
 
-      // 获取表单数据
-      const formData = new FormData(this);
-      const formObject = {};
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-
-      try {
-        // 使用 fetch 发送表单数据到 GAS
-        const response = await fetch(PROXY_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formObject)
+        // 进行验证
+        const formData = new FormData(form);
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
         });
 
-        const result = await response.text();
-        if (result === 'Success') {
-          // 显示成功消息
-          document.getElementById('submitSuccessMessage').classList.remove('d-none');
+        const validationErrors = validate(formObject, constraints);
+
+        // 清除现有的错误消息
+        Array.from(form.querySelectorAll('.invalid-feedback')).forEach(el => el.classList.add('d-none'));
+
+        if (validationErrors) {
+            // 显示验证错误消息
+            for (const field in validationErrors) {
+                const errorMessages = validationErrors[field];
+                const inputElement = form.querySelector(`[name="${field}"]`);
+                if (inputElement) {
+                    const feedbackElement = inputElement.nextElementSibling;
+                    if (feedbackElement && feedbackElement.classList.contains('invalid-feedback')) {
+                        feedbackElement.classList.remove('d-none');
+                        feedbackElement.textContent = errorMessages.join(', ');
+                    }
+                }
+            }
         } else {
-          // 显示错误消息
-          document.getElementById('submitErrorMessage').classList.remove('d-none');
+            // 表单数据有效，执行提交操作
+            try {
+                // 使用 fetch 发送表单数据到 GAS
+                const response = await fetch(PROXY_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                });
+
+                const result = await response.text();
+                if (result === 'Success') {
+                    // 显示成功消息
+                    document.getElementById('submitSuccessMessage').classList.remove('d-none');
+                } else {
+                    // 显示错误消息
+                    document.getElementById('submitErrorMessage').classList.remove('d-none');
+                }
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+                document.getElementById('submitErrorMessage').classList.remove('d-none');
+            }
         }
-      } catch (error) {
-        console.error('Error submitting the form:', error);
-        document.getElementById('submitErrorMessage').classList.remove('d-none');
-      }
+
+        form.classList.add("was-validated");
     });
   </script>
 </body>
