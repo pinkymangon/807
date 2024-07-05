@@ -284,12 +284,14 @@
               <label for="message">備註</label>
               <div class="invalid-feedback"></div>
             </div>
-            <!-- Phone number input-->
-            <div class="form-floating mb-3">
-              <input class="form-control" id="phone" type="tel" data-sb-validations="required" />
-              <label for="phone">手機號碼</label>
-              <div class="invalid-feedback" data-sb-feedback="phone:required">
-                *請輸入手機號碼
+            <!-- check input-->
+            <div class="form-floating form-check mb-3">
+              <input class="form-control form-check-input" type="checkbox" id="checkok" data-sb-validations="required">
+              <label class="form-check-label" for="checkok">
+                我已確認上述填寫內容，準備好要一起參與活動惹
+              </label>
+              <div class="invalid-feedback" data-sb-feedback="checkok:required">
+                *確認上述填寫無誤並勾選
               </div>
             </div>
             <!-- Submit success message-->
