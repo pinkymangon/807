@@ -394,7 +394,7 @@
       // 加載填充下拉選單選項
   async function fetchRounds() {
   try {
-    const response = await fetch(PROXY_URL);
+    const response = await fetch(PROXY_URL+'?action=getRounds');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
