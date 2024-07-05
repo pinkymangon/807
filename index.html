@@ -33,22 +33,31 @@
       font-size: 1.2em;
       font-weight: bold;
       margin-bottom: 5px;
+      position: relative;
+      padding-left: 30px;
+      /* 空間讓符號標註顯示 */
     }
 
-    .text {
+    .subtitle::before {
+      content: "⭐";
+      /* 符號標註 */
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #FFD700;
+      /* 符號顏色 */
+    }
+
+    .subtitle.text {
       margin-bottom: 10px;
+      text-align: left;
+      /* 內容左對齊 */
     }
 
     .important {
       color: var(--bs-primary);
     }
 
-    .page-section {
-      padding: 60px 0;
-      /* 上下內邊距 */
-      background-color: #343a40;
-      /* 深色背景 */
-    }
 
     #map {
       display: flex;
@@ -74,6 +83,13 @@
       /* 設置容器的最大寬度 */
       margin: 0 auto;
       /* 使容器水平居中 */
+    }
+
+    @media (max-width: 768px) {
+      #map iframe {
+        height: 300px;
+        /* 在小屏幕上設置地圖的高度 */
+      }
     }
   </style>
 </head>
@@ -139,7 +155,6 @@
           <hr class="divider divider-light" />
           <div class="text-white-75 mb-4">
             <div class="info-section">
-              <div class="title">活動公告</div>
               <div class="text">我們是OOO！</div>
             </div>
             <div class="info-section">
@@ -436,10 +451,9 @@
   <section class="page-section bg-dark text-white" id="map">
     <div class="container mt-5">
       <h2 class="text-white mt-0">
-        店家資訊
+        店家資訊 ⊹₊ ⋆
       </h2>
-      <div class="info-section">
-        <div class="subtitle">店家資訊 ⊹₊ ⋆</div>
+      <div class="info-section ml-2">
         <div class="text">地點：旁邊納涼 日式刨冰 Kakigori<br>106 台北市大安區延吉街131巷1弄20號</div>
         <div class="text">營業時間：12:00 - 20:00<br><span class="important">(休勾問題：禮拜二是12:00開始嗎還是14:00)</span></div>
       </div>
