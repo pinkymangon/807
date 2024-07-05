@@ -21,6 +21,7 @@
   <style>
     .info-section {
       margin-bottom: 20px;
+      color: #fff;
     }
 
     .title {
@@ -36,16 +37,6 @@
       position: relative;
       padding-left: 30px;
       /* 空間讓符號標註顯示 */
-    }
-
-    .subtitle::before {
-      content: "⭐";
-      /* 符號標註 */
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #FFD700;
-      /* 符號顏色 */
     }
 
     .subtitle.text {
@@ -139,7 +130,7 @@
           <p class="text-white-75 mb-5">
             簡單的活動說明內容 也可以放活動時間
           </p>
-          <a class="btn btn-dark btn-xl" href="#about">活動公告</a>
+          <a class="btn btn-dark btn-xl" href="#about">前往活動公告</a>
         </div>
       </div>
     </div>
@@ -208,7 +199,7 @@
 
           </div>
 
-          <a class="btn btn-light btn-xl" href="#apply">前往預約登記!</a>
+          <a class="btn btn-light btn-xl" href="#apply">前往預約登記</a>
         </div>
       </div>
     </div>
@@ -448,14 +439,22 @@
   </section>
 
   <!-- MAP-->
-  <section class="page-section bg-dark text-white" id="map">
-    <div class="container mt-5">
-      <h2 class="text-white mt-0">
-        店家資訊 ⊹₊ ⋆
-      </h2>
-      <div class="info-section ml-2">
-        <div class="text">地點：旁邊納涼 日式刨冰 Kakigori<br>106 台北市大安區延吉街131巷1弄20號</div>
-        <div class="text">營業時間：12:00 - 20:00<br><span class="important">(休勾問題：禮拜二是12:00開始嗎還是14:00)</span></div>
+  <section class="page-section bg-primary text-white" id="map">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">
+            店家資訊 ⊹₊ ⋆
+          </h2>
+          <hr class="divider divider-light" />
+          <div class="text-white-75 mb-4">
+            <div class="info-section text-white">
+              <div class="text">地點：旁邊納涼 日式刨冰 Kakigori<br>106 台北市大安區延吉街131巷1弄20號</div>
+              <div class="text">營業時間：12:00 - 20:00<br><span class="important">(休勾問題：禮拜二是12:00開始嗎還是14:00)</span></div>
+            </div>
+
+          </div>
+        </div>
       </div>
       <div id="map">
         <iframe
@@ -469,9 +468,9 @@
 
 
   <!-- Footer-->
-  <footer class="bg-light py-5">
+  <footer class="bg-dark py-5">
     <div class="container px-4 px-lg-5">
-      <div class="small text-center text-muted">
+      <div class="small text-center text-white">
         Copyright &copy; 807 - EEEEE TEAM | IN TAIWAN |
       </div>
     </div>
