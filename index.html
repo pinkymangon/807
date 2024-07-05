@@ -466,6 +466,9 @@
   
   <!-- 引入 validate.js 库 -->
   <script src="https://cdn.jsdelivr.net/npm/validate.js@0.15.1/dist/validate.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
   
   <script>
     const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwjehGSjY1x7FeaKQC262R1_xh74blp6CRsUnKv6jpyBaX3Yl_SAgtLMskzKKPXcWEABA/exec';
@@ -517,7 +520,7 @@
         elements: "#portfolio a.portfolio-box",
       });
 
-
+      const form = document.getElementById("applyForm");    
 // 验证规则
 const constraints = {
         email: {
@@ -569,9 +572,67 @@ const constraints = {
             presence: false
         }
     };
-        // 动态设置表单的 action 属性
-      const form = document.getElementById("applyForm");
-      form.action = PROXY_URL;
+
+    form.addEventListener("submit", async function(event) {
+        // 阻止默认表单提交行为
+        event.preventDefault();
+
+        // 进行验证
+        const formData = new FormData(form);
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
+        });
+
+        // 进行验证
+        const validationErrors = validate(formObject, constraints);
+
+        // 清除现有的错误消息
+        Array.from(form.querySelectorAll('.invalid-feedback')).forEach(el => el.classList.add('d-none'));
+
+        if (validationErrors) {
+            // 显示验证错误消息
+            for (const field in validationErrors) {
+                const errorMessages = validationErrors[field];
+                const inputElement = form.querySelector(`[name="${field}"]`);
+                if (inputElement) {
+                    const feedbackElements = Array.from(inputElement.parentElement.querySelectorAll('.invalid-feedback'));
+                    feedbackElements.forEach(feedbackElement => {
+                        if (feedbackElement.textContent.includes(errorMessages[0])) {
+                            feedbackElement.classList.remove('d-none');
+                            feedbackElement.textContent = errorMessages.join(', ');
+                        }
+                    });
+                }
+            }
+        } else {
+            // 表单数据有效，执行提交操作
+            try {
+                // 使用 fetch 发送表单数据到 GAS
+                const response = await fetch(PROXY_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                });
+
+                const result = await response.text();
+                if (result === 'Success') {
+                    // 显示成功消息
+                    document.getElementById('submitSuccessMessage').classList.remove('d-none');
+                } else {
+                    // 显示错误消息
+                    document.getElementById('submitErrorMessage').classList.remove('d-none');
+                }
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+                document.getElementById('submitErrorMessage').classList.remove('d-none');
+            }
+        }
+
+        form.classList.add("was-validated");
+    });
 
 
     });
