@@ -342,42 +342,25 @@
 
     const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwIKgG7_M2o27iVcF5dHPiipeGBHmWxAJIo_5SMkTHKl0a79f6ACfYRt-8WiLAgwcpJSA/exec?action=getRounds';
 
-async function fetchRounds() {
-  try {
-    const response = await fetch(PROXY_URL);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+    getDevices = async () => {
+    const location = window.location.hostname;
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+    try {
+        const fetchResponse = await fetch(PROXY_URL, settings);
+        const data = await fetchResponse.json();
+        return data;
+    } catch (e) {
+        return e;
+    }    
 
-    // 檢查返回的內容是否是 JSON
-    const contentType = response.headers.get('Content-Type');
-    if (!contentType || !contentType.includes('application/json')) {
-      // 打印響應的內容，以幫助調試
-      const textResponse = await response.text();
-      console.error('Expected JSON, but got:', textResponse);
-      throw new Error('Expected JSON, but got something else');
-    }
-
-    // 解析 JSON
-    const rounds = await response.json();
-    const roundSelect = document.getElementById('round');
-
-    // 清空之前的選項
-    roundSelect.innerHTML = '';
-
-    // 將獲取到的數據添加到選單中
-    rounds.forEach(round => {
-      const option = document.createElement('option');
-      option.value = round;
-      option.textContent = round;
-      roundSelect.appendChild(option);
-    });
-  } catch (error) {
-    console.error('Error fetching rounds:', error);
-  }
 }
 
-document.addEventListener('DOMContentLoaded', fetchRounds);
 
 </script>
 </body>
