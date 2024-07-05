@@ -484,7 +484,7 @@
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbyuFHcz2EDdkZ6rVMlKTUAfgGz6L8ekiIiJrCHdNZuFD9TnATSaZnavFv30_jE0WM5GAA/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwjehGSjY1x7FeaKQC262R1_xh74blp6CRsUnKv6jpyBaX3Yl_SAgtLMskzKKPXcWEABA/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -612,20 +612,37 @@
       countInput.reportValidity(); // 显示验证错误消息
     });
 
-    document.getElementById('applyForm').addEventListener('submit', function (event) {
+    document.getElementById('applyForm').addEventListener('submit', async function (event) {
       event.preventDefault(); // 阻止表单的默认提交行为
 
-      // 手动触发验证
-      const form = event.target;
-      const submitButton = document.getElementById('submitButton');
+      // 获取表单数据
+      const formData = new FormData(this);
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
 
-      if (form.checkValidity()) {
-        submitButton.classList.remove('disabled');
-        form.submit(); // 触发表单提交
-      } else {
-        submitButton.classList.add('disabled');
-        // 触发错误消息显示
-        form.reportValidity();
+      try {
+        // 使用 fetch 发送表单数据到 GAS
+        const response = await fetch(PROXY_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formObject)
+        });
+
+        const result = await response.text();
+        if (result === 'Success') {
+          // 显示成功消息
+          document.getElementById('submitSuccessMessage').classList.remove('d-none');
+        } else {
+          // 显示错误消息
+          document.getElementById('submitErrorMessage').classList.remove('d-none');
+        }
+      } catch (error) {
+        console.error('Error submitting the form:', error);
+        document.getElementById('submitErrorMessage').classList.remove('d-none');
       }
     });
   </script>
