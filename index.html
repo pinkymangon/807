@@ -351,13 +351,7 @@
             'Content-Type': 'application/json',
         }
     };
-    try {
-        const fetchResponse = await fetch(PROXY_URL, settings);
-        const data = await fetchResponse.json();
-        return data;
-    } catch (e) {
-        return e;
-    }    
+   
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby3FfOJ0UwYEiUltdr7dHQ0TO0c9SAOAKqybXafxzdeAJTtW6xJcTj6Lge7gP0KCpyiyw/exec?action=getRounds';
 
 async function fetchRounds() {
