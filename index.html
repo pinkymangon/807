@@ -339,29 +339,32 @@
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
    <script>
-
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycby3FfOJ0UwYEiUltdr7dHQ0TO0c9SAOAKqybXafxzdeAJTtW6xJcTj6Lge7gP0KCpyiyw/exec?action=getRounds';
-
-    getDevices = async () => {
-    const location = window.location.hostname;
-    const settings = {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        }
-    };
-   
-const GAS_URL = 'https://script.google.com/macros/s/AKfycby3FfOJ0UwYEiUltdr7dHQ0TO0c9SAOAKqybXafxzdeAJTtW6xJcTj6Lge7gP0KCpyiyw/exec?action=getRounds';
+const PROXY_URL = 'https://script.google.com/macros/s/AKfycby3FfOJ0UwYEiUltdr7dHQ0TO0c9SAOAKqybXafxzdeAJTtW6xJcTj6Lge7gP0KCpyiyw/exec?action=getRounds';
 
 async function fetchRounds() {
   try {
-    const response = await fetch(GAS_URL,settings);
+    const response = await fetch(PROXY_URL);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
+
+    // 檢查返回的內容是否是 JSON
+    const contentType = response.headers.get('Content-Type');
+    if (!contentType || !contentType.includes('application/json')) {
+      // 打印響應的內容，以幫助調試
+      const textResponse = await response.text();
+      console.error('Expected JSON, but got:', textResponse);
+      throw new Error('Expected JSON, but got something else');
+    }
+
+    // 解析 JSON
     const rounds = await response.json();
     const roundSelect = document.getElementById('round');
+console.log(rounds);
+    // 清空之前的選項
+    roundSelect.innerHTML = '';
+
+    // 將獲取到的數據添加到選單中
     rounds.forEach(round => {
       const option = document.createElement('option');
       option.value = round;
@@ -374,8 +377,6 @@ async function fetchRounds() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchRounds);
-     console.log(getDevices);
-}
 
 
 </script>
