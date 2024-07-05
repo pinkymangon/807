@@ -12886,7 +12886,7 @@ hr.divider-light {
     }
 
     #mainNav.navbar-shrink .navbar-brand {
-        color: #282727;
+        color: var(--bs-primary);
     }
 
     #mainNav.navbar-shrink .navbar-brand:hover {
