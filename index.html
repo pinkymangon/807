@@ -306,7 +306,7 @@
       </div>
       <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
         <div class="col-lg-6">
-          <form id="applyForm" data-sb-form-api-token="https://script.google.com/macros/s/AKfycbwjehGSjY1x7FeaKQC262R1_xh74blp6CRsUnKv6jpyBaX3Yl_SAgtLMskzKKPXcWEABA/exec">
+          <form id="applyForm" method="post">
             <!-- Email address input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="email" type="email" data-sb-validations="required,email" />
@@ -554,7 +554,9 @@
         elements: "#portfolio a.portfolio-box",
       });
 
-
+        // 动态设置表单的 action 属性
+      const form = document.getElementById("applyForm");
+      form.action = PROXY_URL;
 
 
 
