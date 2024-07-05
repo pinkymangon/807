@@ -558,12 +558,19 @@
         roundSelect.innerHTML = '';
 
         // 將獲取到的數據添加到選單中
-        rounds.forEach(round => {
+
+
+        rounds.forEach((round, index) => {
           const option = document.createElement('option');
-          option.value = round;
-          option.textContent = round;
+          option.value = round.round;
+          option.text = `Round ${index + 1}: ${round.round}`;
+          option.setAttribute('data-data1', round.data1);
+          option.setAttribute('data-data2', round.data2);
+          option.setAttribute('data-data3', round.data3);
+          option.setAttribute('data-data4', round.data4);
           roundSelect.appendChild(option);
         });
+
       } catch (error) {
         console.error('Error fetching rounds:', error);
       }
