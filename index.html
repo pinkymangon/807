@@ -345,7 +345,7 @@
     getDevices = async () => {
     const location = window.location.hostname;
     const settings = {
-        method: 'POST',
+        method: 'GET',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -358,7 +358,28 @@
     } catch (e) {
         return e;
     }    
+const GAS_URL = 'https://script.google.com/macros/s/AKfycby3FfOJ0UwYEiUltdr7dHQ0TO0c9SAOAKqybXafxzdeAJTtW6xJcTj6Lge7gP0KCpyiyw/exec?action=getRounds';
 
+async function fetchRounds() {
+  try {
+    const response = await fetch(GAS_URL,settings);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const rounds = await response.json();
+    const roundSelect = document.getElementById('round');
+    rounds.forEach(round => {
+      const option = document.createElement('option');
+      option.value = round;
+      option.textContent = round;
+      roundSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Error fetching rounds:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', fetchRounds);
      console.log(getDevices);
 }
 
