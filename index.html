@@ -55,11 +55,12 @@
             <a class="nav-link" href="#portfolio">GON</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#apply">預約登記</a>
+            <a class="nav-link" href="#map">活動地點</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#map">交通指引</a>
+            <a class="nav-link" href="#apply">預約登記</a>
           </li>
+
         </ul>
       </div>
     </div>
@@ -76,11 +77,9 @@
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 mb-5">
-            Start Bootstrap can help you build better websites
-            using the Bootstrap framework! Just download a theme
-            and start customizing, no strings attached!
+            簡單的活動說明內容
           </p>
-          <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+          <a class="btn btn-primary btn-xl" href="#about">活動資訊</a>
         </div>
       </div>
     </div>
@@ -91,16 +90,28 @@
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-lg-8 text-center">
           <h2 class="text-white mt-0">
-            We've got what you need!
+            活動資訊
           </h2>
           <hr class="divider divider-light" />
           <p class="text-white-75 mb-4">
-            Start Bootstrap has everything you need to get your
-            new website up and running in no time! Choose one of
-            our open source, free to download, and easy to use
-            themes! No strings attached!
-          </p>
-          <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
+            我們素OOO！
+            (大概說一下要辦生咖的原因)
+
+            由於場地大小的關係，再加上我們採用非包場模式，所以店家會開放部分給一般民眾入內
+            為了控制店內人數，我們決定採用預約表單的方式來進行活動！
+
+            預約事項 ૮꒰˶ฅ́˘ฅ̀˶꒱ა
+            每一批次人數有限，活動時間為2小時
+            如果該時段的預約已滿，請另改其他時間進行預約 (好空好空)
+            預約是否成功都以信箱收到ㄉ信件為主
+            預約失敗再麻煩您另改時間進行活動預約>< 為了讓皮皮們都能參與到活動 一天請勿預約超過一個梯次 但歡迎預約不同日來一起參與活動ᯓᡣ𐭩.ᐟ ⊹ 臨時決定來參與的皮皮也可以在現場排隊 前一批的人離開或有多餘空位的時候，
+              才會開放給現場排隊的皮皮入內ㄛ！ 應援禮發放 ପ꒰⑅•ᴗ•｡꒱໊♡ 以使用表單線上預約成功的皮皮為主 有多餘的應援才會開放給現場排隊的皮皮領取 數量有限，發完為止！ 店家資訊 ⊹₊ ⋆ 地點：旁邊納涼 日式刨冰
+              Kakigori 106 台北市大安區延吉街131巷1弄20號 營業時間：12:00 - 20:00 (休勾問題：禮拜二是12:00開始嗎還是14:00) 活動梯次時間 ꒰ᐢ. .ᐢ꒱₊˚⊹ 活動日期：8/6 -
+              8/11 第一梯次 12:00 - 14:00 第二梯次 14:00 - 16:00 第三梯次 16:00 - 18:00 第四梯次 18:00 - 20:00 (
+              每日皆有四個梯次，如果該梯次預約人數額滿，將不會顯示在表單內 ) 表單統計時間：7/12 - 8/2止 注意事項 由於活動是採預約制，如果有晚到或臨時無法到場的情形，請事先告知主辦進行取消預約。
+              開放入場前如未到場，主辦會先聯絡表單內留下的聯絡資訊進行通知，如未到場也未回覆的人，將自動取消預約並開放名額給現場排隊的皮皮，請不要造成店家及主辦的困擾！！ 如有對生咖的相關問題都能哀居私訊OOO
+              我們將儘快為您解答！ (休勾問題：需要說現場有互動遊戲嗎) （結語） </p>
+              <a class="btn btn-light btn-xl" href="#apply">前往預約登記!</a>
         </div>
       </div>
     </div>
@@ -180,11 +191,26 @@
     </div>
   </div>
   <!-- Call to action-->
+  <!--
   <section class="page-section bg-dark text-white">
     <div class="container px-4 px-lg-5 text-center">
       <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
       <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
     </div>
+  </section>
+  -->
+  <!-- MAP-->
+  <section class="page-section bg-dark text-white" id="map">
+    <div class="container mt-5">
+      <h2 class="text-white mt-0">
+        活動地點
+      </h2>
+      <div id="map">
+
+      </div>
+    </div>
+  </section>
+
   </section>
   <!-- apply-->
   <section class="page-section" id="apply">
@@ -398,6 +424,9 @@
         elements: "#portfolio a.portfolio-box",
       });
 
+      // 初始化 Google 地圖
+      initMap();
+
     });
 
 
@@ -439,7 +468,18 @@
 
 
 
-
+    // 初始化 Google 地圖
+    function initMap() {
+      const location = { lat: 25.0330, lng: 121.5654 }; // 台北101的位置
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: location
+      });
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+    }
 
 
 
