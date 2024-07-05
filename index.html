@@ -710,64 +710,6 @@ const constraints = {
       countInput.reportValidity(); // 显示验证错误消息
     });
 
-    const  form=document.getElementById('applyForm');
-    form.addEventListener("submit", async function(event) {
-        // 阻止默认表单提交行为
-        event.preventDefault();
-
-        // 进行验证
-        const formData = new FormData(form);
-        const formObject = {};
-        formData.forEach((value, key) => {
-            formObject[key] = value;
-        });
-
-        const validationErrors = validate(formObject, constraints);
-
-        // 清除现有的错误消息
-        Array.from(form.querySelectorAll('.invalid-feedback')).forEach(el => el.classList.add('d-none'));
-
-        if (validationErrors) {
-            // 显示验证错误消息
-            for (const field in validationErrors) {
-                const errorMessages = validationErrors[field];
-                const inputElement = form.querySelector(`[name="${field}"]`);
-                if (inputElement) {
-                    const feedbackElement = inputElement.nextElementSibling;
-                    if (feedbackElement && feedbackElement.classList.contains('invalid-feedback')) {
-                        feedbackElement.classList.remove('d-none');
-                        feedbackElement.textContent = errorMessages.join(', ');
-                    }
-                }
-            }
-        } else {
-            // 表单数据有效，执行提交操作
-            try {
-                // 使用 fetch 发送表单数据到 GAS
-                const response = await fetch(PROXY_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formObject)
-                });
-
-                const result = await response.text();
-                if (result === 'Success') {
-                    // 显示成功消息
-                    document.getElementById('submitSuccessMessage').classList.remove('d-none');
-                } else {
-                    // 显示错误消息
-                    document.getElementById('submitErrorMessage').classList.remove('d-none');
-                }
-            } catch (error) {
-                console.error('Error submitting the form:', error);
-                document.getElementById('submitErrorMessage').classList.remove('d-none');
-            }
-        }
-
-        form.classList.add("was-validated");
-    });
   </script>
 </body>
 
