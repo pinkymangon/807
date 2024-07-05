@@ -614,7 +614,7 @@ const constraints = {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(formObject)
+                    data: formObject
                 });
 
                 const result = await response.text();
