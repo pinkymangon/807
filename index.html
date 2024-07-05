@@ -147,32 +147,32 @@
               <div class="text">我們是OOO！</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">辦生咖的原因</div>
+              <div class="subtitle">💖辦生咖的原因</div>
               <div class="text">由於場地大小的關係，再加上我們採用非包場模式，所以店家會開放部分給一般民眾入內。為了控制店內人數，我們決定採用預約表單的方式來進行活動！</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">預約事項 ૮꒰˶ฅ́˘ฅ̀˶꒱ა</div>
+              <div class="subtitle">💛預約事項 ૮꒰˶ฅ́˘ฅ̀˶꒱ა</div>
               <div class="text">每一批次人數有限，活動時間為2小時</div>
               <div class="text">如果該時段的預約已滿，請另改其他時間進行預約</div>
               <div class="text">預約是否成功以信箱收到的信件為主</div>
               <div class="text">預約失敗請另改時間進行活動預約</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">活動參與規則</div>
+              <div class="subtitle">🤍活動參與規則</div>
               <div class="text">為了讓皮皮們都能參與到活動，一天請勿預約超過一個梯次，但歡迎預約不同日來一起參與活動ᯓᡣ𐭩.ᐟ ⊹</div>
               <div class="text">臨時決定來參與的皮皮也可以在現場排隊，前一批的人離開或有多餘空位的時候，才會開放給現場排隊的皮皮入內ㄛ！</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">應援禮發放 ପ꒰⑅•ᴗ•｡꒱໊♡</div>
+              <div class="subtitle">❤️應援禮發放 ପ꒰⑅•ᴗ•｡꒱໊♡</div>
               <div class="text">以使用表單線上預約成功的皮皮為主，有多餘的應援才會開放給現場排隊的皮皮領取，數量有限，發完為止！</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">店家資訊 ⊹₊ ⋆</div>
+              <div class="subtitle">💙店家資訊 ⊹₊ ⋆</div>
               <div class="text">地點：旁邊納涼 日式刨冰 Kakigori<br>106 台北市大安區延吉街131巷1弄20號</div>
               <div class="text">營業時間：12:00 - 20:00<br><span class="important">(休勾問題：禮拜二是12:00開始嗎還是14:00)</span></div>
             </div>
             <div class="info-section">
-              <div class="subtitle">活動梯次時間 ꒰ᐢ. .ᐢ꒱₊˚⊹</div>
+              <div class="subtitle">💜活動梯次時間 ꒰ᐢ. .ᐢ꒱₊˚⊹</div>
               <div class="text">活動日期：8/6 - 8/11</div>
               <div class="text">第一梯次 12:00 - 14:00</div>
               <div class="text">第二梯次 14:00 - 16:00</div>
@@ -181,16 +181,16 @@
               <div class="text">(每日皆有四個梯次，如果該梯次預約人數額滿，將不會顯示在表單內)</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">表單統計時間</div>
+              <div class="subtitle">🧡表單統計時間</div>
               <div class="text">7/12 - 8/2止</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">注意事項</div>
+              <div class="subtitle">💕注意事項</div>
               <div class="text">由於活動是採預約制，如果有晚到或臨時無法到場的情形，請事先告知主辦進行取消預約。</div>
               <div class="text">開放入場前如未到場，主辦會先聯絡表單內留下的聯絡資訊進行通知，如未到場也未回覆的人，將自動取消預約並開放名額給現場排隊的皮皮，請不要造成店家及主辦的困擾！！</div>
             </div>
             <div class="info-section">
-              <div class="subtitle">聯絡資訊</div>
+              <div class="subtitle">🤎聯絡資訊</div>
               <div class="text">如有對生咖的相關問題都能哀居私訊OOO，我們將儘快為您解答！<br><span class="important">(休勾問題：需要說現場有互動遊戲嗎)</span>
               </div>
             </div>
@@ -574,7 +574,15 @@
 
     document.addEventListener('DOMContentLoaded', fetchRounds);
 
+    // 监听下拉菜单的 change 事件
+    document.getElementById('round').addEventListener('change', function () {
+      const selectedOption = this.options[this.selectedIndex];
+      const max = selectedOption.getAttribute('data-max');
+      const countInput = document.getElementById('count');
 
+      countInput.value = ''; // 清空输入框
+      countInput.max = max; // 设置最大值
+    });
 
 
   </script>
