@@ -471,7 +471,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzsZ3OBfgYXAZ90oNsAkW3tu7uq4kJoZaiAxEzmy_xBSngaWkGTjI1MQCaiMvwu4qBEew/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxqaym4w8-KTUUbee4vxz0lkY70k2CysYu59oo6PrM31khtZUJeGObNv3t0ZquvRm-fbQ/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -673,6 +673,7 @@
       try {
         // 发送 POST 请求到 Google Apps Script Web App
         const response = await fetch(PROXY_URL, {
+          mode: 'cors',
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
