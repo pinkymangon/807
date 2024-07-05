@@ -32,7 +32,7 @@ select.form-select {
     --bs-gray-700: #495057;
     --bs-gray-800: #343a40;
     --bs-gray-900: #282727;
-    --bs-primary: #e7a6c1;
+    --bs-primary: #d87199;
     --bs-secondary: #6c757d;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
@@ -2508,10 +2508,10 @@ textarea.form-control-lg {
 }
 
 .form-select:focus {
-color: #212529;
-border-color: #e7a6c1;
-outline: 0;
-box-shadow: 0 0 0 0.25rem rgb(231 166 193 / 35%);
+    color: #212529;
+    border-color: #e7a6c1;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(231 166 193 / 35%);
 }
 
 .form-select[multiple],
@@ -3337,20 +3337,20 @@ fieldset:disabled .btn {
 }
 
 .btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #D87199;
-  --bs-btn-border-color: #D87199;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #ef88b0;
-  --bs-btn-hover-border-color: #ef88b0;
-  --bs-btn-focus-shadow-rgb: 246, 122, 88;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #d2618d;
-  --bs-btn-active-border-color: #d2618d;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #E7A6C1;
-  --bs-btn-disabled-border-color: #E7A6C1;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #d87199;
+    --bs-btn-border-color: #d87199;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ef88b0;
+    --bs-btn-hover-border-color: #ef88b0;
+    --bs-btn-focus-shadow-rgb: 246, 122, 88;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #d2618d;
+    --bs-btn-active-border-color: #d2618d;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #e7a6c1;
+    --bs-btn-disabled-border-color: #e7a6c1;
 }
 
 .btn-secondary {
@@ -6399,10 +6399,10 @@ fieldset:disabled .btn {
     display: block;
     padding: var(--bs-tooltip-arrow-height);
     margin: var(--bs-tooltip-margin);
-    font-family: "Merriweather Sans","Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+    font-family: "Merriweather Sans", "Merriweather", -apple-system,
+        BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+        "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", "Noto Color Emoji";
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
