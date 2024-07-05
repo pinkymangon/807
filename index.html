@@ -67,6 +67,15 @@
       /* 設置固定高度 */
     }
 
+    .invalid-feedback {
+    display: none;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.was-validated .form-select:invalid ~ .invalid-feedback {
+    display: block;
+}
+
     #map .container {
       max-width: 1200px;
       /* 設置容器的最大寬度 */
