@@ -55,10 +55,10 @@
             <a class="nav-link" href="#portfolio">GON</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#map">活動地點</a>
+            <a class="nav-link" href="#apply">預約登記</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#apply">預約登記</a>
+            <a class="nav-link" href="#map">活動地點</a>
           </li>
 
         </ul>
@@ -199,17 +199,6 @@
     </div>
   </section>
   -->
-  <!-- MAP-->
-  <section class="page-section bg-dark text-white" id="map">
-    <div class="container mt-5">
-      <h2 class="text-white mt-0">
-        活動地點
-      </h2>
-      <div id="map">
-
-      </div>
-    </div>
-  </section>
 
   </section>
   <!-- apply-->
@@ -359,6 +348,24 @@
       </div>
     </div>
   </section>
+
+  <!-- MAP-->
+  <section class="page-section bg-dark text-white" id="map">
+    <div class="container mt-5">
+      <h2 class="text-white mt-0">
+        活動地點
+      </h2>
+      <div id="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7308044804504!2d121.55189897537683!3d25.043208077810466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc69f4addb1%3A0x24cfd43b82733ebc!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5bu25ZCJ6KGXMTMx5be3MeW8hDIw6Jmf!5e0!3m2!1szh-TW!2stw!4v1720164343880!5m2!1szh-TW!2stw"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+
+
   <!-- Footer-->
   <footer class="bg-light py-5">
     <div class="container px-4 px-lg-5">
@@ -424,9 +431,6 @@
         elements: "#portfolio a.portfolio-box",
       });
 
-      // 初始化 Google 地圖
-      initMap();
-
     });
 
 
@@ -466,20 +470,6 @@
 
     document.addEventListener('DOMContentLoaded', fetchRounds);
 
-
-
-    // 初始化 Google 地圖
-    function initMap() {
-      const location = { lat: 25.0330, lng: 121.5654 }; // 台北101的位置
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: location
-      });
-      const marker = new google.maps.Marker({
-        position: location,
-        map: map
-      });
-    }
 
 
 
