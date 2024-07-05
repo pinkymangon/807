@@ -12843,16 +12843,13 @@
     }
 
     header.masthead {
-      padding-top: 10rem;
-      padding-bottom: calc(10rem - 4.5rem);
-      background: linear-gradient(to bottom,
-          rgb(0 0 0 / 30%) 0%,
-          rgb(190 138 195 / 46%) 100%),
-        url('./images/main.jpg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-size: cover;
+     padding-top: 20rem;
+    padding-bottom: calc(20rem - 4.5rem);
+    background: linear-gradient(to bottom, rgb(0 0 0 / 20%) 0%, rgb(190 138 195 / 46%) 100%), url(../images/main.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
     }
 
     header.masthead h1,
