@@ -306,7 +306,7 @@
       </div>
       <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
         <div class="col-lg-6">
-          <form id="applyForm" method="post">
+          <form id="applyForm" method="post" data-sb-form-api-token="API_TOKEN">
             <!-- Email address input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="email" type="email" data-sb-validations="required,email" />
@@ -557,51 +557,6 @@
         // 动态设置表单的 action 属性
       const form = document.getElementById("applyForm");
       form.action = PROXY_URL;
-
-      // 初始化 Start Bootstrap Form Validation
-        const sbForms = window.sbForms;
-            sbForms.init({
-                formSelector: "#applyForm",
-                useDefaultValidationMessages: true,
-                customValidationMessages: {
-                    required: "此欄位為必填",
-                    email: "請輸入有效的電子郵件地址"
-                },
-                validationSettings: {
-                    errorClass: "is-invalid",
-                    validClass: "is-valid"
-                },
-                onSubmit: function(form) {
-                    // 自定义提交逻辑
-                    const data = new FormData(form);
-                     // 获取表单数据
-                    const formData = new FormData(this);
-                    const formObject = {};
-                    formData.forEach((value, key) => {
-                    formObject[key] = value;
-                });
-                    fetch(PROXY_URL, {
-                        method: "POST",
-                        headers: {
-                        'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formObject)
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            document.getElementById("submitSuccessMessage").classList.remove("d-none");
-                            document.getElementById("submitErrorMessage").classList.add("d-none");
-                        } else {
-                            document.getElementById("submitSuccessMessage").classList.add("d-none");
-                            document.getElementById("submitErrorMessage").classList.remove("d-none");
-                        }
-                    })
-                    .catch(error => {
-                        document.getElementById("submitSuccessMessage").classList.add("d-none");
-                        document.getElementById("submitErrorMessage").classList.remove("d-none");
-                    });
-                }
-            });
 
 
     });
