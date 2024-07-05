@@ -520,7 +520,7 @@
         elements: "#portfolio a.portfolio-box",
       });
 
-      
+
 
 
     });
@@ -603,98 +603,94 @@
 
 
     const form = document.getElementById("applyForm");
-      // 验证规则
-      const constraints = {
-        email: {
-          presence: true,
-          email: true
-        },
-        round: {
-          presence: true
-        },
-        count: {
-          presence: true,
-          numericality: {
-            onlyInteger: true,
-            greaterThan: 0,
-            lessThanOrEqualTo: function () {
-              const roundSelect = document.getElementById("round");
-              const selectedOption = roundSelect.options[roundSelect.selectedIndex];
-              return parseInt(selectedOption.getAttribute("data-max"), 10);
-            }
+    // 验证规则
+    const constraints = {
+      email: {
+        presence: true,
+        email: true
+      },
+      round: {
+        presence: true
+      },
+      count: {
+        presence: true,
+        numericality: {
+          onlyInteger: true,
+          greaterThan: 0,
+          lessThanOrEqualTo: function () {
+            const roundSelect = document.getElementById("round");
+            const selectedOption = roundSelect.options[roundSelect.selectedIndex];
+            return parseInt(selectedOption.getAttribute("data-max"), 10);
           }
-        },
-        mangon_count: {
-          presence: true,
-          numericality: {
-            onlyInteger: true,
-            greaterThanOrEqualTo: 0
-          }
-        },
-        pinky_count: {
-          presence: true,
-          numericality: {
-            onlyInteger: true,
-            greaterThanOrEqualTo: 0
-          }
-        },
-        name: {
-          presence: true
-        },
-        sns: {
-          presence: true
-        },
-        phone: {
-          presence: true,
-          length: {
-            is: 10 // Adjust as needed for your phone number format
-          }
-        },
-        message: {
-          presence: false
         }
-      };
+      },
+      mangon_count: {
+        presence: true,
+        numericality: {
+          onlyInteger: true,
+          greaterThanOrEqualTo: 0
+        }
+      },
+      pinky_count: {
+        presence: true,
+        numericality: {
+          onlyInteger: true,
+          greaterThanOrEqualTo: 0
+        }
+      },
+      name: {
+        presence: true
+      },
+      sns: {
+        presence: true
+      },
+      phone: {
+        presence: true,
+        length: {
+          is: 10 // Adjust as needed for your phone number format
+        }
+      },
+      message: {
+        presence: false
+      }
+    };
 
-      form.addEventListener("submit", async function (event) {
-        // 阻止默认表单提交行为
-        event.preventDefault();
+    form.addEventListener("submit", async function (event) {
+      // 阻止默认表单提交行为
+      event.preventDefault();
 
-        // 进行验证
-        const formData = new FormData(form);
-        const formObject = {};
-        formData.forEach((value, key) => {
-          formObject[key] = value;
+      // 进行验证
+      const formData = new FormData(form);
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+
+
+      // 将表单数据转换为 JSON
+      const jsonData = JSON.stringify(formObject);
+
+      try {
+        // 发送 POST 请求到 Google Apps Script Web App
+        const response = await fetch(PROXY_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonData,
         });
 
-       
-          try {
-            // 使用 fetch 发送表单数据到 GAS
-            const response = await fetch(PROXY_URL, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(formObject)
-            });
+        // 处理响应
+        const result = await response.json();
+        console.log(result);  // 打印结果到控制台
+        document.getElementById('responseMessage').textContent = result.response || result.error;
 
-            if (response.ok) {  // 檢查 HTTP 狀態碼
-              const result = await response.text();
-              if (result === 'Success') {
-                // 显示成功消息
-                document.getElementById('submitSuccessMessage').classList.remove('d-none');
-              } else {
-                // 显示错误消息
-                document.getElementById('submitErrorMessage').classList.remove('d-none');
-              }
-            } else {
-              throw new Error(`HTTP error! Status: ${response.status}`);  // 根據 HTTP 狀態碼拋出錯誤
-            }
-          } catch (error) {
-            console.error('Error submitting the form:', error);
-            document.getElementById('submitErrorMessage').classList.remove('d-none');
-          }
-        }
-);
+      } catch (error) {
+        console.error('Error submitting the form:', error);
+        document.getElementById('responseMessage').textContent = '提交表单时发生错误。';
+      }
+    }
+    );
   </script>
 </body>
 
