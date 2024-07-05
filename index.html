@@ -558,6 +558,50 @@
       const form = document.getElementById("applyForm");
       form.action = PROXY_URL;
 
+      // 初始化 Start Bootstrap Form Validation
+        const sbForms = window.sbForms;
+            sbForms.init({
+                formSelector: "#applyForm",
+                useDefaultValidationMessages: true,
+                customValidationMessages: {
+                    required: "此欄位為必填",
+                    email: "請輸入有效的電子郵件地址"
+                },
+                validationSettings: {
+                    errorClass: "is-invalid",
+                    validClass: "is-valid"
+                },
+                onSubmit: function(form) {
+                    // 自定义提交逻辑
+                    const data = new FormData(form);
+                     // 获取表单数据
+                    const formData = new FormData(this);
+                    const formObject = {};
+                    formData.forEach((value, key) => {
+                    formObject[key] = value;
+                });
+                    fetch(PROXY_URL, {
+                        method: "POST",
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formObject)
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            document.getElementById("submitSuccessMessage").classList.remove("d-none");
+                            document.getElementById("submitErrorMessage").classList.add("d-none");
+                        } else {
+                            document.getElementById("submitSuccessMessage").classList.add("d-none");
+                            document.getElementById("submitErrorMessage").classList.remove("d-none");
+                        }
+                    })
+                    .catch(error => {
+                        document.getElementById("submitSuccessMessage").classList.add("d-none");
+                        document.getElementById("submitErrorMessage").classList.remove("d-none");
+                    });
+                }
+            });
 
 
     });
