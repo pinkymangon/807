@@ -104,7 +104,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
-      <a class="navbar-brand" href="#page-top">PinkyMan Gon</a>
+      <a class="navbar-brand" href="#page-top">Pinky ManGon</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -317,7 +317,7 @@
           <h2 class="mt-0">一起來慶祝 곤듀 的生日吧 !</h2>
           <hr class="divider" />
           <p class="text-muted mb-5">
-            準備好一起來參與了嗎? 快來預約登記唷!
+            準備好一起來呷冰玩遊戲惹嗎? 快來預約登記唷!
           </p>
         </div>
       </div>
@@ -382,17 +382,17 @@
               <textarea class="form-control" id="message" name="message" style="height: 10rem"></textarea>
               <label for="message">備註</label>
             </div>
-            <!-- check input
+            
             <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="checkok" data-sb-validations="required">
+              <input class="form-check-input" type="checkbox" id="checkok" required>
               <label class="form-check-label" for="checkok" style="font-size: 12px;color: var(--bs-primary);">
                 我已確認上述填寫內容，準備好要一起參與活動惹
               </label>
-              <div class="invalid-feedback" data-sb-feedback="checkok:required">
+              <div class="invalid-feedback" >
                 *確認上述填寫無誤並勾選
               </div>
             </div>
-            -->
+            
             <!-- Submit success message-->
             <div class="d-none" id="submitSuccessMessage">
               <div class="text-center mb-3">
@@ -690,9 +690,9 @@
         });
 
         // 处理响应
-        const result = await response.json();
-        console.log(result);  // 打印结果到控制台
-        document.getElementById('responseMessage').textContent = result.response || result.error;
+        const resData = await response.json();
+        console.log(resData);  // 打印结果到控制台
+        document.getElementById('responseMessage').textContent = resData.result || resData.error;
 
       } catch (error) {
         console.error('Error submitting the form:', error);
