@@ -676,8 +676,8 @@
         const resData = await response.json();
         console.log(resData);  // 打印結果到控制臺
         if(resData.result){
-          let $success=document.getElementById('submitSuccessMessage');
-          $success.firstChild(resData.message).removeClass("d-none");
+          let $success=$('#submitSuccessMessage');
+          $success.removeClass("d-none");
           //鎖住表單
           Array.from(this.elements).forEach(element => element.disabled = true);
           document.getElementById('submitButton').remove();
