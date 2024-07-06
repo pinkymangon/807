@@ -470,7 +470,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzXHPSmITd9TfJCXCqHL7Cm4AqYCBLAqjphY7rxD4nGDaTLNPKavYjItbHzUxWbv8YH_w/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzonA370SdzJLkrkFu_5HMR8uVsZ5Wz_yw6nLoTsqXd6Fs8_r1EIfHqa2Plvc_lk4nDWQ/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -681,14 +681,14 @@
           //lock
           Array.from(this.elements).forEach(element => element.disabled = true);
           document.getElementById('submitButton').remove();
-
+          
 
         }
         else{
           alert(resData.message);
         }
-        
-
+        // 不管有沒有提交成功都再次更新下拉選項
+        fetchRounds();
       } catch (error) {
         console.log('Error submitting the form:', error);        
         alert("提交表單時發生錯誤");
