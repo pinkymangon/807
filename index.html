@@ -104,7 +104,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
-      <a class="navbar-brand" href="#page-top">Pinky ManGon</a>
+      <a class="navbar-brand" href="#" onclick="reloadPage()">Pinky ManGon</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -210,7 +210,7 @@
               <div class="subtitle">💕注意事項</div>
               <div class="text">由於活動是採預約制，如果有晚到或臨時無法到場的情形，請事先告知主辦進行取消預約。</div>
               <div class="text">開放入場前如未到場，主辦會先聯絡表單內留下的聯絡資訊進行通知，如未到場也未回覆的人，將自動取消預約並開放名額給現場排隊的皮皮，請不要造成店家及主辦的困擾！！</div>
-            </div>         
+            </div>
 
           </div>
 
@@ -380,7 +380,8 @@
 
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="checkok" name="checkok" value="on" required>
-              <label class="form-check-label" for="checkok" style="font-size: 14px;color: var(--bs-primary); font-weight: bold;">
+              <label class="form-check-label" for="checkok"
+                style="font-size: 14px;color: var(--bs-primary); font-weight: bold;">
                 我已確認上述填寫內容，準備好要一起參與活動惹
               </label>
               <div class="invalid-feedback">
@@ -392,9 +393,9 @@
             <div class="d-none" id="submitSuccessMessage">
               <div class="text-center mb-3">
                 <div class="fw-bolder">Gon Xi 您預約登記成功啦~</div>
-                  將會寄送通知信給您~ 再麻煩留意一下信件唷~
+                將會寄送通知信給您~ 再麻煩留意一下信件唷~
               </div>
-            </div>           
+            </div>
             <!-- Submit Button-->
             <div class="d-grid">
               <button class="btn btn-primary btn-xl" id="submitButton" type="submit">確認登記</button>
@@ -470,7 +471,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzonA370SdzJLkrkFu_5HMR8uVsZ5Wz_yw6nLoTsqXd6Fs8_r1EIfHqa2Plvc_lk4nDWQ/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbw6CU0ImUzvTI3QWxa3nJ7UtMIEB3EpBBuhamFMxn8oKiQZSMRhz-c-yiecEObQ-4yUng/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -675,26 +676,36 @@
         // 處理響應
         const resData = await response.json();
         console.log(resData);  // 打印結果到控制臺
-        if(resData.result=='ok'){
-          let $success=$('#submitSuccessMessage');
+        if (resData.result == 'ok') {
+          let $success = $('#submitSuccessMessage');
           $success.removeClass("d-none");
           //lock
           Array.from(this.elements).forEach(element => element.disabled = true);
           document.getElementById('submitButton').remove();
-          
+          // 更新下拉選項
+          fetchRounds();
+        }
+        else {
+          alert(resData.message);
+          if (resData.status == '09') {
+            // 超額更新下拉選項
+            fetchRounds();
+          }
 
         }
-        else{
-          alert(resData.message);
-        }
-        // 不管有沒有提交成功都再次更新下拉選項
-        fetchRounds();
+
       } catch (error) {
-        console.log('Error submitting the form:', error);        
+        console.log('Error submitting the form:', error);
         alert("提交表單時發生錯誤");
-        
+
       }
     });
+
+
+    function reloadPage() {
+      // 使用 location.replace 重新加载当前页面而不带 # 符号
+      window.location.replace(window.location.href.split('#')[0]);
+    }
 
   </script>
 </body>
