@@ -470,7 +470,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycby5n1Y1YE4o8b0JFm5-NBx0tZXrtjziB8epnl7BjW3ZI9HU9VrFFv2N4UGu9tKoMmKhEw/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzXHPSmITd9TfJCXCqHL7Cm4AqYCBLAqjphY7rxD4nGDaTLNPKavYjItbHzUxWbv8YH_w/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -662,7 +662,7 @@
       const jsonData = JSON.stringify(formObject);
 
       try {
-        // 發送 POST 請求到 Google Apps Script Web App
+        // POST 
         const response = await fetch(PROXY_URL, {
           mode: 'cors',
           method: 'POST',
@@ -678,7 +678,7 @@
         if(resData.result){
           let $success=$('#submitSuccessMessage');
           $success.removeClass("d-none");
-          //鎖住表單
+          //lock
           Array.from(this.elements).forEach(element => element.disabled = true);
           document.getElementById('submitButton').remove();
 
