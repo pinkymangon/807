@@ -385,7 +385,7 @@
 
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="checkok" required>
-              <label class="form-check-label" for="checkok" style="font-size: 12px;color: var(--bs-primary);">
+              <label class="form-check-label" for="checkok" style="font-size: 14px;color: var(--bs-primary); font-weight: bold;">
                 我已確認上述填寫內容，準備好要一起參與活動惹
               </label>
               <div class="invalid-feedback">
@@ -397,13 +397,9 @@
             <div class="d-none" id="submitSuccessMessage">
               <div class="text-center mb-3">
                 <div class="fw-bolder">Gon Xi 您預約登記成功啦~</div>
-                將會寄送通知信給您~ 在留意一下信件唷~
+                  將會寄送通知信給您~ 再麻煩留意一下信件唷~
               </div>
-            </div>
-            <!-- Submit error message-->
-            <div class="d-none" id="submitErrorMessage">
-              <div class="text-center text-danger mb-3">喔喔! 登記失敗啦</div>
-            </div>
+            </div>           
             <!-- Submit Button-->
             <div class="d-grid">
               <button class="btn btn-primary btn-xl" id="submitButton" type="submit">確認登記</button>
@@ -684,11 +680,24 @@
         // 處理響應
         const resData = await response.json();
         console.log(resData);  // 打印結果到控制臺
-        document.getElementById('submitSuccessMessage').textContent = resData.result || resData.error;
+        if(resData.result){
+          let $success=document.getElementById('submitSuccessMessage');
+          $success.firstChild(resData.message).removeClass("d-none");
+          //鎖住表單
+          Array.from(this.elements).forEach(element => element.disabled = true);
+          document.getElementById('submitButton').remove();
+
+
+        }
+        else{
+          alert(resData.message);
+        }
+        
 
       } catch (error) {
-        console.error('Error submitting the form:', error);
-        document.getElementById('submitErrorMessage').textContent = '提交表單時發生錯誤。';
+        console.log('Error submitting the form:', error);        
+        alert(resData.message);
+        
       }
     });
 
