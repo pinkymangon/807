@@ -382,17 +382,17 @@
               <textarea class="form-control" id="message" name="message" style="height: 10rem"></textarea>
               <label for="message">備註</label>
             </div>
-            
+
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="checkok" required>
               <label class="form-check-label" for="checkok" style="font-size: 12px;color: var(--bs-primary);">
                 我已確認上述填寫內容，準備好要一起參與活動惹
               </label>
-              <div class="invalid-feedback" >
+              <div class="invalid-feedback">
                 *確認上述填寫無誤並勾選
               </div>
             </div>
-            
+
             <!-- Submit success message-->
             <div class="d-none" id="submitSuccessMessage">
               <div class="text-center mb-3">
@@ -566,7 +566,7 @@
           roundSelect.appendChild(option);
         });
 
-        // 设置 count 的最大值为第一个选项的 data-max
+        // 設置 count 的最大值為第一個選項的 data-max
         if (roundSelect.options.length > 0) {
           const firstOption = roundSelect.options[0];
           const max = firstOption.getAttribute('data-max');
@@ -581,20 +581,17 @@
 
     document.addEventListener('DOMContentLoaded', fetchRounds);
 
-    // 监听下拉菜单的 change 事件
+    // 監聽下拉選單的 change 事件
     document.getElementById('round').addEventListener('change', function () {
       const selectedOption = this.options[this.selectedIndex];
       const max = selectedOption.getAttribute('data-max');
       const countInput = document.getElementById('count');
 
-      countInput.value = ''; // 清空输入框
-      countInput.max = max; // 设置最大值
+      countInput.value = ''; // 清空輸入框
+      countInput.max = max; // 設置最大值
     });
 
-
-
-
-    // 控制 count input 超过最大值时显示错误消息
+    // 控制 count input 超過最大值時顯示錯誤消息
     document.getElementById('count').addEventListener('input', function () {
       const countInput = this;
       const max = countInput.max;
@@ -603,15 +600,11 @@
       } else {
         countInput.setCustomValidity('');
       }
-      countInput.reportValidity(); // 显示验证错误消息
+      countInput.reportValidity(); // 顯示驗證錯誤消息
     });
 
-
-
-
-
     const form = document.getElementById("applyForm");
-    // 验证规则
+    // 驗證規則
     const constraints = {
       email: {
         presence: true,
@@ -655,7 +648,7 @@
       phone: {
         presence: true,
         length: {
-          is: 10 // Adjust as needed for your phone number format
+          is: 10 // 調整為適合你的電話號碼格式
         }
       },
       message: {
@@ -664,22 +657,21 @@
     };
 
     form.addEventListener("submit", async function (event) {
-      // 阻止默认表单提交行为
+      // 阻止默認表單提交行為
       event.preventDefault();
 
-      // 进行验证
+      // 進行驗證
       const formData = new FormData(form);
       const formObject = {};
       formData.forEach((value, key) => {
         formObject[key] = value;
       });
 
-
-      // 将表单数据转换为 JSON
+      // 將表單數據轉換為 JSON
       const jsonData = JSON.stringify(formObject);
 
       try {
-        // 发送 POST 请求到 Google Apps Script Web App
+        // 發送 POST 請求到 Google Apps Script Web App
         const response = await fetch(PROXY_URL, {
           mode: 'cors',
           method: 'POST',
@@ -689,17 +681,17 @@
           body: jsonData,
         });
 
-        // 处理响应
+        // 處理響應
         const resData = await response.json();
-        console.log(resData);  // 打印结果到控制台
+        console.log(resData);  // 打印結果到控制臺
         document.getElementById('submitSuccessMessage').textContent = resData.result || resData.error;
 
       } catch (error) {
         console.error('Error submitting the form:', error);
-        document.getElementById('submitErrorMessage').textContent = '提交表单时发生错误。';
+        document.getElementById('submitErrorMessage').textContent = '提交表單時發生錯誤。';
       }
-    }
-    );
+    });
+
   </script>
 </body>
 
