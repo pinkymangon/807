@@ -692,11 +692,11 @@
         // 处理响应
         const resData = await response.json();
         console.log(resData);  // 打印结果到控制台
-        document.getElementById('responseMessage').textContent = resData.result || resData.error;
+        document.getElementById('submitSuccessMessage').textContent = resData.result || resData.error;
 
       } catch (error) {
         console.error('Error submitting the form:', error);
-        document.getElementById('responseMessage').textContent = '提交表单时发生错误。';
+        document.getElementById('submitErrorMessage').textContent = '提交表单时发生错误。';
       }
     }
     );
