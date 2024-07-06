@@ -675,7 +675,7 @@
         // 處理響應
         const resData = await response.json();
         console.log(resData);  // 打印結果到控制臺
-        if(resData.result){
+        if(resData.result=='ok'){
           let $success=$('#submitSuccessMessage');
           $success.removeClass("d-none");
           //lock
