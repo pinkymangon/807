@@ -599,7 +599,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzJ3WGNZuVOndx6BRagqjRHXyynYVOVJKkoAsXVlyZHAjKJ9GTqwkiM6Aw3Dpa2yjI8Hg/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzcD63y-r0ZWESUPZSLju4OlFRqa06KNelAb9rej0jBRtMbmwnOCWRGQ8CTLVagOO51gA/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -804,8 +804,8 @@
           }
           else {
             setMsgModalShow('error', resData.message)
-
-            if (resData.status == '09') {
+            
+            if (resData.status == '09' || resData.status == '19') {
               // 超額更新下拉選項
               fetchRounds();
             }
