@@ -188,7 +188,7 @@
           <h2 class="text-primary mt-0">
             活動說明
           </h2>
-          <hr class="divider divider-light" />
+          <hr class="divider " />
           <div class="mb-4">
             <div class="info-section text-primary">
               <div class="text">我們是OOO！</div>
@@ -352,8 +352,7 @@
             </div>
             <!-- 選擇場次 input-->
             <div class="form-floating mb-3">
-              <select id="round" name="round" class="form-control form-select" required>
-                <option value=""></option>
+              <select id="round" name="round" class="form-control form-select" required>                
                 <!-- 其他選項將由JavaScript動態添加 -->
               </select>
               <label for="round">選擇參加的場次</label>
@@ -572,7 +571,7 @@
         const rounds = await response.json();
         const roundSelect = document.getElementById('round');
         // 清空之前的選項
-        roundSelect.innerHTML = '<option value=""></option>';
+        roundSelect.innerHTML = '';
 
         // 將獲取到的數據添加到選單中
         rounds.forEach((round, index) => {
@@ -580,10 +579,7 @@
           option.value = round.round;
           option.text = round.round;
           option.setAttribute('data-max', round.max);
-
           roundSelect.appendChild(option);
-        });
-
         // 設置 count 的最大值為第一個選項的 data-max
         if (roundSelect.options.length > 0) {
           const firstOption = roundSelect.options[0];
@@ -591,6 +587,9 @@
           const countInput = document.getElementById('count');
           countInput.max = max;
         }
+
+        });
+        roundSelect.prop('selectedIndex', 0).trigger('change');
 
       } catch (error) {
         console.error('Error fetching rounds:', error);
