@@ -257,10 +257,10 @@
               <div class="text">
                 每一批次人數有限<br>
                 活動時間為2小時<br>
-                如果該時段的預約已滿<br>
+                如果該時段的預約已滿或預約失敗<br>
                 請另改其他時間進行預約<br>
-                <span class="text-primary">預約是否成功以信箱收到的信件為主</span><br>
-                預約失敗請另改時間進行活動預約<br>
+                <span class="text-primary" style="font-weight: bold;">預約是否成功以信箱收到的信件為主</span><br>
+                
               </div>
             </div>
               <div class="info-section">
@@ -485,6 +485,7 @@
             <div class="form-floating mb-3">
               <textarea class="form-control" id="message" name="message" style="height: 10rem"></textarea>
               <label for="message">備註</label>
+              <div class="invalid-feedback">*填寫第二人的聯絡方式 </div>
             </div>
 
             <div class="form-check mb-3">
@@ -724,15 +725,6 @@
 */
 
 
-    document.getElementById('count').addEventListener('input', function () {
-      const count = parseInt(this.value, 10);
-      if (count > 2) {
-        document.querySelector('[name="message"]').setAttribute('required', 'required');
-      } else {
-        document.querySelector('[name="message"]').removeAttribute('required');
-      }
-    });
-
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
 
       event.preventDefault(); // 阻止默認表單提交行為
@@ -754,13 +746,19 @@
       const count = parseInt(form.count.value) || 0;
 
       if (mangonCount + pinkyCount < count) {
-        form.mangon_count.setCustomValidity(`Mangon Count + Pinky Count 必须大于等于 Count (${count})`);
-        form.pinky_count.setCustomValidity(`Mangon Count + Pinky Count 必须大于等于 Count (${count})`);
+        form.mangon_count.setCustomValidity('餐點數量總和不能小於預約人數(${count})');
+        form.pinky_count.setCustomValidity('餐點數量總和不能小於預約人數(${count})');
       } else {
         form.mangon_count.setCustomValidity(''); // 清除自定义错误消息
         form.pinky_count.setCustomValidity(''); // 清除自定义错误消息
       }
 
+      if(count>2 && form.message.value==""){
+        form.message.setCustomValidity('超過兩人以上麻煩填寫第二人聯絡方式');
+      }
+      else{
+        form.message.setCustomValidity(''); // 清除自定义错误消息
+      }
       // 检查表单是否有效
       if (form.checkValidity() === false) {
         event.stopPropagation();
