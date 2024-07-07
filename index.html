@@ -560,7 +560,7 @@
         <div class="modal-body">
           <img id="msgPic" src="images/loading.gif" class="modal-img" />
           <div id="msg-text" class="text-center">
-            表單送出中...<br>請勿離開頁面，請耐心等候！
+            表單送出中...<br>請勿離開頁面，耐心等候！
           </div>
         </div>
         <div class="modal-footer">
@@ -852,7 +852,7 @@
       $('#msgModal').modal('show');
     }
     $('#msgModal button.ok').on('click', () => {
-      modal.hide(); // 点击确认按钮关闭模态框
+      $('#msgModal').hide(); // 点击确认按钮关闭模态框
     });
 
     function reloadPage() {
