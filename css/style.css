@@ -12928,6 +12928,7 @@ header.masthead .h1 {
         min-height: 40rem;
         padding-top: 4.5rem;
         padding-bottom: 0;
+        margin:0;
     }
 
     header.masthead p {
