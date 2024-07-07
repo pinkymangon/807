@@ -744,129 +744,35 @@
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
 
       event.preventDefault(); // 阻止默認表單提交行為
+      var $submitButton = $('#submitButton');
+        $submitButton.prop('disabled', true);
+        
       var form = this;
 
       form.classList.remove('was-validated');
+
       const formData = new FormData(form);
       const formObject = {};
       formData.forEach((value, key) => {
         formObject[key] = value;
       });
 
-      const constraints = {
-        email: {
-          presence: true,
-          email: true
-        },
-        round: {
-          presence: true
-        },
-        count: {
-          presence: true,
-          numericality: {
-            onlyInteger: true,
-            greaterThan: 0,
-            lessThanOrEqualTo: function () {
-              const roundSelect = document.getElementById("round");
-              const selectedOption = roundSelect.options[roundSelect.selectedIndex];
-              return parseInt(selectedOption.getAttribute("data-max"), 10);
-            }
-          }
-        },
-        mangon_count: {
-          presence: true,
-          numericality: {
-            onlyInteger: true,
-            greaterThanOrEqualTo: 0
-          }
-        },
-        pinky_count: {
-          presence: true,
-          numericality: {
-            onlyInteger: true,
-            greaterThanOrEqualTo: 0
-          },
-          
-          
-        },
-        name: {
-          presence: true
-        },
-        sns: {
-          presence: true
-        },
-        phone: {
-          presence: true,
-          length: {
-            is: 10 // 调整为适合你的电话号码格式
-          }
-        },
-        message: {
-          presence: false,
-          if: function (value, attributes) {
-            return attributes.count > 2;  // 當 count 大於 2 時，message 變為必填
-          }
-        }
-        
-      };
-/*
-        // 添加自定义验证规则
-        validate.validators.customValidation = function (value, options, key, attributes) {
-          if (typeof options === 'function') {
-            return options(value, attributes);
-          }
-          return options.customValidation ? options.customValidation(value, attributes) : null;
-        };
+    // 检查表单是否有效
+  if (form.checkValidity() === false) {
+    event.stopPropagation();
+    form.classList.add('was-validated'); // 添加验证状态以显示验证信息
+    return; // 如果表单无效则返回
+  }
 
-        // 添加自定义验证规则
-        constraints.mangon_and_pinky_count = {
-          customValidation: function(value, attributes) {
-            const mangonCount = parseInt(attributes.mangon_count, 10);
-            const pinkyCount = parseInt(attributes.pinky_count, 10);
-            const count = parseInt(attributes.count, 10);
-            if (mangonCount + pinkyCount < count) {
-              return "由於店家的低消限制，ManGon 和 PinkyGon 的總份數必須大於或等於預約人數。";
-            }
-          }
-        };
       
-*/
-      // 执行验证
-    //  const errors = validate(formObject, constraints);
-
-      if (true) {
-        // 显示验证错误信息
-        for (const [field, fieldErrors] of Object.entries(errors)) {
-          const input = form.querySelector(`[name=${field}]`);
-          if (input) {
-            input.classList.add('is-invalid');
-            const feedback = input.nextElementSibling;
-            if (feedback) {
-              feedback.textContent = fieldErrors[0];
-            }
-          }
-        }
-        // 阻止提交
-        form.classList.add('was-validated');
-        submitButton.classList.remove('loading');
-        submitButton.disabled = false;
-        return;
-      }
 
       if (confirm('確認要送出?')) {
 
         setMsgModalShow("loading");
 
-        var $submitButton = $('#submitButton');
-        $submitButton.prop('disabled', true);
+        
         $('#msgModal').modal('show');
-        // 進行驗證
-        /*const formData = new FormData(form);
-        const formObject = {};
-        formData.forEach((value, key) => {
-          formObject[key] = value;
-        });
-*/
+        
         // 將表單數據轉換為 JSON
         const jsonData = JSON.stringify(formObject);
 
