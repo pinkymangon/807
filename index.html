@@ -343,7 +343,7 @@
       </div>
       <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
         <div class="col-lg-6">
-          <form id="applyForm" method="post" action="#" novalidate>
+          <form id="applyForm" method="post" action="#" class="needs-validation" novalidate>
             <!-- Email address input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="email" name="email" type="email" required />
@@ -608,7 +608,7 @@
         }
 
         });
-        roundSelect.prop('selectedIndex', 0).trigger('change');
+        $('#round').prop('selectedIndex', 0).trigger('change');
 
       } catch (error) {
         console.error('Error fetching rounds:', error);
@@ -695,6 +695,7 @@
     form.addEventListener("submit", async function (event) {
       // 阻止默認表單提交行為
       event.preventDefault();
+
       var $submitButton = $('#submitButton');
       $submitButton.addClass('loading');
       $submitButton.prop('disabled', true);
