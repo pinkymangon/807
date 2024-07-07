@@ -801,9 +801,21 @@
           if: function (value, attributes) {
             return attributes.count > 2;  // 當 count 大於 2 時，message 變為必填
           }
-        },
-        mangon_and_pinky_count: {
-          customValidation: function (value, attributes) {
+        }
+        
+      };
+
+        // 添加自定义验证规则
+        validate.validators.customValidation = function (value, options, key, attributes) {
+          if (typeof options === 'function') {
+            return options(value, attributes);
+          }
+          return options.customValidation ? options.customValidation(value, attributes) : null;
+        };
+
+        // 添加自定义验证规则
+        constraints.mangon_and_pinky_count = {
+          customValidation: function(value, attributes) {
             const mangonCount = parseInt(attributes.mangon_count, 10);
             const pinkyCount = parseInt(attributes.pinky_count, 10);
             const count = parseInt(attributes.count, 10);
@@ -811,15 +823,8 @@
               return "由於店家的低消限制，ManGon 和 PinkyGon 的總份數必須大於或等於預約人數。";
             }
           }
-        }
-      };
-      // 添加自定义验证规则
-      validate.validators.customValidation = function (value, options, key, attributes) {
-        if (typeof options === 'function') {
-          return options(value, attributes);
-        }
-        return options.customValidation ? options.customValidation(value, attributes) : null;
-      };
+        };
+      
 
       // 执行验证
       const errors = validate(formObject, constraints);
