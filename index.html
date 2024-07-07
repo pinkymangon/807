@@ -68,6 +68,9 @@
       color: var(--bs-primary);
     }
 
+    #msg-text {
+      font-weight: bold;
+    }
 
     #map {
       justify-content: center;
@@ -401,7 +404,7 @@
       </div>
     </div>
   </div>
-  
+
 
   </section>
   <!-- apply-->
@@ -665,7 +668,7 @@
         const formDisableMsg = responseJson.formDisableMsg;
 
         // 表單啟用
-        if (!formEnable) {          
+        if (!formEnable) {
           $('#apply-subtitle').html(formDisableMsg).removeClass('d-none');
 
         } else {
