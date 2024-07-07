@@ -558,7 +558,8 @@
   </section>
 
   <!-- MSGModal -->
-  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static"data-bs-keyboard="false" >
+  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static"
+    data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -707,7 +708,7 @@
       countInput.value = ''; // 清空輸入框
       countInput.max = max; // 設置最大值
     });
-   
+
 
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
 
@@ -799,7 +800,7 @@
           alert("提交表單時發生錯誤");
           $submitButton.removeClass('loading');
           $submitButton.prop('disabled', false);
-          $('#msgModal').hide();
+          $('#msgModal').modal('hide');
         }
 
       }
@@ -811,39 +812,10 @@
 
     });
 
-    function setMsgModalShow(type, msg, disableBackdrop = false, disableKeyboard = false) {
-  let picName = "";
-
-  switch (type) {
-    case "success":
-      picName = "gonxi.gif";
-      break;
-    case "error":
-      picName = "wow.gif";
-      break;
-    case "loading":
-      picName = "loading.gif";
-      msg = "表單送出中...<br>請勿離開頁面，請耐心等候！";
-      break;
-  }
-
-  document.getElementById('msgPic').src = "images/" + picName;
-  $('#msgModal #msg-text').html(msg);
-
-  $('#msgModal').modal({
-    backdrop: disableBackdrop ? 'static' : true,  // 根据 disableBackdrop 设置 backdrop 选项
-    keyboard: !disableKeyboard,  // 根据 disableKeyboard 设置 keyboard 选项
-  });
-  $('#msgModal').modal('show');
-
-}
-
-
+   
     function setMsgModalShow(type, msg) {
 
-      let picName = "";
-      let disableBackdrop = false;
-      let disableKeyboard = false;
+      let picName = "";      
       let okBtn = true;
 
       switch (type) {
@@ -854,14 +826,10 @@
         case "error":
           picName = "wow.gif";
           break;
-        case "loading":
-          disableBackdrop = true;
-          disableKeyboard = true;
+        case "loading":          
           okBtn = false;
           picName = "loading.gif";
           msg = "表單送出中...<br>請勿離開頁面，請耐心等候！";
-
-
           break;
       }
       document.getElementById('msgPic').src = "images/" + picName;
@@ -873,7 +841,10 @@
         $('#msgModal .modal-footer').hide();
       }
       $('#msgModal').modal('show');
-  }
+    }
+    $('#msgModal button.ok').on('click', () => {
+      modal.hide(); // 点击确认按钮关闭模态框
+    });
 
     function reloadPage() {
       // 使用 location.replace 重新加载当前页面而不带 # 符号
