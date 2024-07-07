@@ -220,7 +220,7 @@
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 mb-5" style="font-weight: bold;">
-            Hi  We’re EEEEE TEAM<br>
+            Hi We’re EEEEE TEAM<br>
             舉辦生咖的原因????(請求支援) <br>
             應援活動日期：8/6 - 8/11<br>
             預約登記時間：7/12 - 8/2
@@ -293,13 +293,13 @@
                 <div class="text">
                   活動日期：8/6 - 8/11<br>
                   第一梯次 12:00 - 14:00<br>
-                第二梯次 14:00 - 16:00<br>
-                第三梯次 16:00 - 18:00<br>
-                第四梯次 18:00 - 20:00<br><br>
-                *每日皆有四個梯次<br>
-                如果該梯次預約人數額滿<br>
-                將不會顯示在表單內<br>
-              </div>
+                  第二梯次 14:00 - 16:00<br>
+                  第三梯次 16:00 - 18:00<br>
+                  第四梯次 18:00 - 20:00<br><br>
+                  *每日皆有四個梯次<br>
+                  如果該梯次預約人數額滿<br>
+                  將不會顯示在表單內<br>
+                </div>
               </div>
               <div class="info-section">
                 <div class="subtitle">表單統計時間</div>
@@ -308,15 +308,15 @@
               <div class="info-section">
                 <div class="subtitle">注意事項</div>
                 <div class="text">
-                由於活動是採預約制<br>
-                如果有晚到或臨時無法到場的情形<br>
-                請事先告知主辦進行取消預約<br><br>
-                開放入場前如未到場<br>
-                主辦會先聯絡表單內留下的聯絡資訊進行通知<br>
-                如未到場也未回覆的人<br>
-                將自動取消預約並開放名額給現場排隊的皮皮<br>
-                請不要造成店家及主辦的困擾！！<br>
-              </div>
+                  由於活動是採預約制<br>
+                  如果有晚到或臨時無法到場的情形<br>
+                  請事先告知主辦進行取消預約<br><br>
+                  開放入場前如未到場<br>
+                  主辦會先聯絡表單內留下的聯絡資訊進行通知<br>
+                  如未到場也未回覆的人<br>
+                  將自動取消預約並開放名額給現場排隊的皮皮<br>
+                  請不要造成店家及主辦的困擾！！<br>
+                </div>
               </div>
 
               <div class="info-section">
@@ -326,7 +326,7 @@
                   為確保不影響店家營業及其他顧客用餐權益<br>
                   本表單將蒐集預約者的稱呼、IG及電話等聯絡方式<br>
                   以提供店家確認用餐情形
-              </div>
+                </div>
               </div>
 
             </div>
@@ -451,14 +451,15 @@
               <div class="invalid-feedback">*請選擇場次。</div>
             </div>
             <!-- 預約人數 input-->
-            <p style="font-size: 12px;color:var(--bs-primary);">*注意選擇場次剩餘人數 (若填寫超過人數會預約失敗唷！)</p>
+            <p style="font-size: 12px;color:var(--bs-primary);">*注意選擇場次剩餘名額 (若填寫超過會預約失敗唷！)</p>
             <div class="form-floating mb-3">
               <input class="form-control" id="count" name="count" type="number" required />
               <label for="count">預約的人數</label>
-              <div class="invalid-feedback">*請輸入預約人數。</div>
-              <div class="invalid-feedback">*預約人數不能超過剩餘名額唷</div>
+              <div class="invalid-feedback">*請輸入預約人數，且預約人數不能超過剩餘名額。</div>
             </div>
+
             <!-- mangon_count input-->
+            <p style="font-size: 12px;color:var(--bs-primary);">*由於店家有每位低消規定，餐點份數總和不可以低於預約人數。</p>
             <div class="form-floating mb-3">
               <input class="form-control" id="mangon_count" name="mangon_count" type="number" required />
               <label for="mangon_count">ManGon 生日套餐份數</label>
@@ -745,7 +746,7 @@
 
       event.preventDefault(); // 阻止默認表單提交行為
       var $submitButton = $('#submitButton');
-        $submitButton.prop('disabled', true);
+      $submitButton.prop('disabled', true);
 
       var form = this;
 
@@ -757,22 +758,34 @@
         formObject[key] = value;
       });
 
-    // 检查表单是否有效
-  if (form.checkValidity() === false) {
-    event.stopPropagation();
-    form.classList.add('was-validated'); // 添加验证状态以显示验证信息
-    return; // 如果表单无效则返回
-  }
 
-      
+      // 自定义验证逻辑
+      const mangonCount = parseInt(form.mangon_count.value) || 0;
+      const pinkyCount = parseInt(form.pinky_count.value) || 0;
+      const count = parseInt(form.count.value) || 0;
+
+      if (mangonCount + pinkyCount < count) {
+        form.count.setCustomValidity(`Mangon Count + Pinky Count 必须大于等于 Count (${count})`);
+      } else {
+        form.count.setCustomValidity(''); // 清除自定义错误消息
+      }
+
+      // 检查表单是否有效
+      if (form.checkValidity() === false) {
+        event.stopPropagation();
+        form.classList.add('was-validated'); // 添加验证状态以显示验证信息
+        return; // 如果表单无效则返回
+      }
+
+
 
       if (confirm('確認要送出?')) {
 
         setMsgModalShow("loading");
 
-        
+
         $('#msgModal').modal('show');
-        
+
         // 將表單數據轉換為 JSON
         const jsonData = JSON.stringify(formObject);
 
