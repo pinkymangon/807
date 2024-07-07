@@ -673,12 +673,10 @@
         const formEnable = responseJson.formEnable;
         const formDisableMsg = responseJson.formDisableMsg;
 
-        // 表單啟用
-        if (!formEnable) {
-          
+        // 表單未啟用
+        if (!formEnable) {          
           $('#apply-subtitle').html(formDisableMsg).removeClass('d-none');
           
-
         } else {
           $('form').removeClass('d-none');
           $('#apply-subtitle').removeClass('d-none');
@@ -805,7 +803,12 @@
           else {
             setMsgModalShow('error', resData.message)
 
-            if (resData.status == '09' || resData.status == '19') {
+            if(resData.status == '19'){
+              $('form').addClass('d-none');
+              $('#apply-subtitle').html(resData.message).removeClass('d-none');
+            }
+
+            if (resData.status == '09') {
               // 超額更新下拉選項
               fetchRounds();
             }
