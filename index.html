@@ -28,7 +28,6 @@
   <!-- Core theme CSS (includes Bootstrap)-->
   <link rel="stylesheet" href="css/style.css" />
   <style>
-
     /* 這要給nav放背景圖用的
     background-image: url(images/title.jpg);
     background-repeat: no-repeat;
@@ -38,11 +37,12 @@
     padding: 0 20px;
     box-sizing: border-box;
     */
-    .page-section h2{
+    .page-section h2 {
       font-weight: bold;
     }
+
     .info-section {
-      margin-bottom: 20px;      
+      margin-bottom: 20px;
     }
 
     .title {
@@ -115,36 +115,60 @@
       display: none;
       margin-left: 5px;
     }
+
     .btn.loading .loading-icon {
       display: inline-block;
     }
+
     .btn.loading .btn-text {
       display: none;
     }
 
     /*-驗證樣式修改-*/
-    .was-validated .form-control:valid, .form-control.is-valid,.was-validated .form-select:valid, .form-select.is-valid{
+    .was-validated .form-control:valid,
+    .form-control.is-valid,
+    .was-validated .form-select:valid,
+    .form-select.is-valid {
 
-      border:1px solid #ced4da !important;
+      border: 1px solid #ced4da !important;
     }
-    .was-validated .form-control:valid, .form-control.is-valid,.was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"], .form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"]{
-      background-image:none !important;
+
+    .was-validated .form-control:valid,
+    .form-control.is-valid,
+    .was-validated .form-select:valid:not([multiple]):not([size]),
+    .was-validated .form-select:valid:not([multiple])[size="1"],
+    .form-select.is-valid:not([multiple]):not([size]),
+    .form-select.is-valid:not([multiple])[size="1"] {
+      background-image: none !important;
     }
-    .was-validated .form-control:invalid, .form-control.is-invalid{
+
+    .was-validated .form-control:invalid,
+    .form-control.is-invalid {
       box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
     }
+
     .form-check-input:checked {
-    background-color: var(--bs-primary) !important;
-    border-color: var(--bs-primary) !important;
-}
-.invalid-feedback {
-    display: none;
-    width: 100%;
-    margin-top: 0.25rem;
-    font-size: 0.875em;
-    color: #f84567;
-    font-weight: bold;
-}
+      background-color: var(--bs-primary) !important;
+      border-color: var(--bs-primary) !important;
+    }
+
+    .invalid-feedback {
+      display: none;
+      width: 100%;
+      margin-top: 0.25rem;
+      font-size: 0.875em;
+      color: #f84567;
+      font-weight: bold;
+    }
+
+    .modal-img {
+      border-radius: 50px;
+      width: 280px;
+      height: auto;
+      text-align: center;
+      margin: 1rem auto;
+      display: block;
+    }
   </style>
 </head>
 
@@ -375,7 +399,7 @@
             </div>
             <!-- 選擇場次 input-->
             <div class="form-floating mb-3">
-              <select id="round" name="round" class="form-control form-select" required>                
+              <select id="round" name="round" class="form-control form-select" required>
                 <!-- 其他選項將由JavaScript動態添加 -->
               </select>
               <label for="round">選擇參加的場次</label>
@@ -494,26 +518,23 @@
       </div>
     </div>
   </section>
-<!-- MSGModal -->
-<div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="msgModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="msgModalTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        我是訊息...可以放圖片
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">確認</button>
+ 
+  <!-- MSGModal -->
+  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="msgModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img  id="msgPic" src="images/loading2.gif" class="modal-img" />          
+          <strong id="msg-text">
+          </strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary ok">確認</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
   <!-- Footer-->
@@ -622,13 +643,13 @@
           option.text = round.round;
           option.setAttribute('data-max', round.max);
           roundSelect.appendChild(option);
-        // 設置 count 的最大值為第一個選項的 data-max
-        if (roundSelect.options.length > 0) {
-          const firstOption = roundSelect.options[0];
-          const max = firstOption.getAttribute('data-max');
-          const countInput = document.getElementById('count');
-          countInput.max = max;
-        }
+          // 設置 count 的最大值為第一個選項的 data-max
+          if (roundSelect.options.length > 0) {
+            const firstOption = roundSelect.options[0];
+            const max = firstOption.getAttribute('data-max');
+            const countInput = document.getElementById('count');
+            countInput.max = max;
+          }
 
         });
         $('#round').prop('selectedIndex', 0).trigger('change');
@@ -662,7 +683,7 @@
       countInput.reportValidity(); // 顯示驗證錯誤消息
     });
 
- 
+
     // 驗證規則
     const constraints = {
       email: {
@@ -715,6 +736,8 @@
       }
     };
 
+
+
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
       // 阻止默認表單提交行為
       event.preventDefault();
@@ -724,64 +747,98 @@
         event.stopPropagation();
         form.classList.add('was-validated');
         return;
-      }   
+      }
 
-      var $submitButton = $('#submitButton');
-      $submitButton.addClass('loading');
-      $submitButton.prop('disabled', true);
+      if (confirm('確認要送出?')) {
+        
+        setMsgModalShow("loading");
 
-
-      // 進行驗證
-      const formData = new FormData(form);
-      const formObject = {};
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-
-      // 將表單數據轉換為 JSON
-      const jsonData = JSON.stringify(formObject);
-
-      try {
-        // POST 
-        const response = await fetch(PROXY_URL, {
-          mode: 'cors',
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
-          },
-          body: jsonData,
+        var $submitButton = $('#submitButton');
+        $submitButton.prop('disabled', true);
+        $('#msgModal').modal('show');
+        // 進行驗證
+        const formData = new FormData(form);
+        const formObject = {};
+        formData.forEach((value, key) => {
+          formObject[key] = value;
         });
 
-        // 處理響應
-        const resData = await response.json();
-        console.log(resData);  // 打印結果到控制臺
-        if (resData.result == 'ok') {
-          let $success = $('#submitSuccessMessage');
-          $success.removeClass("d-none");
-          //lock
-          Array.from(this.elements).forEach(element => element.disabled = true);
-          document.getElementById('submitButton').remove();
-          // 更新下拉選項
-          fetchRounds();
-        }
-        else {
-          alert(resData.message);
-          if (resData.status == '09') {
-            // 超額更新下拉選項
+        // 將表單數據轉換為 JSON
+        const jsonData = JSON.stringify(formObject);
+
+        try {
+          // POST 
+          const response = await fetch(PROXY_URL, {
+            mode: 'cors',
+            method: 'POST',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: jsonData,
+          });
+
+          // 處理響應
+          const resData = await response.json();
+          console.log(resData);  // 打印結果到控制臺
+          if (resData.result == 'ok') {
+            let $success = $('#submitSuccessMessage');
+            $success.removeClass("d-none");
+            //lock
+            Array.from(this.elements).forEach(element => element.disabled = true);
+            document.getElementById('submitButton').remove();
+            // 更新下拉選項
             fetchRounds();
           }
+          else {
+            alert(resData.message);
+            if (resData.status == '09') {
+              // 超額更新下拉選項
+              fetchRounds();
+            }
+            $submitButton.removeClass('loading');
+            $submitButton.prop('disabled', false);
+          }
+
+        } catch (error) {
+          console.log('Error submitting the form:', error);
+          alert("提交表單時發生錯誤");
           $submitButton.removeClass('loading');
           $submitButton.prop('disabled', false);
+          $('#msgModal').hide();
         }
 
-      } catch (error) {
-        console.log('Error submitting the form:', error);
-        alert("提交表單時發生錯誤");
+      }
+      else {
         $submitButton.removeClass('loading');
         $submitButton.prop('disabled', false);
+        return;
       }
+
     });
 
+    function setMsgModalShow(type,msg){
+        
+        const picName="";
+
+      switch (type) {
+        case "success":
+              picName="gonxi.gif";
+              
+          break;
+          case "error":
+               picName="wow.gif";
+          break;
+          case "loading":
+
+          picName="loading.gif";
+          msg="表單送出中...<br>請勿離開頁面，請耐心等候！";
+          
+          break;
+      }
+      document.getElementById('msgPic').src="images/"+picName;
+        $('#msgModal #msg-text').html(msg);
+        $('#msgModal').modal('show');
+    }
 
     function reloadPage() {
       // 使用 location.replace 重新加载当前页面而不带 # 符号
