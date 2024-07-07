@@ -518,13 +518,13 @@
       </div>
     </div>
   </section>
- 
+
   <!-- MSGModal -->
   <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="msgModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <img  id="msgPic" src="images/loading2.gif" class="modal-img" />          
+          <img id="msgPic" src="images/loading2.gif" class="modal-img" />
           <strong id="msg-text">
           </strong>
         </div>
@@ -653,6 +653,7 @@
 
         });
         $('#round').prop('selectedIndex', 0).trigger('change');
+        $('#count').attr('max', $('#round option:selected').data('max'));
 
       } catch (error) {
         console.error('Error fetching rounds:', error);
@@ -684,64 +685,133 @@
     });
 
 
-    // 驗證規則
-    const constraints = {
-      email: {
-        presence: true,
-        email: true
+ 
+
+    document.getElementById('count').addEventListener('input', function () {
+      const count = parseInt(this.value, 10);
+      if (count > 2) {
+        document.querySelector('[name="message"]').setAttribute('required', 'required');
+      } else {
+        document.querySelector('[name="message"]').removeAttribute('required');
+      }
+    });
+
+    document.getElementById("applyForm").addEventListener("submit", async function (event) {
+
+      var form = this;
+
+      // 阻止默認表單提交行為
+      // 移除之前的錯誤信息
+      form.classList.remove('was-validated');
+
+      // 收集表單數據
+      const formData = new FormData(form);
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+
+      // 驗證表單數據
+      const constraints = {
+        email: {
+          presence: true,
+          email: true
+        },
+        round: {
+          presence: true
+        },
+        count: {
+          presence: true,
+          numericality: {
+            onlyInteger: true,
+            greaterThan: 0,
+            lessThanOrEqualTo: function () {
+              const roundSelect = document.getElementById("round");
+              const selectedOption = roundSelect.options[roundSelect.selectedIndex];
+              return parseInt(selectedOption.getAttribute("data-max"), 10);
+            }
+          }
+        },
+        mangon_count: {
+          presence: true,
+          numericality: {
+            onlyInteger: true,
+            greaterThanOrEqualTo: 0
+          }
+        },
+        pinky_count: {
+          presence: true,
+          numericality: {
+            onlyInteger: true,
+            greaterThanOrEqualTo: 0
+          }
+        },
+        name: {
+          presence: true
+        },
+        sns: {
+          presence: true
+        },
+        phone: {
+          presence: true,
+          length: {
+            is: 10 // 调整为适合你的电话号码格式
+          }
+        },
+      message: {
+        presence: false,
+        if: function (value, attributes) {
+          return attributes.count > 2;  // 當 count 大於 2 時，message 變為必填
+        }
       },
-      round: {
-        presence: true
-      },
-      count: {
-        presence: true,
-        numericality: {
-          onlyInteger: true,
-          greaterThan: 0,
-          lessThanOrEqualTo: function () {
-            const roundSelect = document.getElementById("round");
-            const selectedOption = roundSelect.options[roundSelect.selectedIndex];
-            return parseInt(selectedOption.getAttribute("data-max"), 10);
+      mangon_and_pinky_count: {
+        // 自定义规则验证 mangon_count + pinky_count >= count
+        customValidation: function (value, attributes) {
+          const mangonCount = parseInt(attributes.mangon_count, 10);
+          const pinkyCount = parseInt(attributes.pinky_count, 10);
+          const count = parseInt(attributes.count, 10);
+          if (mangonCount + pinkyCount < count) {
+            return "由於店家的低消限制，ManGon 和 PinkyGon 的總份數必須大於或等於預約人數。";
           }
         }
-      },
-      mangon_count: {
-        presence: true,
-        numericality: {
-          onlyInteger: true,
-          greaterThanOrEqualTo: 0
-        }
-      },
-      pinky_count: {
-        presence: true,
-        numericality: {
-          onlyInteger: true,
-          greaterThanOrEqualTo: 0
-        }
-      },
-      name: {
-        presence: true
-      },
-      sns: {
-        presence: true
-      },
-      phone: {
-        presence: true,
-        length: {
-          is: 10 // 調整為適合你的電話號碼格式
-        }
-      },
-      message: {
-        presence: false
       }
     };
 
+    // 添加自定义验证规则
+    validate.validators.customValidation = function (value, options, key, attributes) {
+      if (typeof options === 'function') {
+        return options(value, attributes);
+      }
+      return options.customValidation ? options.customValidation(value, attributes) : null;
+    };
 
+      
 
-    document.getElementById("applyForm").addEventListener("submit", async function (event) {
-      // 阻止默認表單提交行為
-      event.preventDefault();
-      var form = this;
+        // 执行验证
+        const errors = validate(formObject, constraints);
+
+      if (errors) {
+        // 显示验证错误信息
+        for (const [field, fieldErrors] of Object.entries(errors)) {
+          const input = form.querySelector(`[name=${field}]`);
+          if (input) {
+            input.classList.add('is-invalid');
+            const feedback = input.nextElementSibling;
+            if (feedback) {
+              feedback.textContent = fieldErrors[0];
+            }
+          }
+        }
+        // 阻止提交
+        form.classList.add('was-validated');
+        submitButton.classList.remove('loading');
+        submitButton.disabled = false;
+        return;
+      }
+
+      // 如果验证通过
+      submitButton.classList.add('loading');
+      submitButton.disabled = true;
 
       if (form.checkValidity() === false) {
         event.stopPropagation();
@@ -750,7 +820,7 @@
       }
 
       if (confirm('確認要送出?')) {
-        
+
         setMsgModalShow("loading");
 
         var $submitButton = $('#submitButton');
@@ -816,28 +886,28 @@
 
     });
 
-    function setMsgModalShow(type,msg){
-        
-        const picName="";
+    function setMsgModalShow(type, msg) {
+
+      const picName = "";
 
       switch (type) {
         case "success":
-              picName="gonxi.gif";
-              
-          break;
-          case "error":
-               picName="wow.gif";
-          break;
-          case "loading":
+          picName = "gonxi.gif";
 
-          picName="loading.gif";
-          msg="表單送出中...<br>請勿離開頁面，請耐心等候！";
-          
+          break;
+        case "error":
+          picName = "wow.gif";
+          break;
+        case "loading":
+
+          picName = "loading.gif";
+          msg = "表單送出中...<br>請勿離開頁面，請耐心等候！";
+
           break;
       }
-      document.getElementById('msgPic').src="images/"+picName;
-        $('#msgModal #msg-text').html(msg);
-        $('#msgModal').modal('show');
+      document.getElementById('msgPic').src = "images/" + picName;
+      $('#msgModal #msg-text').html(msg);
+      $('#msgModal').modal('show');
     }
 
     function reloadPage() {
