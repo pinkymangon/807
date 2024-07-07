@@ -745,9 +745,7 @@
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
 
       event.preventDefault(); // 阻止默認表單提交行為
-      var $submitButton = $('#submitButton');
-      $submitButton.prop('disabled', true);
-
+      
       var form = this;
 
       form.classList.remove('was-validated');
@@ -777,9 +775,10 @@
         return; // 如果表单无效则返回
       }
 
-
-
       if (confirm('確認要送出?')) {
+       var $submitButton = $('#submitButton');
+       $submitButton.prop('disabled', true);
+
 
         setMsgModalShow("loading");
 
