@@ -28,6 +28,16 @@
   <!-- Core theme CSS (includes Bootstrap)-->
   <link rel="stylesheet" href="css/style.css" />
   <style>
+
+    /* 這要給nav放背景圖用的
+    background-image: url(images/title.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    color: #fff;
+    padding: 0 20px;
+    box-sizing: border-box;
+    */
     .info-section {
       margin-bottom: 20px;
       color: #fff;
@@ -341,6 +351,7 @@
             <!-- 選擇場次 input-->
             <div class="form-floating mb-3">
               <select id="round" name="round" class="form-control form-select" required>
+                <option value=""></option>
                 <!-- 其他選項將由JavaScript動態添加 -->
               </select>
               <label for="round">選擇參加的場次</label>
@@ -559,7 +570,7 @@
         const rounds = await response.json();
         const roundSelect = document.getElementById('round');
         // 清空之前的選項
-        roundSelect.innerHTML = '';
+        roundSelect.innerHTML = '<option value=""></option>';
 
         // 將獲取到的數據添加到選單中
         rounds.forEach((round, index) => {
