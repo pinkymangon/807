@@ -782,7 +782,9 @@
           numericality: {
             onlyInteger: true,
             greaterThanOrEqualTo: 0
-          }
+          },
+          
+          
         },
         name: {
           presence: true
@@ -804,7 +806,7 @@
         }
         
       };
-
+/*
         // 添加自定义验证规则
         validate.validators.customValidation = function (value, options, key, attributes) {
           if (typeof options === 'function') {
@@ -825,7 +827,7 @@
           }
         };
       
-
+*/
       // 执行验证
       const errors = validate(formObject, constraints);
 
