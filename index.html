@@ -123,11 +123,11 @@
     }
 
     /*-驗證樣式修改-*/
-    .was-validated .form-select:valid, .form-select.is-valid{
+    .was-validated .form-control:valid, .form-control.is-valid,.was-validated .form-select:valid, .form-select.is-valid{
 
       border:1px solid #ced4da !important;
     }
-    .was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"], .form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"]{
+    .was-validated .form-control:valid, .form-control.is-valid,.was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"], .form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"]{
       background-image:none !important;
     }
     .was-validated .form-control:invalid, .form-control.is-invalid{
