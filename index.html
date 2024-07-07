@@ -832,9 +832,9 @@
       
 */
       // 执行验证
-      const errors = validate(formObject, constraints);
+    //  const errors = validate(formObject, constraints);
 
-      if (errors) {
+      if (true) {
         // 显示验证错误信息
         for (const [field, fieldErrors] of Object.entries(errors)) {
           const input = form.querySelector(`[name=${field}]`);
