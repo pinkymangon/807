@@ -677,6 +677,7 @@
         if (!formEnable) {          
           $('#apply-subtitle').html(formDisableMsg).removeClass('d-none');
           
+          
         } else {
           $('form').removeClass('d-none');
           $('#apply-subtitle').removeClass('d-none');
@@ -701,12 +702,12 @@
             }
            
           });
-          $('#spinner-load').addClass("d-none");
+         
           $('#round').prop('selectedIndex', 0).trigger('change');
           $('#count').attr('max', $('#round option:selected').data('max'));
         }
 
-
+        $('#spinner-load').addClass("d-none");
 
       } catch (error) {
         console.error('Error fetching rounds:', error);
