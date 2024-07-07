@@ -804,7 +804,7 @@
           }
           else {
             setMsgModalShow('error', resData.message)
-            
+
             if (resData.status == '09' || resData.status == '19') {
               // 超額更新下拉選項
               fetchRounds();
@@ -861,7 +861,7 @@
       $('#msgModal').modal('show');
     }
     $('#msgModal button.ok').on('click', () => {
-      $('#msgModal').hide(); // 点击确认按钮关闭模态框
+      $('#msgModal').modal('hide'); // 点击确认按钮关闭模态框
     });
 
     function reloadPage() {
