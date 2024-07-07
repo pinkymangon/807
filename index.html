@@ -410,6 +410,11 @@
   <!-- apply-->
   <section class="page-section" id="apply">
     <div class="container px-4 px-lg-5">
+      <div class="d-flex justify-content-center" id="spinner-load">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-lg-8 col-xl-6 text-center">
           <h2 class="mt-0 text-primary">一起來慶祝 곤듀 的生日吧 !</h2>
@@ -669,7 +674,9 @@
 
         // 表單啟用
         if (!formEnable) {
+          
           $('#apply-subtitle').html(formDisableMsg).removeClass('d-none');
+          
 
         } else {
           $('form').removeClass('d-none');
@@ -693,8 +700,9 @@
               const countInput = document.getElementById('count');
               countInput.max = max;
             }
-
+           
           });
+          $('#spinner-load').removeClass("d-none");
           $('#round').prop('selectedIndex', 0).trigger('change');
           $('#count').attr('max', $('#round option:selected').data('max'));
         }
