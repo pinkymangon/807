@@ -763,9 +763,11 @@
       const count = parseInt(form.count.value) || 0;
 
       if (mangonCount + pinkyCount < count) {
-        form.count.setCustomValidity(`Mangon Count + Pinky Count 必须大于等于 Count (${count})`);
+        form.mangon_count.setCustomValidity(`Mangon Count + Pinky Count 必须大于等于 Count (${count})`);
+        form.pinky_count.setCustomValidity(`Mangon Count + Pinky Count 必须大于等于 Count (${count})`);
       } else {
-        form.count.setCustomValidity(''); // 清除自定义错误消息
+        form.mangon_count.setCustomValidity(''); // 清除自定义错误消息
+        form.pinky_count.setCustomValidity(''); // 清除自定义错误消息
       }
 
       // 检查表单是否有效
