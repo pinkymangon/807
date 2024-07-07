@@ -771,31 +771,36 @@
           }
         }
       };
+// 添加自定义验证规则
+validate.validators.customValidation = function (value, options, key, attributes) {
+          if (typeof options === 'function') {
+            return options(value, attributes);
+          }
+          return options.customValidation ? options.customValidation(value, attributes) : null;
+        };
 
-      const validate = require('validate.js');
-      validate.validators.customValidation = function (value, options, key, attributes) {
-        if (typeof options === 'function') {
-          return options(value, attributes);
-        }
-        return options.customValidation ? options.customValidation(value, attributes) : null;
-      };
+        // 执行验证
+        const errors = validate(formObject, constraints);
 
-      const errors = validate(formObject, constraints);
-
-      if (errors) {
-        for (const [field, fieldErrors] of Object.entries(errors)) {
-          const input = form.querySelector(`[name=${field}]`);
-          if (input) {
-            input.classList.add('is-invalid');
-            const feedback = input.nextElementSibling;
-            if (feedback) {
-              feedback.textContent = fieldErrors[0];
+        if (errors) {
+          // 显示验证错误信息
+          for (const [field, fieldErrors] of Object.entries(errors)) {
+            const input = form.querySelector(`[name=${field}]`);
+            if (input) {
+              input.classList.add('is-invalid');
+              const feedback = input.nextElementSibling;
+              if (feedback) {
+                feedback.textContent = fieldErrors[0];
+              }
             }
           }
+          // 阻止提交
+          form.classList.add('was-validated');
+          submitButton.classList.remove('loading');
+          submitButton.disabled = false;
+          return;
         }
-        form.classList.add('was-validated');
-        return;
-      }
+    
       if (confirm('確認要送出?')) {
 
         setMsgModalShow("loading");
