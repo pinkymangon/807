@@ -240,7 +240,7 @@
             <div class="info-section text-primary">
               <div class="subtitle">💖哇嘎哩GON — We're EEEEE TEAM！</div>
               <div class="text">由於場地大小的關係，再加上我們採用非包場模式，所以店家會開放部分給一般民眾入內。為了控制店內人數，我們決定採用預約表單的方式來進行活動！</div>
-            </div>           
+            </div>
             <div class="info-section">
               <div class="subtitle">💛預約事項 ૮꒰˶ฅ́˘ฅ̀˶꒱ა</div>
               <div class="text">每一批次人數有限，活動時間為2小時</div>
@@ -667,22 +667,22 @@
 
       countInput.value = ''; // 清空輸入框
       countInput.max = max; // 設置最大值
-     });
-     /*
-    // 控制 count input 超過最大值時顯示錯誤消息
-    document.getElementById('count').addEventListener('input', function () {
-      const countInput = this;
-      const max = countInput.max;
-      if (countInput.value > max) {
-        countInput.setCustomValidity(`*預約人數不能超過最大值 ${max}`);
-      } else {
-        countInput.setCustomValidity('');
-      }
-      countInput.reportValidity(); // 顯示驗證錯誤消息
     });
+    /*
+   // 控制 count input 超過最大值時顯示錯誤消息
+   document.getElementById('count').addEventListener('input', function () {
+     const countInput = this;
+     const max = countInput.max;
+     if (countInput.value > max) {
+       countInput.setCustomValidity(`*預約人數不能超過最大值 ${max}`);
+     } else {
+       countInput.setCustomValidity('');
+     }
+     countInput.reportValidity(); // 顯示驗證錯誤消息
+   });
 
 */
- 
+
 
     document.getElementById('count').addEventListener('input', function () {
       const count = parseInt(this.value, 10);
@@ -695,20 +695,16 @@
 
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
 
+      event.preventDefault(); // 阻止默認表單提交行為
       var form = this;
 
-      // 阻止默認表單提交行為
-      // 移除之前的錯誤信息
       form.classList.remove('was-validated');
-
-      // 收集表單數據
       const formData = new FormData(form);
       const formObject = {};
       formData.forEach((value, key) => {
         formObject[key] = value;
       });
 
-      // 驗證表單數據
       const constraints = {
         email: {
           presence: true,
@@ -755,41 +751,35 @@
             is: 10 // 调整为适合你的电话号码格式
           }
         },
-      message: {
-        presence: false,
-        if: function (value, attributes) {
-          return attributes.count > 2;  // 當 count 大於 2 時，message 變為必填
-        }
-      },
-      mangon_and_pinky_count: {
-        // 自定义规则验证 mangon_count + pinky_count >= count
-        customValidation: function (value, attributes) {
-          const mangonCount = parseInt(attributes.mangon_count, 10);
-          const pinkyCount = parseInt(attributes.pinky_count, 10);
-          const count = parseInt(attributes.count, 10);
-          if (mangonCount + pinkyCount < count) {
-            return "由於店家的低消限制，ManGon 和 PinkyGon 的總份數必須大於或等於預約人數。";
+        message: {
+          presence: false,
+          if: function (value, attributes) {
+            return attributes.count > 2;  // 當 count 大於 2 時，message 變為必填
+          }
+        },
+        mangon_and_pinky_count: {
+          customValidation: function (value, attributes) {
+            const mangonCount = parseInt(attributes.mangon_count, 10);
+            const pinkyCount = parseInt(attributes.pinky_count, 10);
+            const count = parseInt(attributes.count, 10);
+            if (mangonCount + pinkyCount < count) {
+              return "由於店家的低消限制，ManGon 和 PinkyGon 的總份數必須大於或等於預約人數。";
+            }
           }
         }
-      }
-    };
+      };
 
-    const validate = require('validate.js');
-    // 添加自定义验证规则
-    validate.validators.customValidation = function (value, options, key, attributes) {
-      if (typeof options === 'function') {
-        return options(value, attributes);
-      }
-      return options.customValidation ? options.customValidation(value, attributes) : null;
-    };
+      const validate = require('validate.js');
+      validate.validators.customValidation = function (value, options, key, attributes) {
+        if (typeof options === 'function') {
+          return options(value, attributes);
+        }
+        return options.customValidation ? options.customValidation(value, attributes) : null;
+      };
 
-      
-
-        // 执行验证
-        const errors = validate(formObject, constraints);
+      const errors = validate(formObject, constraints);
 
       if (errors) {
-        // 显示验证错误信息
         for (const [field, fieldErrors] of Object.entries(errors)) {
           const input = form.querySelector(`[name=${field}]`);
           if (input) {
@@ -800,23 +790,9 @@
             }
           }
         }
-        // 阻止提交
-        form.classList.add('was-validated');
-        submitButton.classList.remove('loading');
-        submitButton.disabled = false;
-        return;
-      }
-
-      // 如果验证通过
-      submitButton.classList.add('loading');
-      submitButton.disabled = true;
-
-  /*    if (form.checkValidity() === false) {
-        event.stopPropagation();
         form.classList.add('was-validated');
         return;
       }
-*/
       if (confirm('確認要送出?')) {
 
         setMsgModalShow("loading");
