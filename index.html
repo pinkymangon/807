@@ -557,7 +557,7 @@
   </section>
 
   <!-- MSGModal -->
-  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="msgModalTitle" aria-hidden="true">
+  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static"data-bs-keyboard="false" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -646,8 +646,6 @@
       });
 
 
-
-
     });
 
 
@@ -708,21 +706,7 @@
       countInput.value = ''; // 清空輸入框
       countInput.max = max; // 設置最大值
     });
-    /*
-   // 控制 count input 超過最大值時顯示錯誤消息
-   document.getElementById('count').addEventListener('input', function () {
-     const countInput = this;
-     const max = countInput.max;
-     if (countInput.value > max) {
-       countInput.setCustomValidity(`*預約人數不能超過最大值 ${max}`);
-     } else {
-       countInput.setCustomValidity('');
-     }
-     countInput.reportValidity(); // 顯示驗證錯誤消息
-   });
-
-*/
-
+   
 
     document.getElementById("applyForm").addEventListener("submit", async function (event) {
 
@@ -796,7 +780,7 @@
             //lock
             Array.from(this.elements).forEach(element => element.disabled = true);
             document.getElementById('submitButton').remove();
-                        
+
           }
           else {
             setMsgModalShow('error', resData.message)
@@ -853,7 +837,7 @@
 
 }
 
-/*
+
     function setMsgModalShow(type, msg) {
 
       let picName = "";
@@ -887,14 +871,9 @@
       else {
         $('#msgModal .modal-footer').hide();
       }
-
-      $('#msgModal').modal('handleUpdate'); // 重新启用模态框的更新
-      $('#msgModal').data('bs.modal')._config.backdrop = disableBackdrop ? 'static' : true; // 禁用点击外部区域关闭
-      $('#msgModal').data('bs.modal')._config.keyboard = !disableKeyboard; // 禁用键盘关闭
-
       $('#msgModal').modal('show');
-    }
-*/
+  }
+
     function reloadPage() {
       // 使用 location.replace 重新加载当前页面而不带 # 符号
       window.location.replace(window.location.href.split('#')[0]);
