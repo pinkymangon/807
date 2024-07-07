@@ -796,8 +796,7 @@
             //lock
             Array.from(this.elements).forEach(element => element.disabled = true);
             document.getElementById('submitButton').remove();
-            // 更新下拉選項
-            fetchRounds();
+                        
           }
           else {
             setMsgModalShow('error', resData.message)
@@ -839,7 +838,7 @@
       break;
     case "loading":
       picName = "loading.gif";
-      msg = "表单提交中...<br>请勿离开页面，请耐心等待！";
+      msg = "表單送出中...<br>請勿離開頁面，請耐心等候！";
       break;
   }
 
@@ -849,7 +848,9 @@
   $('#msgModal').modal({
     backdrop: disableBackdrop ? 'static' : true,  // 根据 disableBackdrop 设置 backdrop 选项
     keyboard: !disableKeyboard,  // 根据 disableKeyboard 设置 keyboard 选项
-  }).show();  // 显示模态框
+  });
+  $('#msgModal').modal('show');
+
 }
 
 /*
