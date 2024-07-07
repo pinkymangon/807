@@ -419,7 +419,7 @@
         <div class="col-lg-8 col-xl-6 text-center">
           <h2 class="mt-0 text-primary">一起來慶祝 곤듀 的生日吧 !</h2>
           <hr class="divider" />
-          <p class="text-muted mb-5">
+          <p class="text-muted mb-5" id="apply-subtitle">
             準備好來呷冰玩遊戲嗎? <br>快來預約登記唷!
           </p>
         </div>
@@ -598,7 +598,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxC8j8bdQrhEgliV_FhmK8K4-iZg3zeGGNXZrNgVa93oq0M0der2WtT6bLTQ4sb92STmw/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycby10vlw05M6YIO4uz609SmUs5qYJUnc40ErG9msbpHL2vFELbZA0qQjLrdea75Wo3f0hQ/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
@@ -668,29 +668,42 @@
         }
 
         // 解析 JSON
-        const rounds = await response.json();
-        const roundSelect = document.getElementById('round');
-        // 清空之前的選項
-        roundSelect.innerHTML = '';
+        const responseJson = await response.json();
+        const formEnable = responseJson.formEnable;
+        const formDisableMsg = responseJson.formDisableMsg;
 
-        // 將獲取到的數據添加到選單中
-        rounds.forEach((round, index) => {
-          const option = document.createElement('option');
-          option.value = round.round;
-          option.text = round.round;
-          option.setAttribute('data-max', round.max);
-          roundSelect.appendChild(option);
-          // 設置 count 的最大值為第一個選項的 data-max
-          if (roundSelect.options.length > 0) {
-            const firstOption = roundSelect.options[0];
-            const max = firstOption.getAttribute('data-max');
-            const countInput = document.getElementById('count');
-            countInput.max = max;
-          }
+        // 表單啟用
+        if (!formEnable) {
+          $('form').hide();
+          $('#apply-subtitle').html(formDisableMsg);
 
-        });
-        $('#round').prop('selectedIndex', 0).trigger('change');
-        $('#count').attr('max', $('#round option:selected').data('max'));
+        } else {
+          const rounds = responseJson.options;
+          const roundSelect = document.getElementById('round');
+          // 清空之前的選項
+          roundSelect.innerHTML = '';
+
+          // 將獲取到的數據添加到選單中
+          rounds.forEach((round, index) => {
+            const option = document.createElement('option');
+            option.value = round.round;
+            option.text = round.round;
+            option.setAttribute('data-max', round.max);
+            roundSelect.appendChild(option);
+            // 設置 count 的最大值為第一個選項的 data-max
+            if (roundSelect.options.length > 0) {
+              const firstOption = roundSelect.options[0];
+              const max = firstOption.getAttribute('data-max');
+              const countInput = document.getElementById('count');
+              countInput.max = max;
+            }
+
+          });
+          $('#round').prop('selectedIndex', 0).trigger('change');
+          $('#count').attr('max', $('#round option:selected').data('max'));
+        }
+
+
 
       } catch (error) {
         console.error('Error fetching rounds:', error);
@@ -812,10 +825,10 @@
 
     });
 
-   
+
     function setMsgModalShow(type, msg) {
 
-      let picName = "";      
+      let picName = "";
       let okBtn = true;
 
       switch (type) {
@@ -826,7 +839,7 @@
         case "error":
           picName = "wow.gif";
           break;
-        case "loading":          
+        case "loading":
           okBtn = false;
           picName = "loading.gif";
           msg = "表單送出中...<br>請勿離開頁面，請耐心等候！";
