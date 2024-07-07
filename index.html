@@ -639,7 +639,7 @@
       countInput.reportValidity(); // 顯示驗證錯誤消息
     });
 
-    const form = document.getElementById("applyForm");
+ 
     // 驗證規則
     const constraints = {
       email: {
@@ -692,13 +692,22 @@
       }
     };
 
-    form.addEventListener("submit", async function (event) {
+    document.getElementById("applyForm").addEventListener("submit", async function (event) {
       // 阻止默認表單提交行為
       event.preventDefault();
+      var form = this;
+
+      if (form.checkValidity() === false) {
+        event.stopPropagation();
+        form.classList.add('was-validated');
+        return;
+      }
+      form.classList.add('was-validated');
 
       var $submitButton = $('#submitButton');
       $submitButton.addClass('loading');
       $submitButton.prop('disabled', true);
+
 
       // 進行驗證
       const formData = new FormData(form);
