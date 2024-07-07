@@ -813,12 +813,12 @@
       submitButton.classList.add('loading');
       submitButton.disabled = true;
 
-      if (form.checkValidity() === false) {
+  /*    if (form.checkValidity() === false) {
         event.stopPropagation();
         form.classList.add('was-validated');
         return;
       }
-
+*/
       if (confirm('確認要送出?')) {
 
         setMsgModalShow("loading");
@@ -827,12 +827,12 @@
         $submitButton.prop('disabled', true);
         $('#msgModal').modal('show');
         // 進行驗證
-        const formData = new FormData(form);
+        /*const formData = new FormData(form);
         const formObject = {};
         formData.forEach((value, key) => {
           formObject[key] = value;
         });
-
+*/
         // 將表單數據轉換為 JSON
         const jsonData = JSON.stringify(formObject);
 
