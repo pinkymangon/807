@@ -59,6 +59,13 @@
       position: relative;
     }
 
+    .subtitle::before {
+      content: "✦ ";
+      font-size: 1.2em;
+      margin-right: 5px;
+      display: inline-block;
+    }
+
     .subtitle.text {
       margin-bottom: 10px;
       text-align: center;
@@ -221,13 +228,15 @@
           <hr class="divider" />
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white mb-5" style="font-weight: bold;">
-            Hi We’re EEEEE TEAM<br>
-            舉辦生咖的原因????(請求支援) <br>
-            應援活動日期：8/6 - 8/11<br>
-            預約登記時間：7/12 - 8/2
-          </p>
-          <a class="btn btn-dark btn-xl" href="#about">前往活動說明</a>
+          <div>
+            <p class="text-white mb-1">
+              活動日期：2024 / 08 / 06 - 2024 / 08 / 11
+            </p>
+            <p class="text-white mb-5">
+              預約登記：2024 / 07 / 12 - 2024 / 08 / 02
+            </p>
+          </div>
+          <a class="btn btn-dark btn-xl" href="#about">Let's Go</a>
         </div>
       </div>
     </div>
@@ -243,89 +252,100 @@
           <hr class="divider " />
           <div class="mb-4">
             <div class="info-section ">
-              <div class="subtitle">哇嘎哩GON ⊹₊ ⋆ </div>
-              <div class="text">
-                此活動與<span class="text-primary">旁邊納涼 日式刨冰 Kakigori</span>合作<br>
-                由於場地大小的關係<br>
-                再加上我們採用非包場模式<br>
-                所以店家會開放部分給一般民眾入內<br>
-                <br>
-                為了控制店內人數<br>
-                我們決定採用預約表單的方式來進行活動！<br>
-              </div>
+              <div class="subtitle">哇嘎哩GON</div>
+              <ul class="item-list">
+                <li>這裡可以說前言介紹說明之類的</li>
+                <li>此活動與旁邊納涼 日式刨冰 Kakigori合作</li>
+              </ul>
             </div>
             <div class="info-section">
-              <div class="subtitle">預約事項 ૮꒰˶ฅ́˘ฅ̀˶꒱ა</div>
+              <div class="subtitle">預約事項</div>
               <div class="text">
-                每一批次人數有限<br>
-                活動時間為2小時<br>
-                如果該時段的預約已滿或預約失敗<br>
-                請另改其他時間進行預約<br>
-                <span class="text-primary" style="font-weight: bold;">預約是否成功以信箱收到的信件為主</span><br>
+                <ul class="item-list">
+                  <li>由於店家座位有限 + 以非全包場的方式進行活動，因此活動採預約制！</li>
+                  <li>每日皆有 4 個梯次可供預約！每梯次活動時間為2小時！<br>
+                    預約是否成功以信箱收到信件為主<br>
+                    <div class="mt-1">
+                      ▪ 2024 / 08 / 06
+                    </div>
+                    <div class="row col-12 my-1">
+                      <div class="col-md-5 col-12">
+                        第一梯次 14:00 - 16:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第二梯次 16:00 - 18:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第三梯次 18:00 - 20:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第四梯次 20:00 - 22:00
+                      </div>
+                    </div>
+                    <div class="mt-1">
+                      ▪ 2024 / 08 / 07 - 2024 / 08 / 11
+                    </div>
+                    <div class="row col-12 my-1">
+                      <div class="col-md-5 col-12">
+                        第一梯次 12:00 - 14:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第二梯次 14:00 - 16:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第三梯次 16:00 - 18:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第四梯次 18:00 - 20:00
+                      </div>
+                    </div>
+                    <div>如果該梯次預約人數額滿，將不會顯示在表單內！請另改其他時間進行預約。</div>
+                  </li>
+                  <li>
+                    為了讓皮皮們都能參與到活動，一天請勿預約超過一個梯次！
+                  </li>
+                  <li>
+                    臨時決定來參與的皮皮也可以現場排隊！<br>
+                    前一批的人離開或有多餘空位時，會開放給現場排隊的皮皮入內！
+                  </li>
+                  <li>網站預約開放時間：7 / 12 - 8 / 2 止！</li>
+                </ul>
+
 
               </div>
             </div>
+
             <div class="info-section">
-              <div class="subtitle">活動參與規則</div>
-              <div class="text">
-                為了讓皮皮們都能參與到活動<br>
-                一天請勿預約超過一個梯次<br>
-                但歡迎預約不同日來一起參與活動ᯓᡣ𐭩.ᐟ ⊹<br><br>
-                臨時決定來參與的皮皮也可以在現場排隊<br>
-                前一批的人離開或有多餘空位的時候<br>
-                才會開放給現場排隊的皮皮入內ㄛ！<br>
-              </div>
+              <div class="subtitle">應援禮發放</div>
+              <ul class="item-list">
+                <li>
+                  以使用線上預約成功的皮皮為主，有多餘的應援物才會開放給現場排隊的皮皮領取。
+                </li>
+                <li>數量有限，發完為止！</li>
+              </ul>
             </div>
-            <div class="info-section">
-              <div class="subtitle">應援禮發放 ପ꒰⑅•ᴗ•｡꒱໊♡</div>
-              <div class="text">
-                以使用表單線上預約成功的皮皮為主<br>
-                有多餘的應援才會開放給現場排隊的皮皮領取<br>數量有限，發完為止！<br>
-              </div>
-            </div>
-            <div class="info-section">
-              <div class="subtitle">活動梯次時間 ꒰ᐢ. .ᐢ꒱₊˚⊹</div>
-              <div class="text">
-                活動日期：8/6 - 8/11<br>
-                第一梯次 12:00 - 14:00<br>
-                第二梯次 14:00 - 16:00<br>
-                第三梯次 16:00 - 18:00<br>
-                第四梯次 18:00 - 20:00<br><br>
-                *每日皆有四個梯次<br>
-                如果該梯次預約人數額滿<br>
-                將不會顯示在表單內<br>
-              </div>
-            </div>
-            <div class="info-section">
-              <div class="subtitle">表單統計時間</div>
-              <div class="text text-primary" style="font-weight: bold;">7/12 - 8/2止 </div>
-            </div>
+
             <div class="info-section">
               <div class="subtitle">注意事項</div>
-              <div class="text">
-                由於活動是採預約制<br>
-                如果有晚到或臨時無法到場的情形<br>
-                請事先告知主辦進行取消預約<br><br>
-                開放入場前如未到場<br>
-                主辦會先聯絡表單內留下的聯絡資訊進行通知<br>
-                如未到場也未回覆的人<br>
-                將自動取消預約並開放名額給現場排隊的皮皮<br>
-                請不要造成店家及主辦的困擾！！<br>
-              </div>
+              <ul class="item-list">
+                <li>
+                  由於活動是採預約制，如果有晚到或臨時無法到場的情形，請事先告知主辦進行取消預約。
+                </li>
+                <li>開放入場前如未到場，主辦會先聯絡表單內留下的聯絡資訊進行通知。</li>
+                <li>如未到場也未回覆，將自動取消預約並開放名額給現場排隊的皮皮。</li>
+                <li>成功預約的皮皮請準時到場，避免給店家和主辦方帶來困擾。感謝大家的配合！</li>
+              </ul>
             </div>
 
             <div class="info-section">
-              <div class="subtitle">資料蒐集聲明</div>
-              <div class="text">
-                本次活動採預約制<br>
-                為確保不影響店家營業及其他顧客用餐權益<br>
-                本表單將蒐集預約者的稱呼、IG<br>
-                及電話等聯絡方式<br>
-                以提供店家確認用餐情形
-              </div>
-            </div>
+              <div class="subtitle">個資蒐集與使用聲明</div>
+              <ul class="item-list">
+                <li>由於本次活動採預約制，為確保不影響店家營業及其他顧客用餐權益，我們會收集您在預約表單中提供的暱稱、社群聯絡方式和手機號碼。</li>
+                <li>這些資料僅用於處理您的預約並提供給相關店家。您的個人信息將會被妥善保護，僅在處理預約時使用，並不會用於其他用途或向第三方透露。</li>
 
-            <a class="btn btn-primary btn-xl" href="#apply">前往預約登記</a>
+              </ul>
+            </div>
+            <a class="btn btn-primary btn-xl mt-5" href="#apply">前往預約登記</a>
           </div>
         </div>
       </div>
@@ -410,7 +430,7 @@
   <!-- apply-->
   <section class="page-section" id="apply">
     <div class="container px-4 px-lg-5">
-      
+
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-lg-8 col-xl-6 text-center">
           <h2 class="mt-0 text-primary">一起來慶祝 곤듀 的生日吧 !</h2>
@@ -596,8 +616,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-
   <script>
     const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzcD63y-r0ZWESUPZSLju4OlFRqa06KNelAb9rej0jBRtMbmwnOCWRGQ8CTLVagOO51gA/exec';
 
@@ -648,7 +666,6 @@
         elements: "#portfolio a.portfolio-box",
       });
 
-
     });
 
 
@@ -674,10 +691,10 @@
         const formDisableMsg = responseJson.formDisableMsg;
 
         // 表單未啟用
-        if (!formEnable) {          
+        if (!formEnable) {
           $('#apply-subtitle').html(formDisableMsg).removeClass('d-none');
-          
-          
+
+
         } else {
           $('form').removeClass('d-none');
           $('#apply-subtitle').removeClass('d-none');
@@ -700,9 +717,9 @@
               const countInput = document.getElementById('count');
               countInput.max = max;
             }
-           
+
           });
-         
+
           $('#round').prop('selectedIndex', 0).trigger('change');
           $('#count').attr('max', $('#round option:selected').data('max'));
         }
@@ -804,7 +821,7 @@
           else {
             setMsgModalShow('error', resData.message)
 
-            if(resData.status == '19'){
+            if (resData.status == '19') {
               $('form').addClass('d-none');
               $('#apply-subtitle').html(resData.message).removeClass('d-none');
             }
