@@ -181,21 +181,15 @@
       display: block;
     }
 
-    .primary-bg-inline-block {
-      display: inline-block;
+    .primary-bg-block {
+      display: block;
       background: #d87199bd;
       padding: 5px 25px;
       color: #fff;
       font-weight: bold;
     }
 
-    .primary-bg-light-inline-block {
-      display: inline-block;
-      background: #d8719980;
-      padding: 5px 25px;
-      color: #fff;
-      font-weight: bold;
-    }
+    
   </style>
 </head>
 
@@ -544,7 +538,7 @@
             </div>
             <!-- Submit Button-->
             <div class="d-grid">
-              <button class="btn btn-primary btn-xl" id="submitButton" type="submit">確認登記</button>
+              <button class="btn btn-primary btn-xl my-3" id="submitButton" type="submit">確認登記</button>
             </div>
           </form>
 
@@ -583,15 +577,29 @@
           <div class="mb-4">
             <div class="info-section">
 
-              <div class="primary-bg-inline-block">旁邊納涼 日式刨冰</div>
-              <div class="primary-bg-light-inline-block">台北市大安區延吉街131巷1弄20號</div>
-
-              <div class="text">營業時間：12:00 - 20:00<br><span class="important">週二調整為14:00-22:00</span></div>
+              <div class="text-muted text-center">
+                <div style="max-width: 350px;margin: 0 auto;">
+                  <div style="text-align: center;width: 100%;" class="m-1">
+                    <span class="primary-bg-block">旁邊納涼 日式刨冰 </span>
+                  </div>
+                  <div class="m-1" style="text-align: center;">
+                    <a href="https://www.instagram.com/chillout_kakigori?igsh=MTEyaGlobDUwaGNqNw==" target="_blank">
+                      IG :chillout_kakigori</a>
+                  </div>
+                </div>
+                <div style="text-align: left;display: inline-block;" class="m-1">
+                  ▪ 營業時間：12:00 - 20:00<br>
+                  <span class="text-primary mt-1">▪ 週二調整：14:00 - 22:00</span>
+                </div>
+              </div>
             </div>
             <div class="info-section">
               <div class="subtitle">交通資訊</div>
-
               <ul class="item-list text-muted text-center">
+                <div style="text-align: center;" class="mb-2 text-primary">
+                  <span class=""
+                    style="padding: 8px 25px;max-width: 350px;margin: 0 auto;font-weight: bold;">台北市大安區延吉街131巷1弄20號</span>
+                </div>
                 <div class="d-inline-block">
                   <li>捷運忠孝敦化站 - ➀ 號出口</li>
                   <li>捷運國父紀念館 - ➀ 號出口</li>
@@ -634,7 +642,7 @@
   <footer class="bg-dark py-5">
     <div class="container px-4 px-lg-5">
       <div class="small text-center text-white">
-        Copyright &copy; 807 - EEEEE TEAM | IN TAIWAN |
+        Copyright &copy; 19950807 - EEEEE TEAM | IN TAIWAN |
       </div>
     </div>
   </footer>
@@ -650,7 +658,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzcD63y-r0ZWESUPZSLju4OlFRqa06KNelAb9rej0jBRtMbmwnOCWRGQ8CTLVagOO51gA/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxUZlzxAwXX-xVM97mxSV2q9rut582TNvGNou-XBuRI6vbhE-PZnAeLJTjp26HLt_kMmA/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
       // Navbar shrink function
