@@ -12974,11 +12974,11 @@ hr.divider-light {
 
 #mainNav .navbar-nav .nav-item .nav-link:hover,
 #mainNav .navbar-nav .nav-item .nav-link:active {
-    color: #ffb2cf;
+    color: #282727;
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active {
-    color: #ffb2cf !important;
+    color: #282727 !important;
 }
 
 @media (min-width: 992px) {
@@ -13001,7 +13001,7 @@ hr.divider-light {
     }
 
     #mainNav .navbar-nav .nav-item .nav-link:hover {
-        color: #fff;
+        color: var(--bs-primary);
     }
 
     #mainNav .navbar-nav .nav-item:last-child .nav-link {
@@ -13010,11 +13010,11 @@ hr.divider-light {
 
     #mainNav.navbar-shrink {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        background-color: #fff;
+        background-color: var(--bs-primary);
     }
 
     #mainNav.navbar-shrink .navbar-brand {
-        color: var(--bs-primary);
+        color: #fff;
     }
 
     #mainNav.navbar-shrink .navbar-brand:hover {
@@ -13022,11 +13022,11 @@ hr.divider-light {
     }
 
     #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
-        color: #282727;
+        color: #fff;
     }
 
     #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
-        color: var(--bs-primary);
+        color: #282727 !important;
     }
 }
 
