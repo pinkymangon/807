@@ -74,6 +74,7 @@
 
     .important {
       color: var(--bs-primary);
+      font-weight: bold;
     }
 
     #msg-text {
@@ -179,6 +180,22 @@
       margin: 1rem auto;
       display: block;
     }
+
+    .primary-bg-inline-block {
+      display: inline-block;
+      background: #d87199bd;
+      padding: 5px 25px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .primary-bg-light-inline-block {
+      display: inline-block;
+      background: #d8719980;
+      padding: 5px 25px;
+      color: #fff;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -237,7 +254,7 @@
               預約登記：2024 / 07 / 12 - 2024 / 08 / 02
             </p>
           </div>
-          <a class="btn btn-dark btn-xl" href="#about">Let's Go</a>
+          <a class="btn btn-dark btn-xl" href="#about">- 삐삐♡가자 -</a>
         </div>
       </div>
     </div>
@@ -256,7 +273,7 @@
               <div class="subtitle">哇嘎哩GON</div>
               <ul class="item-list text-muted">
                 <li>這裡可以說前言介紹說明之類的</li>
-                <li>此活動與 <a href="#map"> 旁邊納涼 日式刨冰 Kakigori</a>合作</li>
+                <li>此活動與 <a href="#map"> 旁邊納涼 日式刨冰</a> 合作</li>
               </ul>
             </div>
             <div class="info-section">
@@ -264,8 +281,10 @@
               <div class="text">
                 <ul class="item-list text-muted">
                   <li>由於店家座位有限 + 以非全包場的方式進行活動，因此活動採預約制！</li>
-                  <li>每日皆有 4 個梯次可供預約！每梯次活動時間為2小時！<br>
-                    預約是否成功以信箱收到信件為主<br>
+                  <li>每日皆有 4 個梯次可供預約！<br>
+                    每梯次活動時間為2小時！<br>
+                    <span class="important">預約是否成功以信箱收到信件為主</span>
+                    <br>
                     <div class="mt-1">
                       ▪ 2024 / 08 / 06
                     </div>
@@ -309,7 +328,7 @@
                     臨時決定來參與的皮皮也可以現場排隊！<br>
                     前一批的人離開或有多餘空位時，會開放給現場排隊的皮皮入內！
                   </li>
-                  <li>網站預約開放時間：7 / 12 - 8 / 2 止！</li>
+                  <li><span class="important">網站預約開放時間：7/12 - 8/2 止！</span></li>
                 </ul>
 
 
@@ -553,7 +572,7 @@
     </div>
   </section>
   <!-- MAP-->
-  <section class="page-section bg-light text-muted" id="map">
+  <section class="page-section bg-light " id="map">
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-lg-8 text-center">
@@ -561,10 +580,23 @@
             店家資訊
           </h2>
           <hr class="divider" />
-          <div class="text-white-75 mb-4">
-            <div class="info-section text-muted">
-              <div class="text">地點：旁邊納涼 日式刨冰 Kakigori<br>106 台北市大安區延吉街131巷1弄20號</div>
-              <div class="text">營業時間：12:00 - 20:00<br><span class="important">(休勾問題：禮拜二是12:00開始嗎還是14:00)</span></div>
+          <div class="mb-4">
+            <div class="info-section">
+
+              <div class="primary-bg-inline-block">旁邊納涼 日式刨冰</div>
+              <div class="primary-bg-light-inline-block">台北市大安區延吉街131巷1弄20號</div>
+
+              <div class="text">營業時間：12:00 - 20:00<br><span class="important">週二調整為14:00-22:00</span></div>
+            </div>
+            <div class="info-section">
+              <div class="subtitle">交通資訊</div>
+
+              <ul class="item-list text-muted text-center">
+                <div class="d-inline-block">
+                  <li>捷運忠孝敦化站 - ➀ 號出口</li>
+                  <li>捷運國父紀念館 - ➀ 號出口</li>
+                </div>
+              </ul>
             </div>
 
           </div>
