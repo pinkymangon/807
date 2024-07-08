@@ -89,7 +89,8 @@
     text-align: left;
 }
 
-.item-list li::before {
+.item-list li::before,
+.item-list .num-count {
     content: counter(item);
     background-color: #e7a6c1;
     color: white;
@@ -13040,6 +13041,7 @@ header.masthead {
     background-attachment: scroll;
     background-size: cover;
     margin-top: calc(40px + 2rem);
+    height: 100vh;
 }
 
 header.masthead h1,
