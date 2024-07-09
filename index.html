@@ -276,7 +276,8 @@
                   好奇的話就快來預約登記吧！
 
                 </div>
-                <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">-- 找找李原書！--
+                <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                  -- PINKY MANGON：找找李原書！--
                 </div>
                 <br>
               </div>
@@ -507,13 +508,13 @@
             <div class="form-floating mb-3">
               <input class="form-control" id="mangon_count" name="mangon_count" type="number" required />
               <label for="mangon_count">ManGon 生日套餐份數</label>
-              <div class="invalid-feedback">*若無請填0，有低消規定餐點總數不能低於預約人數。</div>
+              <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
             </div>
             <!-- pinky_count input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="pinky_count" name="pinky_count" type="number" required />
               <label for="pinky_count">PinkyGon 生日套餐份數</label>
-              <div class="invalid-feedback">*若無請填0，有低消規定餐點總數不能低於預約人數。</div>
+              <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
             </div>
             <!-- Name input-->
             <div class="form-floating mb-3">
@@ -531,7 +532,7 @@
             <div class="form-floating mb-3">
               <input class="form-control" id="phone" name="phone" type="tel" required />
               <label for="phone">手機號碼</label>
-              <div class="invalid-feedback">*請輸入手機號碼</div>
+              <div class="invalid-feedback">*請輸入有效的手機號碼</div>
             </div>
             <!-- Message input-->
             <p style="font-size: 12px;color: var(--bs-primary);">*若預約人數超過兩人以上麻煩填寫第二人的聯絡方式 ( IG或社群名稱 )</p>
@@ -823,6 +824,7 @@
       const mangonCount = parseInt(form.mangon_count.value) || 0;
       const pinkyCount = parseInt(form.pinky_count.value) || 0;
       const count = parseInt(form.count.value) || 0;
+      const phone = form.phone.value || '';
 
       if (mangonCount + pinkyCount < count) {
         form.mangon_count.setCustomValidity('餐點數量總和不能小於預約人數(${count})');
@@ -838,6 +840,13 @@
       else {
         form.message.setCustomValidity(''); // 清除自定义错误消息
       }
+
+      if (!phone.match(/^[0-9]{10}$/)) {
+        form.phone.setCustomValidity('請輸入有效的手機號碼');
+      } else {
+        form.phone.setCustomValidity(''); // 清除自定义错误消息
+      }
+
       // 检查表单是否有效
       if (form.checkValidity() === false) {
         event.stopPropagation();
