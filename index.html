@@ -392,7 +392,8 @@
   <!-- Portfolio-->
   <div id="portfolio">
     <div class="container-fluid p-0">
-      <div class="row g-0">
+      <div class="row g-0" id="photo_album">
+        <!--
         <div class="col-lg-4 col-sm-6">
           <a class="portfolio-box" href="images/gon1.jpg" title="哈利奎GON">
             <img class="img-fluid" src="images/gon1.jpg" alt="..." />
@@ -459,6 +460,7 @@
             </div>
           </a>
         </div>
+      -->
       </div>
     </div>
   </div>
@@ -695,7 +697,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxefoWgy-nDii-bF2lg3CwR8QCorj6kwv_zSitrYFYVIxDStzVb1tESyBTe2SPXIlah8w/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbzcWPK2t7hsFBu1Ow-MslKv8-_XlxGAhMk16jBiRb_mtCc51_9AqNXNyTKXFNRDIVg5CQ/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
 
@@ -740,10 +742,7 @@
         });
       });
 
-      // Activate SimpleLightbox plugin for portfolio items
-      new SimpleLightbox({
-        elements: "#portfolio a.portfolio-box",
-      });
+
 
     });
 
@@ -798,6 +797,37 @@
           });
         }
 
+        // 图片库生成
+        const picTemplateHtml = (href, title, name) => `
+                <div class="col-lg-4 col-sm-6">
+                  <a class="portfolio-box" href="${href}" title="${name}">
+                    <img class="img-fluid" src="${href}" alt="..." />
+                    <div class="portfolio-box-caption p-3">
+                      <div class="project-category text-white-50">
+                        ${title}
+                      </div>
+                      <div class="project-name">${name}</div>
+                    </div>
+                  </a>
+                </div>
+              `;
+
+        if (responseJson.photos) {
+          const picArr = responseJson.photos;
+          // 转换的 outHtml
+          let outPicHTML = "";
+          // 迭代 picArr，生成每个项目的 HTML
+          picArr.forEach(pic => {
+            outPicHTML += picTemplateHtml(pic.href, pic.title, pic.name);
+          });
+
+          // 将生成的 HTML 添加到页面中
+          document.getElementById('photo_album').innerHTML = outPicHTML;
+          // Activate SimpleLightbox plugin for portfolio items
+          new SimpleLightbox({
+            elements: "#portfolio a.portfolio-box",
+          });
+        }
 
 
       } catch (error) {
