@@ -1037,6 +1037,7 @@
           $($formDisablepic).removeClass('d-none');
 
         } else {
+          
           $($formDisablepic).addClass('d-none');
           $('form').removeClass('d-none');          
           $('#apply-subtitle').removeClass('d-none');
@@ -1172,8 +1173,9 @@
             setMsgModalShow('error', resData.message)
 
             if (resData.status == '19') {
-              $('form').addClass('d-none');
+              $('form').addClass('d-none');              
               $('#apply-subtitle').html(resData.message).removeClass('d-none');
+              $($formDisablepic).removeClass('d-none');
             }
 
             if (resData.status == '09') {
