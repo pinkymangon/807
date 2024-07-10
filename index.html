@@ -368,7 +368,7 @@
                 </li>
                 <li>
                   <strong class="text-primary">곤 FUN 死守</strong>                  
-                  <div>歡迎參加現場的互動小遊戲，完成任務集點就可以獲得LD刮刮卡，還有隱藏版抽獎機會唷！</div>
+                  <div>歡迎參加現場的互動小遊戲，完成任務集點就可以獲得<strong class="text-primary"> WON SEO LUCKY CARD</strong>，還有隱藏版抽獎機會唷！</div>
                 </li>
                 <li>
                   <strong class="text-primary">數量有限，發完為止！</strong>
@@ -413,8 +413,8 @@
           <div class="mb-4">
             <div class="info-section ">              
               <div class="item-list text-muted " id="menupic">
-                <a class="portfolio-box" href="images/menu_test.jpg" title="PINKY ManGON 生日特餐">
-                  <img class="img-fluid" src="images/menu_test.jpg" alt="..." />
+                <a class="portfolio-box" href="#" title="PINKY ManGON 生日特餐">
+                  <img class="img-fluid" src="" alt="PINKY ManGON 生日特餐" />
                   <div class="portfolio-box-caption">
                     <div class="project-category text-white-50">
                     </div>                    
@@ -487,13 +487,13 @@
             <p style="font-size: 12px;color:var(--bs-primary);">*由於店家有每位低消規定，餐點份數總和不可以低於預約人數。</p>
             <div class="form-floating mb-3">
               <input class="form-control" id="mangon_count" name="mangon_count" type="number" required />
-              <label for="mangon_count">ManGon 生日套餐份數</label>
+              <label for="mangon_count">MAN GON 生日套餐份數</label>
               <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
             </div>
             <!-- pinky_count input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="pinky_count" name="pinky_count" type="number" required />
-              <label for="pinky_count">PinkyGon 生日套餐份數</label>
+              <label for="pinky_count">PINKY GON 生日套餐份數</label>
               <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
             </div>
             <!-- Name input-->
@@ -766,7 +766,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
   <script>
-    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbws4dP7biV9FD9e4g6YPfbY-ekQHlgq3055uZTLBIrIRu69p7PklKYuYQRaFKfr_zuySg/exec';
+    const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwusaFcY6z9WURvCTk10joJKiBsxl4oY3GbOSTANkSkDIRc-RV7m9tZYGTDU7w79mZ9Kg/exec';
 
     window.addEventListener("DOMContentLoaded", (event) => {
 
@@ -838,7 +838,7 @@
           const adpic = responseJson.adpic;
           var $adPic = document.getElementById('adPic');
 
-          $adPic.src = "images/" + adpic;
+          $adPic.src = adpic;
 
           if (responseJson.adlink) {
             var adLink = $adPic.parentElement;
@@ -899,16 +899,19 @@
           });
 
         }
-/*
+
         const menupic = responseJson.menupic;
           var $menupic = document.getElementById('menupic');
+          
+          
+            var $menuImg = $menupic.querySelector('img');
 
-          $menupi.src = "images/" + menupic;
+          $menuImg.src =  menupic;
 
           if (responseJson.menulink) {
-            var $menulink = $$menupic.parentElement;
+            var $menulink = $menupic.querySelector('a');
             $menulink.href = responseJson.menulink;
-          }*/
+          }
 
           new SimpleLightbox({
             elements: "#menupic a.portfolio-box",
