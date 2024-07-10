@@ -359,7 +359,7 @@
             <div class="info-section">
               <div class="subtitle">應援禮發放</div>
               <div class="info-section d-none" id="bonus">
-                <div class="item-list text-muted ">                 
+                <div class="item-list text-muted ">
                   <a class="portfolio-box" href="#" title="應援禮">
                     <img class="img-fluid" src="" alt="應援禮" />
                     <div class="portfolio-box-caption">
@@ -383,7 +383,7 @@
                   <div class="dot">應援禮數量有限，將根據預約成功的人數進行分配。</div>
                   <div class="dot">若有剩餘數量，才會開放給現場排隊的皮皮。</div>
                 </li>
-               
+
                 <li>
                   <strong class="text-primary">數量有限，發完為止！</strong>
                 </li>
@@ -425,8 +425,8 @@
           </h2>
           <hr class="divider " />
           <div class="mb-4">
-            <div class="info-section d-none" id="menupic">              
-              <div class="item-list text-muted ">                
+            <div class="info-section d-none" id="menupic">
+              <div class="item-list text-muted ">
                 <a class="portfolio-box " href="#" title="PINKY ManGON 生日特餐">
                   <img class="img-fluid " src="" alt="PINKY ManGON 生日特餐" />
                   <div class="portfolio-box-caption">
@@ -471,15 +471,15 @@
             準備好來<a class="text-primary" href="#menu">呷冰</a> + 玩遊戲惹嗎？<br>快來預約登記唷！
           </p>
           <div class="info-section " id="formDisablePic">
-              <a class="portfolio-box" href="#" title="">
-                <img class="img-fluid modal-img" src="" alt="" />
-                <div class="portfolio-box-caption">
-                  <div class="project-category text-white-50">
-                  </div>
+            <a class="portfolio-box" href="#" title="">
+              <img class="img-fluid " src="" alt="" style="border-radius: 50px ;"/>
+              <div class="portfolio-box-caption">
+                <div class="project-category text-white-50">
                 </div>
-              </a>
+              </div>
+            </a>
           </div>
-          
+
         </div>
       </div>
       <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -572,7 +572,7 @@
 
         </div>
       </div>
-      <div class="d-flex justify-content-center spinner-load" >
+      <div class="d-flex justify-content-center spinner-load">
         <div class="spinner-border text-muted" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -839,8 +839,6 @@
         });
       });
 
-
-
     });
 
     async function fetchImages() {
@@ -929,17 +927,17 @@
         }
 
         if (responseJson.menupic) {
-          
+
           const menupic = responseJson.menupic;
           var $menupic = document.getElementById('menupic');
           var $menulink = $menupic.querySelector('a');
-            $($menupic).removeClass('d-none');
+          $($menupic).removeClass('d-none');
           var $menuImg = $menupic.querySelector('img');
 
           $menuImg.src = menupic;
 
           if (responseJson.menulink) {
-            
+
             $menulink.href = responseJson.menulink;
           }
 
@@ -949,17 +947,17 @@
         }
 
         if (responseJson.bonuspic) {
-          
+
           const bonuspic = responseJson.bonuspic;
           var $bonuspic = document.getElementById('bonus');
           var $bonuslink = $bonuspic.querySelector('a');
-            $($bonuspic).removeClass('d-none');
+          $($bonuspic).removeClass('d-none');
           var $bonusImg = $bonuspic.querySelector('img');
 
           $bonusImg.src = bonuspic;
 
           if (responseJson.bonuslink) {
-            
+
             $bonuslink.href = responseJson.bonuslink;
           }
 
@@ -969,16 +967,16 @@
         }
 
         if (responseJson.formDisablepic) {
-          
+
           const formDisablepic = responseJson.formDisablepic;
-          
-          var $formDisablelink = $formDisablepic.querySelector('a');            
+
+          var $formDisablelink = $formDisablepic.querySelector('a');
           var $formDisableImg = $formDisablepic.querySelector('img');
 
           $formDisableImg.src = formDisablepic;
 
           if (responseJson.formDisablelink) {
-            
+
             $formDisablelink.href = responseJson.formDisablelink;
           }
 
@@ -987,14 +985,11 @@
           });
         }
 
-
-        
-
-
-
       } catch (error) {
         console.error('Error fetching rounds:', error);
       }
+      
+
     }
 
     document.addEventListener('DOMContentLoaded', fetchRounds);
@@ -1037,11 +1032,11 @@
           $($formDisablepic).removeClass('d-none');
 
         } else {
-          
+
           $($formDisablepic).addClass('d-none');
-          $('form').removeClass('d-none');          
+          $('form').removeClass('d-none');
           $('#apply-subtitle').removeClass('d-none');
-          
+
           const rounds = responseJson.options;
           const roundSelect = document.getElementById('round');
           // 清空之前的選項
@@ -1073,6 +1068,7 @@
       } catch (error) {
         console.error('Error fetching rounds:', error);
       }
+      resetScroll();
     }
 
     document.addEventListener('DOMContentLoaded', fetchRounds);
@@ -1173,7 +1169,7 @@
             setMsgModalShow('error', resData.message)
 
             if (resData.status == '19') {
-              $('form').addClass('d-none');              
+              $('form').addClass('d-none');
               $('#apply-subtitle').html(resData.message).removeClass('d-none');
               $($formDisablepic).removeClass('d-none');
             }
@@ -1185,7 +1181,6 @@
             $submitButton.removeClass('loading');
             $submitButton.prop('disabled', false);
           }
-
         } catch (error) {
           console.log('Error submitting the form:', error);
           alert("提交表單時發生錯誤");
@@ -1193,15 +1188,33 @@
           $submitButton.prop('disabled', false);
           $('#msgModal').modal('hide');
         }
-
+       
       }
       else {
         $submitButton.removeClass('loading');
         $submitButton.prop('disabled', false);
         return;
       }
-
+      resetScroll();
     });
+
+    function resetScroll() {
+      // 获取当前 URL 中的锚点部分
+      var hash = window.location.hash;
+      // 检查是否有锚点
+      if (hash) {
+        // 去除 '#' 符号
+        var targetId = hash.substring(1);
+        // 获取目标元素
+        var targetElement = document.getElementById(targetId);
+        // 检查目标元素是否存在
+        if (targetElement) {
+          // 平滑滚动到目标元素
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+    }
 
 
     function setMsgModalShow(type, msg) {
