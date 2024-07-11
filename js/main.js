@@ -1,4 +1,4 @@
-const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwNDpz838sV5DUzZPDmvRLO9tEEIHpkLnX1nfCPHv-gAx1rQ2orw20r3-4HxUnR52IMBQ/exec';
+const PROXY_URL = 'https://script.google.com/macros/s/AKfycbw9HaiCn0QsIS1Nwlaa7FMUwXWajOTVpqHNR7P9qp99PlJemEeQT68lVz-SnTJWQk-ykg/exec';
 const $formDisablepic = document.getElementById('formDisablePic');
 window.addEventListener("DOMContentLoaded", (event) => {
 
