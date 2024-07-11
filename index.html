@@ -706,9 +706,9 @@
             </ul>
           </div>
           <div class="info-section">
-            <div class="diamond subtitle">果妮老師</div>
+            <div class="diamond subtitle">果妮老師 ⓒ KOOKni </div>
             <ul class="item-list text-muted" style="position: relative;">
-              <li>網頁神設手 架設技能곤곤好 （ⓒ KOOKni</li>
+              <li>網頁神設手 架設技能곤곤好</li>
               <li>最愛歐北GON蕭威</li>
               <li>愛把事情搞大 忙鼠自己（尬電</li>
               <li>同時擁有強大實力與運氣ㄉ女人</li>
@@ -1159,7 +1159,7 @@
           const resData = await response.json();
           if (resData.result == 'ok') {
             let $success = $('#submitSuccessMessage');
-            $success.find('.successMessage').html('resData.message');
+            $success.find('.successMessage').html(resData.message);
             $success.removeClass("d-none");
             setMsgModalShow('success', $('#submitSuccessMessage').html());
             //lock
