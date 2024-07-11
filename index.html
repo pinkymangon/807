@@ -560,8 +560,9 @@
             <!-- Submit success message-->
             <div class="d-none" id="submitSuccessMessage">
               <div class="text-center mb-3">
-                <div class="fw-bolder">Gon Xi 您預約登記成功啦~</div>
-                將會寄送通知信給您~ 再麻煩留意一下信件唷~
+                <strong class="text-primary successMessage" >Gon Xi 您預約登記成功啦～</strong><br>
+                將會寄送通知信給您！
+                <br>再麻煩留意一下信件唷～
               </div>
             </div>
             <!-- Submit Button-->
@@ -1158,6 +1159,7 @@
           const resData = await response.json();
           if (resData.result == 'ok') {
             let $success = $('#submitSuccessMessage');
+            $success.find('.successMessage').html('resData.message');
             $success.removeClass("d-none");
             setMsgModalShow('success', $('#submitSuccessMessage').html());
             //lock
