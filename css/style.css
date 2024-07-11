@@ -88,6 +88,12 @@
     padding-left: 1.75rem;
     text-align: left;
 }
+.item-list .dot {    
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 1.75rem;
+    text-align: left;
+}
 
 .item-list li::before,
 .item-list .num-count {
@@ -104,6 +110,23 @@
     left: 0;
     top: 0.2rem;
     font-size: 0.8em;
+}
+
+.item-list .dot::before,.item-list li.dot::before {
+    content: "▪ " ;
+    font-size: 1em !important;
+    margin-right: 5px;
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    text-align: center;
+    line-height: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    font-size: 0.8em;
+    background: none;
+    color: #6c757d;
 }
 
 @media (min-width: 768px) {
@@ -13036,7 +13059,7 @@ header.masthead {
     padding-top: calc(50% - 6rem);
     padding-bottom: calc(50% - 4.5rem);
     background: linear-gradient(to bottom, rgb(0 0 0 / 60%) 0%, #e7a6c11c 100%),
-        url(../images/pinkymanGon.png);
+        url(../images/PINKYManGON.png?v2024-07-11);
     background-position: top;
     background-repeat: no-repeat;
     background-attachment: scroll;
