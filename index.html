@@ -1,464 +1,643 @@
-const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwNDpz838sV5DUzZPDmvRLO9tEEIHpkLnX1nfCPHv-gAx1rQ2orw20r3-4HxUnR52IMBQ/exec';
-const $formDisablepic = document.getElementById('formDisablePic');
-window.addEventListener("DOMContentLoaded", (event) => {
+<!DOCTYPE html>
+<html lang="zh-Hant">
 
-  // Navbar shrink function
-  const navbarShrink = function () {
-    const navbarCollapsible = document.body.querySelector("#mainNav");
-    if (!navbarCollapsible) {
-      return;
-    }
-    if (window.scrollY === 0) {
-      navbarCollapsible.classList.remove("navbar-shrink");
-    } else {
-      navbarCollapsible.classList.add("navbar-shrink");
-    }
-  };
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <meta property="og:site_name" content="PINKY  ManGON">
 
-  // Shrink the navbar
-  navbarShrink();
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="315">
+  <meta property="og:image" content="images/ogimage.png">
+  <meta property="og:title" content="PINKY  ManGON 生日應援">
+  <meta property="og:url" content="https://pinkymangon.github.io/807/">
+  <meta property="og:description" content="歡迎大家一起來呷冰，和PINKY ManGON 一同慶祝곤듀誕生日，現場還有隱藏版遊戲可以玩唷！">
+  <title>PINKY ManGON</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  // Shrink the navbar when page is scrolled
-  document.addEventListener("scroll", navbarShrink);
+  <!-- Bootstrap Icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+    rel="stylesheet" type="text/css" />
+  <!-- SimpleLightbox plugin CSS-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link rel="stylesheet" href="css/style.css?v20240709-2" />
+  <link rel="stylesheet" href="css/others.css?v20240711" />
+  
+</head>
 
-  // Activate Bootstrap scrollspy on the main nav element
-  const mainNav = document.body.querySelector("#mainNav");
-  if (mainNav) {
-    new bootstrap.ScrollSpy(document.body, {
-      target: "#mainNav",
-      rootMargin: "0px 0px -40%",
-    });
-  }
+<body id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="#" onclick="reloadPage()">PINKY ManGON</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#info">活動說明</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">生日特餐</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#apply">預約登記</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#store">店家資訊</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#team">團隊介紹</a>
+          </li>
 
-  // Collapse responsive navbar when toggler is visible
-  const navbarToggler = document.body.querySelector(".navbar-toggler");
-  const responsiveNavItems = [].slice.call(
-    document.querySelectorAll("#navbarResponsive .nav-link")
-  );
-  responsiveNavItems.map(function (responsiveNavItem) {
-    responsiveNavItem.addEventListener("click", () => {
-      if (window.getComputedStyle(navbarToggler).display !== "none") {
-        navbarToggler.click();
-      }
-    });
-  });
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Masthead-->
+  <header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+      <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8 align-self-end">
+          <h1 class="text-white font-weight-bold">
+            PINKY ManGON
+          </h1>
+          <h6 class="text-white font-weight-bold">-- 找找李原書 --</h6>
+          <hr class="divider" />
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <div>
+            <p class="text-white mb-1">
+              活動日期：2024 / 08 / 06 - 2024 / 08 / 11
+            </p>
+            <p class="text-white mb-4">
+              預約登記：2024 / 07 / 12 - 2024 / 08 / 02
+            </p>
+          </div>
+          <a class="btn btn-dark btn-xl" href="#info">- 삐삐♡가자 -</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- info-->
+  <section class="page-section " id="info">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-primary mt-0">
+            活動說明
+          </h2>
+          <hr class="divider " />
+          <div class="mb-4">
+            <div class="info-section ">
+              <div class="subtitle">哇嘎哩GON</div>
 
-});
+              <div class="item-list text-muted " style="position: relative;">
+                <div><span style="padding-left: 2rem;">Hi！We're EEEEE TEAM</span>，想要和皮皮們一同為 <span
+                    class="text-primary">愛吃Mango + 到哪都在玩Pokémon
+                    GO的粉紅原書 </span>慶生，讓大家在特別的日子留下與眾不同的回憶！所以<strong class="text-primary"> PINKY ManGON </strong>誕生啦！
+                </div>
+                <div class="mt-3"><span style="padding-left: 2rem;">這次活動</span>我們與 <a href="#store"
+                    class="text-primary">旁邊納涼
+                    日式刨冰</a> 合作並推出了獨特的生日應援套餐，來到現場呷冰就有應援小禮可以拿唷！還有很多隱藏版互動遊戲等著你來解任務！一起來玩遊戲就有機會獲得更多的應援禮呢～
+                  好奇的話就快來預約登記吧！
 
-async function fetchImages() {
-    try {
-      const response = await fetch(PROXY_URL + '?action=getImages');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      // 檢查返回的內容是否是 JSON
-      const contentType = response.headers.get('Content-Type');
-      if (!contentType || !contentType.includes('application/json')) {
-        // log
-        const textResponse = await response.text();
-        console.error('Expected JSON, but got:', textResponse);
-        throw new Error('Expected JSON, but got something else');
-      }
-  
-      // 解析 JSON
-      const responseJson = await response.json();
-  
-      if (responseJson.adpic) {
-        const adpic = responseJson.adpic;
-        var $adPic = document.getElementById('adPic');
-  
-        $adPic.src = adpic;
-  
-        if (responseJson.adlink) {
-          var adLink = $adPic.parentElement;
-          adLink.href = responseJson.adlink;
-        }
-  
-        // 檢查本地儲存中是否存在“今日不再顯示”的標誌
-        var dontShowToday = localStorage.getItem('dontShowToday');
-        var today = new Date().toISOString().split('T')[0]; // 獲取今日日期字串
-  
-        if (dontShowToday !== today) {
-          var adModal = new bootstrap.Modal(document.getElementById('adModal'));
-          adModal.show();
-        }
-  
-        document.getElementById('dontShowToday').addEventListener('change', function () {
-          if (this.checked) {
-            // 設置“今日不再顯示”的標誌
-            localStorage.setItem('dontShowToday', today);
-          } else {
-            localStorage.removeItem('dontShowToday');
-          }
-        });
-      }
-  
-      // 圖片庫生成
-      const picTemplateHtml = (href, title, name) => `
-              <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="${href}" title="${name}">
-                  <img class="img-fluid" src="${href}" alt="..." />
-                  <div class="portfolio-box-caption p-3">
-                    <div class="project-category text-white-50">
-                      ${title}
+                </div>
+                <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                  - PINKY ManGON：找找李原書！ ฅ^•ﻌ•^ฅ
+                </div>
+                <br>
+              </div>
+            </div>
+            <div class="info-section">
+              <div class="subtitle">預約事項</div>
+              <div class="text">
+                <ul class="item-list text-muted">
+                  <li>由於店家座位有限 + 以非全包場的方式進行活動，因此活動採預約制！</li>
+                  <li>每日皆有 4 個梯次可供預約！<br>
+                    每梯次活動時間為 2 小時！<br>
+                    <span class="important">預約是否成功以信箱收到信件為主</span>
+                    <br>
+                    <div class="mt-1 dot">2024 / 08 / 06</div>
+                    <div class="row col-12 my-1">
+                      <div class="col-md-5 col-12">
+                        第一梯次 14:00 - 16:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第二梯次 16:00 - 18:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第三梯次 18:00 - 20:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第四梯次 20:00 - 22:00
+                      </div>
                     </div>
-                    <div class="project-name">${name}</div>
+                    <div class="mt-1 dot">2024 / 08 / 07 - 2024 / 08 / 11</div>
+                    <div class="row col-12 my-1">
+                      <div class="col-md-5 col-12">
+                        第一梯次 12:00 - 14:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第二梯次 14:00 - 16:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第三梯次 16:00 - 18:00
+                      </div>
+                      <div class="col-md-5 col-12">
+                        第四梯次 18:00 - 20:00
+                      </div>
+                    </div>
+                    <div>如果該梯次預約人數額滿，將不會顯示在表單內！請另改其他時間進行預約。</div>
+                  </li>
+                  <li>
+                    為了讓皮皮們都能參與到活動，一天請勿預約超過一個梯次！
+                  </li>
+                  <li>
+                    臨時決定來參與的皮皮也可以現場排隊！<br>
+                    前一批的人離開或有多餘空位時，會開放給現場排隊的皮皮入內！
+                  </li>
+                  <li><span class="important">網站預約開放時間：7/12 - 8/2 止！</span></li>
+                </ul>
+
+
+              </div>
+            </div>
+
+            <div class="info-section">
+              <div class="subtitle">應援禮發放</div>
+              <div class="info-section d-none" id="bonus">
+                <div class="item-list text-muted ">
+                  <a class="portfolio-box" href="#" title="">
+                    <img class="img-fluid" src="" alt="" />
+                    <div class="portfolio-box-caption">
+                      <div class="project-category text-white-50">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <ul class="item-list text-muted">
+                <li>
+                  點原書生日餐點，即贈送應援小禮 & 곤 FUN 卡 （ 곤FUN死守互動遊戲集點卡）。
+                </li>
+                <li>
+                  <strong class="text-primary">곤 FUN 死守</strong>
+                  <div>歡迎參加現場的互動小遊戲，完成集點任務就可以獲得<strong class="text-primary"> WON SEO LUCKY CARD </strong>即可*刮出* 隱藏版應援禮！
+                    
+                  </div>
+                </li>
+                <li>
+                  應援禮分配
+                  <div class="dot">應援禮數量有限，將根據預約成功的人數進行分配。</div>
+                  <div class="dot">若有剩餘數量，才會開放給現場排隊的皮皮。</div>
+                </li>
+
+                <li>
+                  <strong class="text-primary">數量有限，發完為止！</strong>
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-section">
+              <div class="subtitle">注意事項</div>
+              <ul class="item-list text-muted">
+                <li>
+                  由於活動是採預約制，如果有晚到或臨時無法到場的情形，請事先告知主辦進行取消預約。
+                </li>
+                <li>開放入場前如未到場，主辦會先聯絡表單內留下的聯絡資訊進行通知。</li>
+                <li>預約位置只保留 <strong class="text-primary">5</strong> 分鐘，如未到場也未回覆，將自動取消預約並開放名額給現場排隊的皮皮。</li>
+                <li>成功預約的皮皮請準時到場，避免給店家和主辦方帶來困擾。感謝大家的配合！</li>
+              </ul>
+            </div>
+
+            <div class="info-section" id="personal">
+              <div class="subtitle">個資蒐集與使用聲明</div>
+              <ul class="item-list text-muted">
+                <li>由於本次活動採預約制，為確保不影響店家營業及其他顧客用餐權益，我們會收集您在預約表單中提供的暱稱、社群聯絡方式和手機號碼。</li>
+                <li>這些資料僅用於處理您的預約並提供給店家。您的個人資訊將會被妥善保護，僅在處理預約時使用，並不會用於其他用途或向第三方透露。</li>
+
+              </ul>
+            </div>
+            <a class="btn btn-primary btn-xl mt-3" href="#menu">我要呷冰</a>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!-- MENU-->
+  <section class="page-section " id="menu">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-primary mt-0">
+            PINKY ManGON 生日特餐
+          </h2>
+          <hr class="divider " />
+          <div class="mb-4">
+            <div class="info-section d-none" id="menupic">
+              <div class="item-list text-muted ">
+                <a class="portfolio-box " href="#" title="PINKY ManGON 生日特餐">
+                  <img class="img-fluid " src="" alt="PINKY ManGON 生日特餐" />
+                  <div class="portfolio-box-caption">
+                    <div class="project-category text-white-50">
+                    </div>
                   </div>
                 </a>
               </div>
-            `;
-  
-      if (responseJson.photos) {
-        const picArr = responseJson.photos;
-        // 轉換的 outHtml
-        let outPicHTML = "";
-        // picArr，生成每個項目的 HTML
-        picArr.forEach(pic => {
-          outPicHTML += picTemplateHtml(pic.href, pic.title, pic.name);
-        });
-  
-        // 將生成的 HTML 添加到頁面中
-        document.getElementById('photo_album').innerHTML = outPicHTML;
-        // Activate SimpleLightbox plugin for portfolio items
-        new SimpleLightbox({
-          elements: "#portfolio a.portfolio-box",
-        });
-  
-      }
-  
-      if (responseJson.menupic) {
-  
-        const menupic = responseJson.menupic;
-        var $menupic = document.getElementById('menupic');
-        var $menulink = $menupic.querySelector('a');
-        $($menupic).removeClass('d-none');
-        var $menuImg = $menupic.querySelector('img');
-  
-        $menuImg.src = menupic;
-  
-        if (responseJson.menulink) {
-  
-          $menulink.href = responseJson.menulink;
-        }
-  
-        new SimpleLightbox({
-          elements: "#menupic a.portfolio-box",
-        });
-      }
+            </div>
+            <div class="info-section d-none"  id="menuGiftpic">
+              <div class="item-list text-muted ">
+                <a class="portfolio-box " href="#" title="">
+                  <img class="img-fluid " src="" alt="" />
+                  <div class="portfolio-box-caption">
+                    <div class="project-category text-white-50">
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="info-section ">
+              <div class="subtitle">MAN GON　$280</div>
+              <ul class="item-list text-muted " style="position: relative;">
+                <li><strong class="text-primary">芒GON冰：</strong>芒果刨冰</li>
+                <li><strong class="text-primary">芒餡中餅乾：</strong>芒果內餡手寫字餅乾</li>
+                <div class="dot">邊吃ManGON冰消暑，邊欣賞곤듀님的HOT BODY，腹肌忙線ING（고소사！！</div>   
+                <br>
+                <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                  <strong class="text-primary" style="font-size: 1rem;">- 贈！隨餐應援禮 -</strong>
+                </div>             
+              </ul>
+            </div>
+            
+            <div class="info-section ">
+              <div class="subtitle">PINKY MAN　$280</div>
+              <ul class="item-list text-muted" style="position: relative;">                
+                <li><strong class="text-primary">芭蘿啵啵蛋糕：</strong>胡蘿蔔蛋糕（feat. 紅心芭樂奶霜）</li>
+                <li><strong class="text-primary">芒書書蘇打：</strong>芒果氣泡飲</li>
+                <div class="dot ">喔搜哇，這個組合邱姆肌？<br>
+                  紅蘿蔔西摟（挑）！摸耶摸耶Q～<br>
+                  把紅蘿蔔變好吃的PINKY魔法，書書乖乖吃紅蘿蔔！</div>
+                  <br>
+                  <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                    <strong class="text-primary" style="font-size: 1rem;">- 贈！隨餐應援禮 -</strong>
+                  </div>             
+              </ul>
+            </div>            
+          </div>
 
-      if (responseJson.menuGiftpic) {
-  
-        const menuGiftpic = responseJson.menuGiftpic;
-        var $menuGiftpic = document.getElementById('menuGiftpic');
-        var $menuGiftlink = $menuGiftpic.querySelector('a');
-        $($menuGiftpic).removeClass('d-none');
-        var $menuGiftImg = $menuGiftpic.querySelector('img');
-  
-        $menuGiftImg.src = menuGiftpic;
-  
-        if (responseJson.menuGiftlink) {
-  
-          $menuGiftlink.href = responseJson.menuGiftlink;
-        }
-  
-        new SimpleLightbox({
-          elements: "#menuGiftpic a.portfolio-box",
-        });
-      }
-  
+        </div>
+      </div>
+    </div>
 
-      if (responseJson.bonuspic) {
-  
-        const bonuspic = responseJson.bonuspic;
-        var $bonuspic = document.getElementById('bonus');
-        var $bonuslink = $bonuspic.querySelector('a');
-        $($bonuspic).removeClass('d-none');
-        var $bonusImg = $bonuspic.querySelector('img');
-  
-        $bonusImg.src = bonuspic;
-  
-        if (responseJson.bonuslink) {
-  
-          $bonuslink.href = responseJson.bonuslink;
-        }
-  
-        new SimpleLightbox({
-          elements: "#bonus a.portfolio-box",
-        });
-      }
-  
-      if (responseJson.formDisablepic) {
-  
-        const formDisablepic = responseJson.formDisablepic;
-  
-        var $formDisablelink = $formDisablepic.querySelector('a');
-        var $formDisableImg = $formDisablepic.querySelector('img');
-  
-        $formDisableImg.src = formDisablepic;
-  
-        if (responseJson.formDisablelink) {
-  
-          $formDisablelink.href = responseJson.formDisablelink;
-        }
-  
-        new SimpleLightbox({
-          elements: "#formDisablePic a.portfolio-box",
-        });
-      }
-  
-    } catch (error) {
-      console.error('Error fetching rounds:', error);
-    }
-  
-  }
-  
+  </section>
 
-document.addEventListener('DOMContentLoaded', fetchRounds);
-document.addEventListener('DOMContentLoaded', fetchImages);
+  </section>
+  <!-- apply-->
+  <section class="page-section" id="apply">
+    <div class="container px-4 px-lg-5">
+
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6 text-center">
+          <h2 class="mt-0 text-primary">一起來慶祝 곤듀 的生日吧！</h2>
+          <hr class="divider" />
+          <p class="text-muted mb-5 d-none" id="apply-subtitle">
+            準備好來<a class="text-primary" href="#menu">呷冰</a> + 玩遊戲惹嗎？<br>快來預約登記唷！
+          </p>
+          <div class="info-section d-none" id="formDisablePic">
+            <a class="portfolio-box" href="#" title="">
+              <img class="img-fluid modal-img " src="" alt="" />
+              <div class="portfolio-box-caption">
+                <div class="project-category text-white-50">
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+        <div class="col-lg-6">
+          <form id="applyForm" method="post" action="#" class="needs-validation d-none" novalidate>
+            <!-- Email address input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="email" name="email" type="email" required />
+              <label for="email">電子郵件</label>
+              <div class="invalid-feedback">*請輸入有效的電子郵件地址</div>
+            </div>
+            <!-- 選擇場次 input-->
+            <div class="form-floating mb-3">
+              <select id="round" name="round" class="form-control form-select" required>
+                <!-- 其他選項將由JavaScript動態添加 -->
+              </select>
+              <label for="round">選擇參加的場次</label>
+              <div class="invalid-feedback">*請選擇場次。</div>
+            </div>
+            <!-- 預約人數 input-->
+            <p style="font-size: 12px;color:var(--bs-primary);">*注意選擇場次剩餘名額 (若填寫超過會預約失敗唷！)</p>
+            <div class="form-floating mb-3">
+              <input class="form-control" id="count" name="count" type="number" required />
+              <label for="count">預約的人數</label>
+              <div class="invalid-feedback">*請輸入預約人數，且預約人數不能超過剩餘名額。</div>
+            </div>
+
+            <!-- mangon_count input-->
+            <p style="font-size: 12px;color:var(--bs-primary);">*由於店家有每位低消規定，餐點份數總和不可以低於預約人數。</p>
+            <div class="form-floating mb-3">
+              <input class="form-control" id="mangon_count" name="mangon_count" type="number" required />
+              <label for="mangon_count">MAN GON 生日套餐份數</label>
+              <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
+            </div>
+            <!-- pinky_count input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="pinky_count" name="pinky_count" type="number" required />
+              <label for="pinky_count">PINKY GON 生日套餐份數</label>
+              <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
+            </div>
+            <!-- Name input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="name" name="name" type="text" required />
+              <label for="name">暱稱</label>
+              <div class="invalid-feedback">*請輸入暱稱</div>
+            </div>
+            <!-- SNS input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="sns" name="sns" type="text" required />
+              <label for="sns">社群 ( IG / LINE社群名稱 )</label>
+              <div class="invalid-feedback">*社群聯絡方式</div>
+            </div>
+            <!-- Phone number input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="phone" name="phone" type="tel" required />
+              <label for="phone">手機號碼</label>
+              <div class="invalid-feedback">*請輸入有效的手機號碼</div>
+            </div>
+            <!-- Message input-->
+            <p style="font-size: 12px;color: var(--bs-primary);">*若預約人數超過兩人以上麻煩填寫第二人的聯絡方式 ( IG或社群名稱 )</p>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="message" name="message" style="height: 10rem"></textarea>
+              <label for="message">備註</label>
+              <div class="invalid-feedback">*填寫第二人的聯絡方式 </div>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="checkok" name="checkok" value="on" required>
+              <label class="form-check-label" for="checkok"
+                style="font-size: 14px;color: var(--bs-primary); font-weight: bold;">
+                我已確認上述填寫內容，並詳閱<a href="#info">活動說明</a>且同意<a href="#personal">資料蒐集使用</a>。
+              </label>
+              <div class="invalid-feedback">
+                *確認上述填寫無誤並勾選
+              </div>
+            </div>
+
+            <!-- Submit success message-->
+            <div class="d-none" id="submitSuccessMessage">
+              <div class="text-center mb-3">
+                <strong class="text-primary successMessage">Gon Xi 您預約登記成功啦～</strong><br>
+                將會寄送通知信給您！
+                <br>再麻煩留意一下信件唷～
+              </div>
+            </div>
+            <!-- Submit Button-->
+            <div class="d-grid">
+              <button class="btn btn-primary btn-xl my-3" id="submitButton" type="submit">確認登記</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+      <div class="d-flex justify-content-center spinner-load" >
+        <div class="spinner-border text-muted" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- store-->
+  <section class="page-section " id="store">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-primary mt-0">
+            店家資訊
+          </h2>
+          <hr class="divider" />
+          <div class="mb-4">
+            <div class="info-section">
+              <div class="subtitle">旁邊納涼 日式刨冰</div>
+              <div class="text-muted text-center">
+                <div class="m-1" style="text-align: center;">
+                  <a href="https://www.instagram.com/chillout_kakigori?igsh=MTEyaGlobDUwaGNqNw==" target="_blank"
+                    class="text-primary" style="font-weight: bold;">
+                    IG :chillout_kakigori</a>
+                </div>
+                <div style="text-align: left;display: inline-block;" class="m-1">
+                  <div class="dot">營業時間：12:00 - 20:00</div>
+                  <div class="text-primary dot">週二調整：14:00 - 22:00</div>
+                </div>
+              </div>
+            </div>
+            <div class="info-section">
+              <div class="subtitle">交通資訊</div>
+              <div class="text-muted text-center">
+                <div style="text-align: center;" class="mb-2 text-primary">
+                  <span class=""
+                    style="padding: 8px 25px;max-width: 350px;margin: 0 auto;font-weight: bold;">台北市大安區延吉街131巷1弄20號</span>
+                </div>
+                <div class="d-inline-block">
+                  <div class="dot">捷運忠孝敦化站 - ➀ 號出口</div>
+                  <div class="dot">捷運國父紀念館 - ➀ 號出口</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="store">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7308044804504!2d121.55189897537683!3d25.043208077810466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc69f4addb1%3A0x24cfd43b82733ebc!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5bu25ZCJ6KGXMTMx5be3MeW8hDIw6Jmf!5e0!3m2!1szh-TW!2stw!4v1720164343880!5m2!1szh-TW!2stw"
+          width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+  <!-- team-->
+  <section class="page-section " id="team">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6 text-center">
+          <h2 class="mt-0 text-primary">團隊介紹</h2>
+          <hr class="divider" />
+          <div class="info-section">
+            <div class="diamond subtitle">EEEEEating</div>
+            <ul class="item-list text-muted" style="position: relative;">
+              <li>
+                <strong>EEEEE TEAM大隊長</strong>（靈魂人物
+              </li>
+              <li>精神支柱、組織力強、設計技能強大ㄉ<strong class="text-primary">超級大ACE</strong></li>
+              <li>被各種誤會的神奇形象</li>
+              <li>開GON派（所以私訊經常爆炸</li>
+              <li>半夜比白天還要好找得到人</li>
+              <li>是個時不時需要爆發P人之力ㄉ人(⁎⁍̴̛ᴗ⁍̴̛⁎)</li>
+              <br>
+              <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                <a class="text-primary" href="https://www.instagram.com/gon_buibui?igsh=dHpseDdsb2ZqMmpp"
+                  target="_blank">-
+                  適合夜行性動物 晚上無聊想聊天的請找她 -</a>
+              </div>
+            </ul>
+          </div>
+          <div class="info-section">
+            <div class="diamond subtitle">巧克力蛋糕 aka 台北隊長</div>
+            <ul class="item-list text-muted" style="position: relative;">
+              <li>很T但偶爾也很F，到現在都還沒測MBTIㄉ人</li>
+              <li>專屬於EEEEE TEAM旅行社部門</li>
+              <li>擁有令人羡慕的創意取名技能（尤其是諧音梗</li>
+              <li>理性分析派，會為你指點迷津</li>
+              <li>但是勸敗GON略你，她也很會</li>
+              <li>想要邏輯梳理（找她就對了 ( • ̀ω•́ ) </li>
+              <br>
+              <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                <a class="text-primary" href="https://www.instagram.com/lauramei1106?igsh=MWFkaHN3aTBoZnhuNw=="
+                  target="_blank">- 想要利落快速獲得解答的請找她 -</a>
+              </div>
+            </ul>
+          </div>
+          <div class="info-section">
+            <div class="diamond subtitle">宋宋宋芸</div>
+            <ul class="item-list text-muted" style="position: relative;">
+              <li>什麼是睡覺 偶不知道（已超越韓國人</li>
+              <li>手GON繪圖的強者</li>
+              <li>隊內大J人（也是最可靠ㄉ人</li>
+              <li>實控進度ㄉ地下隊長（Eating：？？？</li>
+              <li>你要什麼！說出來！我都畫ㄉ出來！
+                <br>埋頭繼續繪圖中....
+              </li>
+              <li>已經是朴成國家ㄉ女人 (˶˚ ᗨ ˚˶)</li>
+              <br>
+              <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                <a class="text-primary" href="https://www.instagram.com/_vvs.yunyun_?igsh=MWZleTloOThzNWMwMw=="
+                  target="_blank">-
+                  不分晝夜 24小時皆能為您服務 -</a>
+              </div>
+            </ul>
+          </div>
+          <div class="info-section">
+            <div class="diamond subtitle">成熟又理智的休勾</div>
+            <ul class="item-list text-muted" style="position: relative;">
+              <li>黃金忙內aka團寵/欺</li>
+              <li>各種支援前線的小ACE（真 安泳俊</li>
+              <li>擁有곤곤許願池的超強技能（要許願先找隊長投幣</li>
+              <li>架梯高手！（啊～金價呦？</li>
+              <li>時常在線但有歐膩們防護罩</li>
+              <li>快來現場GON我玩 ପ꒰⑅•ᴗ•｡꒱໊♡</li>
+              <br>
+              <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                <span class="text-primary">- 您撥的號碼是空號 （忙內保護模式） -</a>
+              </div>
+            </ul>
+          </div>
+          <div class="info-section">
+            <div class="diamond subtitle">果妮老師 ⓒ KOOKni </div>
+            <ul class="item-list text-muted" style="position: relative;">
+              <li>網頁神設手 架設技能곤곤好</li>
+              <li>最愛歐北GON蕭威</li>
+              <li>愛把事情搞大 忙鼠自己（尬電</li>
+              <li>同時擁有強大實力與運氣ㄉ女人</li>
+              <li>也是個中途翻牆去朴成國家ㄉ女人（我已經回家了！！</li>
+              <li>今年的腦細胞燃燒殆盡已無耐心 (｡ŏ_ŏ)</li>
+              <br>
+              <div class="mt-3" style="position: absolute;right: 0.75rem;bottom: 0.75rem;font-size: 12px;">
+                <a href="https://www.instagram.com/anni_vvs.tw?igsh=MW9jamVxdXIyeXA0ag==" class="text-primary"
+                  target="_blank">- 可省去噓寒問暖 想要速戰速決的請找她 -</a>
+              </div>
+            </ul>
+          </div>
+          <div class="primary-bg-block" style="font-size: 0.85rem;padding: 5px 5px;">
+            如有對生咖的相關問題，依據個人喜好挑選成員私訊，我們將儘快為您解答！
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
 
 
-async function fetchRounds() {
-  try {
-    const response = await fetch(PROXY_URL + '?action=getRounds');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    // 檢查返回的內容是否是 JSON
-    const contentType = response.headers.get('Content-Type');
-    if (!contentType || !contentType.includes('application/json')) {
-      
-      const textResponse = await response.text();
-      console.error('Expected JSON, but got:', textResponse);
-      throw new Error('Expected JSON, but got something else');
-    }
-
-    // 解析 JSON
-    const responseJson = await response.json();
-    const formEnable = responseJson.formEnable;
-    const formDisableMsg = responseJson.formDisableMsg;
-
-    // 表單未啟用
-    if (!formEnable) {
-      $('#apply-subtitle').html(formDisableMsg).removeClass('d-none');
-      $($formDisablepic).removeClass('d-none');
-
-    } else {
-
-      $($formDisablepic).addClass('d-none');
-      $('form').removeClass('d-none');
-      $('#apply-subtitle').removeClass('d-none');
-
-      const rounds = responseJson.options;
-      const roundSelect = document.getElementById('round');
-      // 清空之前的選項
-      roundSelect.innerHTML = '';
-
-      // 將獲取到的數據添加到選單中
-      rounds.forEach((round, index) => {
-        const option = document.createElement('option');
-        option.value = round.round;
-        option.text = round.round;
-        option.setAttribute('data-max', round.limit);
-        roundSelect.appendChild(option);
-        // 設置 count 的最大值為第一個選項的 data-max
-        if (roundSelect.options.length > 0) {
-          const firstOption = roundSelect.options[0];
-          const max = firstOption.getAttribute('data-max');
-          const countInput = document.getElementById('count');
-          countInput.max = max;
-        }
-
-      });
-
-      $('#round').prop('selectedIndex', 0).trigger('change');
-      $('#count').attr('max', $('#round option:selected').data('max'));
-    }
-
-    $('.spinner-load').addClass("d-none");
-
-  } catch (error) {
-    console.error('Error fetching rounds:', error);
-  }
-  
-}
-
-document.addEventListener('DOMContentLoaded', fetchRounds);
-
-// 監聽下拉選單的 change 事件
-document.getElementById('round').addEventListener('change', function () {
-  const selectedOption = this.options[this.selectedIndex];
-  const max = selectedOption.getAttribute('data-max');
-  const countInput = document.getElementById('count');
-
-  countInput.value = ''; // 清空輸入框
-  countInput.max = max; // 設置最大值
-});
-  
-document.getElementById("applyForm").addEventListener("submit", async function (event) {
-
-  event.preventDefault(); // 阻止默認表單提交行為
-
-  var form = this;
-
-  form.classList.remove('was-validated');
-
-  const formData = new FormData(form);
-  const formObject = {};
-  formData.forEach((value, key) => {
-    formObject[key] = value;
-  });
+  <!-- Portfolio-->
+  <div id="portfolio">
+    <div class="container-fluid p-0">
+      <div class="row g-0" id="photo_album"></div>
+    </div>
+  </div>
 
 
-  // 自定義驗證
-  const mangonCount = parseInt(form.mangon_count.value) || 0;
-  const pinkyCount = parseInt(form.pinky_count.value) || 0;
-  const count = parseInt(form.count.value) || 0;
-  const phone = form.phone.value || '';
-  const countMax = $('#count').attr('data-max');
+  <!-- MSGModal -->
+  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static"
+    data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img id="msgPic" src="images/loading.gif" class="modal-img" />
+          <div id="msg-text" class="text-center">
+            表單送出中...<br>請勿離開頁面，耐心等候！
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary ok" data-dismiss="modal">確認</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  if (mangonCount + pinkyCount < count) {
-    form.mangon_count.setCustomValidity('餐點數量總和不能小於預約人數(${count})');
-    form.pinky_count.setCustomValidity('餐點數量總和不能小於預約人數(${count})');
-  } else {
-    form.mangon_count.setCustomValidity(''); // 清除錯誤消息
-    form.pinky_count.setCustomValidity(''); // 清除錯誤消息
-  }
-  
+  <div class="modal fade" id="adModal" tabindex="-1" aria-labelledby="adModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <a href="#" target="_blank">
+            <img src="" alt="PINKY ManGon" id="adPic">
+          </a>
+        </div>
+        <div class="modal-footer">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="dontShowToday">
+            <label class="form-check-label" for="dontShowToday">今日不再顯示</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  if (count > 2 && form.message.value == "") {
-    form.message.setCustomValidity('超過兩人以上麻煩填寫第二人聯絡方式');
-  }
-  else {
-    form.message.setCustomValidity(''); // 清除錯誤消息
-  }
+  <!-- Footer-->
+  <footer class="bg-dark py-3">
+    <div class="container px-4 px-lg-5">
+      <div class="small text-center text-white">
+        &copy; 19950807 - EEEEE TEAM | IN TAIWAN |
+      </div>
+    </div>
+  </footer>
+  <!-- 引入 validate.js 库 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  if (!phone.match(/^[0-9]{10}$/)) {
-    form.phone.setCustomValidity('請輸入有效的手機號碼');
-  } else {
-    form.phone.setCustomValidity(''); // 清除錯誤消息
-  }
+  <!-- SimpleLightbox plugin JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 
-  // 檢查表單是否有效
-  if (form.checkValidity() === false) {
-    event.stopPropagation();
-    form.classList.add('was-validated'); // 添加驗證狀態已顯示驗證訊息
-    return;  
-  }
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
-  if (confirm('確認要送出?')) {
-    var $submitButton = $('#submitButton');
-    $submitButton.prop('disabled', true);
+  <script src="js/main.js?v20240711-5"></script>
+</body>
 
-
-    setMsgModalShow("loading");
-
-    // 將表單數據轉換為 JSON
-    const jsonData = JSON.stringify(formObject);
-
-    try {
-      // POST 
-      const response = await fetch(PROXY_URL, {
-        mode: 'cors',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
-        },
-        body: jsonData,
-      });
-
-      // 處理響應
-      const resData = await response.json();
-      if (resData.result == 'ok') {
-        let $success = $('#submitSuccessMessage');
-        $success.find('.successMessage').html(resData.message);
-        $success.removeClass("d-none");
-        setMsgModalShow('success', $('#submitSuccessMessage').html());
-        //lock
-        Array.from(this.elements).forEach(element => element.disabled = true);
-        document.getElementById('submitButton').remove();
-
-      }
-      else {
-        setMsgModalShow('error', resData.message)
-
-        if (resData.status == '19') {
-          $('form').addClass('d-none');
-          $('#apply-subtitle').html(resData.message).removeClass('d-none');
-          $($formDisablepic).removeClass('d-none');
-        }
-
-        if (resData.status == '09') {
-          // 超額更新下拉選項
-          fetchRounds();
-        }
-        $submitButton.removeClass('loading');
-        $submitButton.prop('disabled', false);
-      }
-    } catch (error) {
-      console.log('Error submitting the form:', error);
-      alert("提交表單時發生錯誤");
-      $submitButton.removeClass('loading');
-      $submitButton.prop('disabled', false);
-      $('#msgModal').modal('hide');
-    }
-
-  }
-  else {
-    $submitButton.removeClass('loading');
-    $submitButton.prop('disabled', false);
-    return;
-  }
-  
-});
-
-
-
-function setMsgModalShow(type, msg) {
-
-  let picName = "";
-  let okBtn = true;
-
-  switch (type) {
-    case "success":
-      picName = "gonxi.gif";
-
-      break;
-    case "error":
-      picName = "wow.gif";
-      break;
-    case "loading":
-      okBtn = false;
-      picName = "loading.gif";
-      msg = "表單送出中...<br>請勿離開頁面，耐心等候！";
-      break;
-  }
-  document.getElementById('msgPic').src = "images/" + picName;
-  $('#msgModal #msg-text').html(msg);
-  if (okBtn) {
-    $('#msgModal .modal-footer').show();
-  }
-  else {
-    $('#msgModal .modal-footer').hide();
-  }
-  $('#msgModal').modal('show');
-}
-$('#msgModal button.ok').on('click', () => {
-  $('#msgModal').modal('hide'); 
-});
-
-function reloadPage() {
-  // 使用 location.replace 重載頁面不带 # 符号
-  window.location.replace(window.location.href.split('#')[0]);
-}
-
-console.log(
-  "%c-------------- 我很努力生出網站，請勿GON擊我 --------------\n" +
-  "%c ___  _  _ _  _ __ _ _   __ __            ___   ___  _ _ \n" +
-  "%c| . \\| || \\ || / /| | | |  \\  \\ ___ ._ _ /  _> | . || \\ |\n" +
-  "%c|  _/| ||   ||  \\ \\   / |     |<_> || ' || <_/\\| | ||   |\n" +
-  "%c|_|  |_||_\\_||_\\_\\ |_|  |_|_|_|<___||_|_|`____/`___'|_\\_|\n\n" +
-  "%c --------- ⓒ EEEEE TEAM - KOOKni | IN TAIWAN | ---------\n"
-  , "color:#d87199", "color:#d87199", "color:#d87199", "color:#e7a6c1", "color:#e7a6c1", "color:#d87199"
-);
+</html>
