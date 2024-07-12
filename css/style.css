@@ -2,7 +2,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Tomorrow:wght@400;700&display=swap");
 
-/* 自定义CSS样式，仅对id为adModal的modal生效 */
+/* 自定義CSS樣式，adModal的modal */
 #adModal .modal {
     background: rgba(0, 0, 0, 0.5);
     /* 半透明黑色背景 */
@@ -47,13 +47,11 @@
     font-size: 0.8rem;
 }
 
-/* 关闭按钮样式 */
+/* 關閉按鈕樣式 */
 #adModal .close {
     position: absolute;
-    top: 10px;
-    /* 适当的顶部位置 */
+    top: 10px;    
     right: 15px;
-    /* 适当的右侧位置 */
     color: white;
     font-size: 24px;
     font-weight: bold;
@@ -144,7 +142,7 @@
     outline: none;
     box-shadow: none;
 }
-/* 自定义navbar-toggler-icon样式 */
+/* navbar-toggler-icon */
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
