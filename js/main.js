@@ -1,4 +1,4 @@
-const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxEBoqHn7Ze8vgDYpTRKIQ2ojQjj85mYnf0-SLJRnkCGF9Lhwh9GcAIkUctcUYJ4y9MrA/exec';
+const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwN1Pe5ajF9BHBMFL8Xv272K_aRAcg8iDI1LNSb3_et8ZfFulKY49wo_cGUFnaS6sV6Bw/exec';
 const $formDisablepic = document.getElementById('formDisablePic');
 window.addEventListener("DOMContentLoaded", (event) => {
 
@@ -205,6 +205,21 @@ async function fetchImages() {
         new SimpleLightbox({
           elements: "#formDisablePic a.portfolio-box",
         });
+      }
+
+
+      if (responseJson.mangonMax<=0) {
+        $('#mangon_count_max').removeClass('d-none');
+        $('#mangon_count').val('0');
+        $('#mangon_count').prop('disabled',true);
+
+      }
+
+      if (responseJson.pinkygonMax<=0) {
+        $('#pinky_count_max').removeClass('d-none');
+        $('#pinky_count').val('0');
+        $('#pinky_count').prop('disabled',true);
+
       }
   
     } catch (error) {
