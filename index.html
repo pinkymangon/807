@@ -357,15 +357,16 @@
 
             <!-- mangon_count input-->
             <p style="font-size: 12px;color:var(--bs-primary);">*由於店家有每位低消規定，餐點份數總和不可以低於預約人數。</p>
+            <p id="mangon_count_max" class="d-none" style="font-size: 12px;color:var(--bs-primary);">*MAN GON餐點預約已滿</p>
             <div class="form-floating mb-3">
               <input class="form-control" id="mangon_count" name="mangon_count" type="number" required />
               <label for="mangon_count">MAN GON 生日套餐份數</label>
               <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
             </div>
             <!-- pinky_count input-->  
-<p style="font-size: 12px;color:var(--bs-primary);">*PINKY GON餐點預約已滿</p>
+            <p id="pinky_count_max" class="d-none" style="font-size: 12px;color:var(--bs-primary);">*PINKY GON餐點預約已滿</p>
             <div class="form-floating mb-3">
-              <input class="form-control" id="pinky_count" name="pinky_count" type="number" value=0  disabled required  />
+              <input class="form-control" id="pinky_count" name="pinky_count" type="number" required  />
               <label for="pinky_count">PINKY GON 生日套餐份數</label>
               <div class="invalid-feedback">*有低消規定餐點總數不能低於預約人數，若無請填0。</div>
             </div>
@@ -643,7 +644,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
-  <script src="js/main.js?v20240719"></script>
+  <script src="js/main.js?v20240801-2"></script>
 </body>
 
 </html>
