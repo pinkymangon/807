@@ -1,4 +1,4 @@
-const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwN1Pe5ajF9BHBMFL8Xv272K_aRAcg8iDI1LNSb3_et8ZfFulKY49wo_cGUFnaS6sV6Bw/exec';
+const PROXY_URL = 'https://script.google.com/macros/s/AKfycbxyhxStJXD8_CALilIeMYTJQphSRaGNT71VC_QilL7S0Svs4RyQUgv5zlLb-sDIF1OACQ/exec';
 const $formDisablepic = document.getElementById('formDisablePic');
 window.addEventListener("DOMContentLoaded", (event) => {
 
@@ -96,11 +96,11 @@ async function fetchImages() {
   
       // 圖片庫生成
       const picTemplateHtml = (href, title, name) => `
-              <div class="col-lg-4 col-sm-6">
+              <div class="col-lg-6 col-sm-12">
                 <a class="portfolio-box" href="${href}" title="${name}">
                   <img class="img-fluid" src="${href}" alt="..." />
-                  <div class="portfolio-box-caption p-3">
-                    <div class="project-category text-white-50">
+                  <div class="portfolio-box-caption">
+                    <div class="project-category">
                       ${title}
                     </div>
                     <div class="project-name">${name}</div>
@@ -108,6 +108,7 @@ async function fetchImages() {
                 </a>
               </div>
             `;
+           
   
       if (responseJson.photos) {
         const picArr = responseJson.photos;
@@ -123,6 +124,42 @@ async function fetchImages() {
         // Activate SimpleLightbox plugin for portfolio items
         new SimpleLightbox({
           elements: "#portfolio a.portfolio-box",
+        });
+  
+      }
+
+      if (responseJson.drawPhotos) {
+        const picArr = responseJson.drawPhotos;
+        // 轉換的 outHtml
+        let outPicHTML = "";
+        // picArr，生成每個項目的 HTML
+        picArr.forEach(pic => {
+          outPicHTML += picTemplateHtml(pic.href, pic.title, pic.name);
+        });
+  
+        // 將生成的 HTML 添加到頁面中
+        document.getElementById('photo_draw').innerHTML = outPicHTML;
+        // Activate SimpleLightbox plugin for portfolio items
+        new SimpleLightbox({
+          elements: "#portfolio-draw a.portfolio-box",
+        });
+  
+      }
+
+      if (responseJson.easterEggPhotos) {
+        const picArr = responseJson.easterEggPhotos;
+        // 轉換的 outHtml
+        let outPicHTML = "";
+        // picArr，生成每個項目的 HTML
+        picArr.forEach(pic => {
+          outPicHTML += picTemplateHtml(pic.href, pic.title, pic.name);
+        });
+  
+        // 將生成的 HTML 添加到頁面中
+        document.getElementById('photo_egg').innerHTML = outPicHTML;
+        // Activate SimpleLightbox plugin for portfolio items
+        new SimpleLightbox({
+          elements: "#portfolio-egg a.portfolio-box",
         });
   
       }
