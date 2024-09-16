@@ -193,3 +193,9 @@
         border-radius: 8px;
         padding: 5px;
       }
+
+@media (max-width: 991px) {
+  .portfolio-box img {
+    height: auto; /* 在小螢幕時自動調整高度 */
+  }
+}
