@@ -186,7 +186,7 @@
       }
 
 
-      .portfolio-box img {
+      #photo .portfolio-box img {
         width: 100%;
         height: 420px; /* 你可以根據需要調整高度 */
         object-fit: cover; /* 使用 cover 來保持比例並填滿容器 */
@@ -195,7 +195,7 @@
       }
 
 @media (max-width: 991px) {
-  .portfolio-box img {
+ #photo .portfolio-box img {
     height: auto; /* 在小螢幕時自動調整高度 */
   }
 }
