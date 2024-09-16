@@ -193,9 +193,24 @@
         border-radius: 8px;
         padding: 5px;
       }
-
+   #photo #photo_egg .portfolio-box img {
+      height: auto !important;   
+   }
 @media (max-width: 991px) {
  #photo .portfolio-box img {
     height: auto; /* 在小螢幕時自動調整高度 */
   }
 }
+@media (min-width: 1200px) {
+ #photo .portfolio-box img {
+    height: 620px; /* 在小螢幕時自動調整高度 */
+  }
+}
+
+@media (min-width: 1400px) {
+ #photo .portfolio-box img {
+    height: 720px; /* 在小螢幕時自動調整高度 */
+  }
+}
+
+
